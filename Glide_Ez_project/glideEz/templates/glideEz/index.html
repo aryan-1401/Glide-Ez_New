@@ -73,19 +73,19 @@
 			
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo"><a href="index.html">Glide-Ez <em>.</em></a></div>
+					<div id="gtco-logo"><a href="{% url 'home' %}">Glide-Ez <em>.</em></a></div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li><a href="destination.html">Popular Destinations</a></li>
+						<li><a href="{% url 'destination' %}">Popular Destinations</a></li>
 						
-						<li><a href="pricing.html">Pricing</a></li>
+						<li><a href="{% url 'pricing' %}">Pricing</a></li>
 						<li><a href="contact.html">Contact</a></li>
 						<li class="has-dropdown">
 							<a href="#">Login</a>
 							<ul class="dropdown">
-								<li><a href="login_user.html">As User</a></li>
-								<li><a href="login_airline.html">As Airline</a></li>
+								<li><a href="{% url 'login_user' %}">As User</a></li>
+								<li><a href="{% url 'login_airline' %}">As Airline</a></li>
 								
 							</ul>
 						</li>
