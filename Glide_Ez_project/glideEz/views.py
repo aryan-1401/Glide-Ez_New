@@ -12,6 +12,7 @@ def home(request):
 def destination_view(request):
     return render(request, "glideEz/destination.html")
 
+
 def login_user_view(request):
     if request.method == "POST":
         # Getting user email
@@ -33,8 +34,6 @@ def login_user_view(request):
             return render(request, "glideEz/index.html")
         else:
             return HttpResponse("User not found")
-        
-
     return render(request, "glideEz/login_user.html")
 
 def login_airline_view(request):
