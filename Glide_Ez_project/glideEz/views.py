@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, redirect, render
 from django.http import HttpResponse
 from django.core.mail import send_mail
 
@@ -12,6 +12,41 @@ def home(request):
 def destination_view(request):
     return render(request, "glideEz/destination.html")
 
+def register_user_view(request):
+    if request.method == "POST":
+        # Getting user name
+        name = request.POST.get('username')
+        # Getting user email
+        email = request.POST.get('email')
+        # Getting user password
+        password = request.POST.get('pass')
+        #Getting user date of birth
+        dob = request.POST.get('dob')
+        # Getting user address
+        address = request.POST.get('address')
+        #Getting user aadhar number
+        aadhar = request.POST.get('aadhar')
+        # Getting user phone number
+        phone_number = request.POST.get('phone')
+        
+
+        #check if user exists in mysql database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM user WHERE Email = %s", (email,))
+        user = mycursor.fetchone()
+        if user:
+            return HttpResponse("User already exists")
+        else:
+            mycursor.execute("INSERT INTO user (first_name, Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, email, password, aadhar, address, dob, phone_number))
+            mydb.commit()
+            return render(request, "glideEz/login_user.html")
+    return render(request, "glideEz/login_user.html")
 
 def login_user_view(request):
     if request.method == "POST":
