@@ -120,7 +120,7 @@
 				<div class="col-md-12">
 					<div class="col-md-6 animate-box">
 					<h3>Get In Touch</h3>
-					<form action="{% url 'contact' %}" method="post">
+					<form action="{% url 'contact' %}" method="post" name="contactForm" onsubmit="return validateForm()">
 						{% csrf_token %}
 						<div class="row form-group">
 							<div class="col-md-12">
@@ -270,6 +270,39 @@
 
 	<!-- Main -->
 	<script src="../../static/glideEz/js/main.js"></script>
+
+	<!-- To validate form -->
+	<!-- #TODO: validate form isn'working -->
+	<script>
+		function validateForm(){
+			// alert('Name must be filled out and must only contain letters');
+			let name = document.forms['contactForm']['visitor_name'].value;
+			let email = document.forms['contactForm']['visitor_email'].value;
+			let subject = document.forms['contactForm']['email_title'].value;
+			let message = document.forms['contactForm']['visitor_message'].value;
+	  
+			if (name == '' || hasNumber(name)){
+				alert('Name must be filled out and must only contain letters');
+				return false;
+			} else if (email == '' && subject == ''){
+				alert('Email or subject must be filled out');
+				return false;
+			} else if (!(email.includes('@'))){
+				alert('Email does not seem to be valid');
+				return false;
+			} else if (message == ''){
+				alert('Message must be filled out');
+				return false;
+			} else {
+				// confirm or cancel
+				return confirm('Do you really want to sent the message?')
+			}
+		}
+	  
+		function hasNumber(myString) {
+			return /\d/.test(myString);
+		}
+	  </script>
 	</body>
 
 </html>
