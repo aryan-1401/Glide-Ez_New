@@ -16,4 +16,7 @@ def login_airline_view(request):
 
 def pricing_view(request):
     return render(request, "glideEz/pricing.html")
+
+def contact_view(request):
+    return render(request, "glideEz/contact.html")
     
