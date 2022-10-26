@@ -81,13 +81,19 @@
 						
 						<li><a href="{% url 'pricing' %}">Pricing</a></li>
 						<li><a href="{% url 'contact' %}">Contact</a></li>
+						<!-- Display username of user which was passed from view.py -->
+						
 						<li class="has-dropdown">
-							<a href="#">Login</a>
-							<ul class="dropdown">
-								<li><a href="{% url 'login_user' %}">As User</a></li>
-								<li><a href="{% url 'login_airline' %}">As Airline</a></li>
+							{% if user_name %}
+								<h1>Welcome {{ user_name }}</h1>
+							{% else %}
+								<a href="#">Login</a>
 								
-							</ul>
+								<ul class="dropdown">
+									<li><a href="{% url 'login_user' %}">As User</a></li>
+									<li><a href="{% url 'login_airline' %}">As Airline</a></li>
+								</ul>
+							{% endif %}
 						</li>
 						
 					</ul>	

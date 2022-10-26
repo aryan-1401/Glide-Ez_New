@@ -66,7 +66,16 @@ def login_user_view(request):
         mycursor.execute("SELECT * FROM user WHERE Email = %s AND passwrd = %s", (email, password))
         user = mycursor.fetchone()
         if user:
-            return render(request, "glideEz/index.html")
+            # Fetch user first name from database
+            mycursor.execute("SELECT first_name FROM user WHERE Email = %s AND passwrd = %s", (email, password))
+            user_name = mycursor.fetchone()
+
+            # Save username in session
+            request.session['user_name'] = user_name[0]
+            # return HttpResponse("Welcome "+ user_name[0])
+            #Display user name on home page
+            return render(request, "glideEz/index.html", {'user_name': user_name[0]})
+            # return render(request, "glideEz/index.html")
         else:
             return HttpResponse("User not found")
     return render(request, "glideEz/login_user.html")
