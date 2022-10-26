@@ -35,6 +35,7 @@
 **Step4:** Setup mysql
 
 - Install mysqlclient(Before this Step update the Databases list in settings.py)
+- py -m pip install mysql-connector-python
 - py -m pip install mysqlclient
 - py -m manage migrate<br>
 
