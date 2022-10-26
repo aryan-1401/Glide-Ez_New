@@ -1,6 +1,8 @@
 from django.shortcuts import HttpResponse, redirect, render
 from django.http import HttpResponse
 from django.core.mail import send_mail
+# for stopping session on clicking back button
+from django.views.decorators.cache import cache_control
 
 #mysql connector
 import mysql.connector
@@ -114,9 +116,13 @@ def login_user_view(request):
 def login_airline_view(request):
     return render(request, "glideEz/login_airline.html")
 
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def logout_view(request):
     # Delete user name from session
     del request.session['user_name']
+    # stop session on clicking back button
+
     return render(request, "glideEz/index.html")
 
 def view_account_view(request):
