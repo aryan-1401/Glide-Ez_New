@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 import mysql.connector
 # Create your views here.
 
+
+
 def home(request): 
     return render(request, "glideEz/index.html")
 
@@ -75,8 +77,31 @@ def login_user_view(request):
            
            # Capitalize first letter of user name
             first_name = user_name[0].capitalize()
-            return render(request, "glideEz/index.html", {'user_name': first_name})
-            # return render(request, "glideEz/index.html")
+            # Get address of user
+            mycursor.execute("SELECT address FROM user WHERE Email = %s AND passwrd = %s", (email, password))
+            address = mycursor.fetchone()
+            # Get phone number of user
+            mycursor.execute("SELECT phone_no FROM user WHERE Email = %s AND passwrd = %s", (email, password))
+            phone_number = mycursor.fetchone()
+            # Get aadhar number of user
+            mycursor.execute("SELECT adhaar_no FROM user WHERE Email = %s AND passwrd = %s", (email, password))
+            aadhar = mycursor.fetchone()
+            # Get date of birth of user
+            mycursor.execute("SELECT DOB FROM user WHERE Email = %s AND passwrd = %s", (email, password))
+            dob = mycursor.fetchone()
+            # create dict to store user details
+            user = {
+                'first_name': first_name,
+                'email': email,
+                'address': address[0],
+                'phone_number': phone_number[0],
+                'aadhar': aadhar[0],
+                'dob': dob[0]
+
+            }
+            return render(request, "glideEz/index.html", {'user': user})
+            # return render(request, "glideEz/index.html", user)
+            # return render(request, "glideEz/index.html", {'user_name': first_name})
         else:
             return HttpResponse("User not found")
     return render(request, "glideEz/login_user.html")
@@ -88,6 +113,9 @@ def logout_view(request):
     # Delete user name from session
     del request.session['user_name']
     return render(request, "glideEz/index.html")
+
+def view_account_view(request):
+    return render(request, "glideEz/view_account.html")
 
 def pricing_view(request):
     return render(request, "glideEz/pricing.html")
