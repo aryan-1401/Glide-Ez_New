@@ -1,15 +1,11 @@
 from django.shortcuts import HttpResponse, redirect, render
 from django.http import HttpResponse
 from django.core.mail import send_mail
-# for stopping session on clicking back button
-from django.views.decorators.cache import cache_control
-
-#mysql connector
+from django.views.decorators.cache import cache_control # for stopping session on clicking back button
 import mysql.connector
+
+
 # Create your views here.
-
-    
-
 def home(request): 
     return render(request, "glideEz/index.html")
 
@@ -69,8 +65,9 @@ def login_user_view(request):
         mycursor = mydb.cursor()
         mycursor.execute("SELECT * FROM user WHERE Email = %s AND passwrd = %s", (email, password))
         user = mycursor.fetchone()
-        if user:
 
+
+        if user:
             # Fetch user first name from database
             mycursor.execute("SELECT first_name FROM user WHERE Email = %s AND passwrd = %s", (email, password))
             user_name = mycursor.fetchone()
@@ -107,8 +104,6 @@ def login_user_view(request):
         
 
             return render(request, "glideEz/index.html", {'user': user})
-            # return render(request, "glideEz/index.html", user)
-            # return render(request, "glideEz/index.html", {'user_name': first_name})
         else:
             return HttpResponse("User not found")
     return render(request, "glideEz/login_user.html")
