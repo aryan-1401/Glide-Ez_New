@@ -72,9 +72,10 @@ def login_user_view(request):
 
             # Save username in session
             request.session['user_name'] = user_name[0]
-            # return HttpResponse("Welcome "+ user_name[0])
-            #Display user name on home page
-            return render(request, "glideEz/index.html", {'user_name': user_name[0]})
+           
+           # Capitalize first letter of user name
+            first_name = user_name[0].capitalize()
+            return render(request, "glideEz/index.html", {'user_name': first_name})
             # return render(request, "glideEz/index.html")
         else:
             return HttpResponse("User not found")

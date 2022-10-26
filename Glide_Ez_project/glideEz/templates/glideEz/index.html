@@ -85,7 +85,12 @@
 						
 						<li class="has-dropdown">
 							{% if user_name %}
-								<h1>Welcome {{ user_name }}</h1>
+								
+								<a href="#">{{ user_name }}</a>
+								<ul class="dropdown">
+									<li><a href="/logout">Logout</a></li>
+									<li><a href="/view_account">View Account</a></li>
+								</ul>
 							{% else %}
 								<a href="#">Login</a>
 								
