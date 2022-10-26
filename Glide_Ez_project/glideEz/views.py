@@ -84,6 +84,11 @@ def login_user_view(request):
 def login_airline_view(request):
     return render(request, "glideEz/login_airline.html")
 
+def logout_view(request):
+    # Delete user name from session
+    del request.session['user_name']
+    return render(request, "glideEz/index.html")
+
 def pricing_view(request):
     return render(request, "glideEz/pricing.html")
 
