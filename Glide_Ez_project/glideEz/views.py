@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 import mysql.connector
 # Create your views here.
 
-
+    
 
 def home(request): 
     return render(request, "glideEz/index.html")
@@ -68,12 +68,15 @@ def login_user_view(request):
         mycursor.execute("SELECT * FROM user WHERE Email = %s AND passwrd = %s", (email, password))
         user = mycursor.fetchone()
         if user:
+
             # Fetch user first name from database
             mycursor.execute("SELECT first_name FROM user WHERE Email = %s AND passwrd = %s", (email, password))
             user_name = mycursor.fetchone()
 
             # Save username in session
             request.session['user_name'] = user_name[0]
+            # Save email in session
+            request.session['email'] = email
            
            # Capitalize first letter of user name
             first_name = user_name[0].capitalize()
@@ -99,6 +102,8 @@ def login_user_view(request):
                 'dob': dob[0]
 
             }
+        
+
             return render(request, "glideEz/index.html", {'user': user})
             # return render(request, "glideEz/index.html", user)
             # return render(request, "glideEz/index.html", {'user_name': first_name})
@@ -115,7 +120,44 @@ def logout_view(request):
     return render(request, "glideEz/index.html")
 
 def view_account_view(request):
-    return render(request, "glideEz/view_account.html")
+    # Get email from session
+    email = request.session['email']
+    
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="2002",
+        database="glide_ez"
+    )
+    mycursor = mydb.cursor()
+    # Fetch user first name from session
+    user_name = request.session['user_name']
+    # fetch user address from database
+    mycursor.execute("SELECT address FROM user WHERE Email = %s", (email,))
+    address = mycursor.fetchone()
+    # fetch user phone number from database
+    mycursor.execute("SELECT phone_no FROM user WHERE Email = %s", (email,))
+    phone_number = mycursor.fetchone()
+    # fetch user aadhar number from database
+    mycursor.execute("SELECT adhaar_no FROM user WHERE Email = %s", (email,))
+    aadhar = mycursor.fetchone()
+    # fetch user date of birth from database
+    mycursor.execute("SELECT DOB FROM user WHERE Email = %s", (email,))
+    dob = mycursor.fetchone()
+    # create dict to store user details
+    user = {
+
+        'first_name': user_name,
+        'email': email,
+        'address': address[0],
+        'phone_number': phone_number[0],
+        'aadhar': aadhar[0],
+        'dob': dob[0]
+
+    }
+    return render(request, "glideEz/view_account.html", {'user': user})
+   
+     
 
 def pricing_view(request):
     return render(request, "glideEz/pricing.html")
