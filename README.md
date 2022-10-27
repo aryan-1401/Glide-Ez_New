@@ -40,3 +40,9 @@
 - py -m manage migrate<br>
 
 ---
+
+### OPTIONAL
+
+**Enviornment variables**
+
+- py -m pip install django-environ
