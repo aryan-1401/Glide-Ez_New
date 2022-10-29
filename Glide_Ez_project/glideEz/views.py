@@ -203,14 +203,20 @@ def search_flight_view(request):
         )
         mycursor = mydb.cursor()
         # str = """with tempsrc(tempID) as (SELECT Airport_ID from Airport where loc=%s), 
-        # tempdest(tempID) as (SELECT Airport_ID from Airport where loc=%s) 
-        # select (Depart_time) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and 
+        #  tempdest(tempID) as (SELECT Airport_ID from Airport where loc=%s) 
+        #  select (Depart_time) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and 
         # trip.dest_ID = tempdest.tempID;"""%(source, destination)
         # str = "with tempsrc(tempID) as (SELECT Airport_ID from Airport where loc=%s), tempdest(tempID) as (SELECT Airport_ID from Airport where loc=%s) select (Depart_time) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and trip.dest_ID = tempdest.tempID;",(source, destination)
-        # mycursor.execute(str)
+
+        str = """with tempsrc(tempID) as 
+        (SELECT Airport_ID from Airport where loc LIKE '{}') , 
+        tempdest(tempID) as (SELECT Airport_ID from Airport where loc LIKE '{}') 
+        select (Trip_ID) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and
+         trip.dest_ID = tempsrc.tempID ; """.format(source,destination)
         
-        # details = mycursor.fetchall()
-        return render(request, "glideEz/search_flight.html", {'source': source, 'destination': destination, 'class_type': class_type, 'date': date})
+        mycursor.execute(str)
+        details = mycursor.fetchall()
+        return render(request, "glideEz/search_flight.html", {'details': details})
 
 
 
