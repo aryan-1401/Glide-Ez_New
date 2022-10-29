@@ -10,6 +10,7 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("view_account", views.view_account_view, name="view_account"),
     path("pricing", views.pricing_view, name="pricing"),
-    path("contact", views.contact_view, name="contact")
+    path("contact", views.contact_view, name="contact"),
+    path("search_flight", views.search_flight_view, name="search_flight")
     
 ]

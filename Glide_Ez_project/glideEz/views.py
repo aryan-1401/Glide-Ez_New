@@ -168,20 +168,53 @@ def contact_view(request):
     if request.method == 'POST':
         name = request.POST.get('visitor_name')
         email = request.POST.get('visitor_email')
-        message = request.POST.get('visitor_message')
+        new_message = request.POST.get('visitor_message')
         subject = request.POST.get('email_title')
         form_data = {
             'name':name,
             'email':email,
             'subject':subject,
-            'message':message
+            'new_message':new_message
         }
         message = '''
         From:\n\t\t{}\n
         Message:\n\t\t{}\n
         Email:\n\t\t{}\n
         Subject:\n\t\t{}\n
-        '''.format(form_data['name'], form_data['message'], form_data['email'],form_data['subject'])
+        '''.format(form_data['name'], form_data['new_message'], form_data['email'],form_data['subject'])
         send_mail('You got a mail!', message, '', ['glideezinfo@gmail.com']) # TODO: enter your email address
     return render(request, "glideEz/contact.html")
     
+def search_flight_view(request):
+    if request.method == "POST":
+        # Get user input
+        source = request.POST.get('source')
+        print(source)
+        destination = request.POST.get('destination')
+        print(destination)
+        class_type = request.POST.get('class')      
+        date = request.POST.get('date_travel')
+        # Connect to database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        # str = """with tempsrc(tempID) as (SELECT Airport_ID from Airport where loc=%s), 
+        # tempdest(tempID) as (SELECT Airport_ID from Airport where loc=%s) 
+        # select (Depart_time) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and 
+        # trip.dest_ID = tempdest.tempID;"""%(source, destination)
+        # str = "with tempsrc(tempID) as (SELECT Airport_ID from Airport where loc=%s), tempdest(tempID) as (SELECT Airport_ID from Airport where loc=%s) select (Depart_time) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and trip.dest_ID = tempdest.tempID;",(source, destination)
+        # mycursor.execute(str)
+        
+        # details = mycursor.fetchall()
+        return render(request, "glideEz/search_flight.html", {'source': source, 'destination': destination, 'class_type': class_type, 'date': date})
+
+
+
+
+
+
+       
