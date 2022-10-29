@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.views.decorators.cache import cache_control # for stopping session on clicking back button
 import mysql.connector
+from datetime import datetime
 
 
 # Create your views here.
@@ -194,6 +195,11 @@ def search_flight_view(request):
         print(destination)
         class_type = request.POST.get('class')      
         date = request.POST.get('date_travel')
+        print((date))
+
+        #Convert date MM/DD/YYYY to YYYY-MM-DD
+        date = datetime.strptime(date, '%m/%d/%Y').strftime('%Y-%m-%d')
+
         # Connect to database
         mydb = mysql.connector.connect(
             host="localhost",
@@ -202,17 +208,12 @@ def search_flight_view(request):
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        # str = """with tempsrc(tempID) as (SELECT Airport_ID from Airport where loc=%s), 
-        #  tempdest(tempID) as (SELECT Airport_ID from Airport where loc=%s) 
-        #  select (Depart_time) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and 
-        # trip.dest_ID = tempdest.tempID;"""%(source, destination)
-        # str = "with tempsrc(tempID) as (SELECT Airport_ID from Airport where loc=%s), tempdest(tempID) as (SELECT Airport_ID from Airport where loc=%s) select (Depart_time) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and trip.dest_ID = tempdest.tempID;",(source, destination)
 
         str = """with tempsrc(tempID) as 
-        (SELECT Airport_ID from Airport where loc LIKE '{}') , 
-        tempdest(tempID) as (SELECT Airport_ID from Airport where loc LIKE '{}') 
+        (SELECT Airport_ID from Airport where loc LIKE '%{}%') , 
+        tempdest(tempID) as (SELECT Airport_ID from Airport where loc LIKE '%{}%') 
         select (Trip_ID) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and
-         trip.dest_ID = tempsrc.tempID ; """.format(source,destination)
+         trip.dest_ID = tempdest.tempID AND trip.depart_time LIKE '%{}%'; """.format(source,destination,date)
         
         mycursor.execute(str)
         details = mycursor.fetchall()
