@@ -196,7 +196,8 @@ def search_flight_view(request):
         class_type = request.POST.get('class')      
         date = request.POST.get('date_travel')
         print((date))
-
+        
+        print(class_type)
         #Convert date MM/DD/YYYY to YYYY-MM-DD
         date = datetime.strptime(date, '%m/%d/%Y').strftime('%Y-%m-%d')
 
@@ -209,14 +210,40 @@ def search_flight_view(request):
         )
         mycursor = mydb.cursor()
 
-        str = """with tempsrc(tempID) as 
-        (SELECT Airport_ID from Airport where loc LIKE '%{}%') , 
-        tempdest(tempID) as (SELECT Airport_ID from Airport where loc LIKE '%{}%') 
-        select (Trip_ID) from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and
-         trip.dest_ID = tempdest.tempID AND trip.depart_time LIKE '%{}%'; """.format(source,destination,date)
+        # str = """with tempsrc(tempID) as 
+        # (SELECT Airport_ID from Airport where loc LIKE '%{}%') , 
+        # tempdest(tempID) as (SELECT Airport_ID from Airport where loc LIKE '%{}%') 
+        # select Depart_time,Arrival_time from trip,tempsrc,tempdest where trip.src_ID = tempsrc.tempID and
+        #  trip.dest_ID = tempdest.tempID AND trip.depart_time LIKE '%{}%'; """.format(source,destination,date)
         
+        str = """with temp1(src,dest) as (select s.Airport_ID,t.Airport_ID from Airport s,Airport t 
+        where s.loc='{}' and t.loc='{}') , temp2(tr_ID,arr,dept,FL_ID) as 
+        (select Trip.Trip_ID,Trip.Arrival_Time,Trip.Depart_Time,Flight_ID from Trip,temp1 
+        where Trip.Depart_Time LIKE '{}%' and Trip.src_ID=temp1.src and Trip.dest_ID=temp1.dest) 
+        Select Airline.Airline_ID, Airline.Airline_Name,temp2.dept,temp2.arr,Seat.Price from Airline,Flight,temp2,Seat 
+        where Airline.Airline_Id=Flight.fk_Airline_ID and Flight.Flight_ID=temp2.FL_ID and 
+        Seat.Trip_ID=temp2.tr_ID and Seat.Class_type='{}'
+         ;""".format(source,destination,date,class_type)
         mycursor.execute(str)
         details = mycursor.fetchall()
+        
+    
+
+        # Extract time from datetime in details[0]
+        # depart_time = details[0][0].time()
+        # arrival_time = details[0][1].time()
+
+        # details_dict= {
+
+        #     'source':source,
+        #     'destination':destination,
+        #     'class_type':class_type,
+        #     'date':date,
+        #     'airline_name':details[0][2],
+
+        #     'depart_time':depart_time,
+        #     'arrival_time':arrival_time
+        # }
         return render(request, "glideEz/search_flight.html", {'details': details})
 
 
