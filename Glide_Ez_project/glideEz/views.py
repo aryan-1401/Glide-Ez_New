@@ -266,6 +266,9 @@ def view_account_view(request):
 def pricing_view(request):
     return render(request, "glideEz/pricing.html")
 
+def bookings_view(request):
+    return render(request, "glideEz/bookings.html")
+
 def contact_view(request):
     # TODO: fix no message in email
     if request.method == 'POST':

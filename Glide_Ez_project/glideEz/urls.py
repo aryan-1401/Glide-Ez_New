@@ -12,6 +12,7 @@ urlpatterns = [
     path("view_account", views.view_account_view, name="view_account"),
     path("pricing", views.pricing_view, name="pricing"),
     path("contact", views.contact_view, name="contact"),
+    path("bookings", views.bookings_view, name="bookings"),
     path("search_flight", views.search_flight_view, name="search_flight")
     
 ]
