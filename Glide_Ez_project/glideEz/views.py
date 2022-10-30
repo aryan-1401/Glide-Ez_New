@@ -35,7 +35,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -60,7 +60,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -126,7 +126,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -162,7 +162,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -230,7 +230,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -311,7 +311,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -332,7 +332,7 @@ def search_flight_view(request):
          ;""".format(source,destination,date,class_type)
         mycursor.execute(str)
         details = mycursor.fetchall()
-        
+        print(type(details))
     
 
         # Extract time from datetime in details[0]
