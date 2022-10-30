@@ -1,25 +1,34 @@
-{% extends 'glideEz/layout.html' %} {% block content %}
+{% extends 'glideEz/layout.html' %} {% block head %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://use.typekit.net/cav5lva.css" />
+<link rel="stylesheet" href="../../static/glideEz/css/layout_style.css" />
+<link rel="icon" type="image/ico" href="/static/img/favicon.ico" />
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+
+<title>Bookings | Flight</title>
+
+<link rel="stylesheet" href="../../static/glideEz/css/bookings_style.css" />{% endblock %}
+{% block content %}
 <div style="height: 100%; width: 100%; padding: 10%">
-  <div style="text-align: center; margin: auto">
-    <svg
-      width="4em"
-      height="4em"
-      viewBox="0 0 16 16"
-      class="bi bi-exclamation-circle"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-      />
-      <path
-        d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
-      />
-    </svg>
-    <br /><br />
-    <h3>Oops! Looks empty</h3>
-    <p>Looks like You don't have any bookings yet.</p>
-  </div>
+    <div style="text-align: center; margin: auto">
+        <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-exclamation-circle" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path
+                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+        </svg>
+        <br /><br />
+        <h3>Oops! Looks empty</h3>
+        <p>Looks like You don't have any bookings yet.</p>
+    </div>
 </div>
 {% endblock %}
