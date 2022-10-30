@@ -225,7 +225,7 @@ body {
 }
 
 a {
-  color: #09C6AB;
+  color: #101735;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -234,7 +234,7 @@ a {
 a:hover,
 a:active,
 a:focus {
-  color: #09C6AB;
+  color: #101735;
   outline: none;
   text-decoration: none;
 }
@@ -1350,7 +1350,7 @@ form label {
 }
 
 #gtco-footer .footer-logo span {
-  color: #09C6AB;
+  color: #101735;
 }
 
 #gtco-footer .copyright {
@@ -2527,12 +2527,12 @@ form .button input{
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #09C6AB ,#09C6AB);
+  background: linear-gradient(135deg, #101735 ,#101735);
 
 }
 
 form .button input:hover{
 
-  background: linear-gradient(135deg,#09C6AB  ,#09C6AB);
+  background: linear-gradient(135deg,#101735  ,#101735);
 }
 /*# sourceMappingURL=style.css.map */
