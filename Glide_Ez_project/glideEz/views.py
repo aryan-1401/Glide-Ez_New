@@ -109,7 +109,98 @@ def login_user_view(request):
             return HttpResponse("User not found")
     return render(request, "glideEz/login_user.html")
 
+def register_airline_view(request):
+    if request.method == "POST":
+        # Getting airline name
+        name = request.POST.get('name')
+        # Getting airline email
+        email = request.POST.get('email')
+        # Getting airline password
+        password = request.POST.get('pass')
+        # Getting airline address
+        address = request.POST.get('loc')
+        # Getting airline phone number
+        phone_number = request.POST.get('phone')
+
+        #check if airline exists in mysql database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM airline WHERE Email = %s", (email,))
+        airline = mycursor.fetchone()
+        if airline:
+            return HttpResponse("Airline already exists")
+        else:
+
+            # Generate unique airline id which is not present in database which starts with first two letters of airline name
+            airline_id = name[0:2]
+            mycursor.execute("SELECT airline_id FROM airline")
+            airline_ids = mycursor.fetchall()
+            for i in range(1, 100):
+                if (airline_id + str(i),) not in airline_ids:
+                    airline_id = airline_id + str(i)
+                    break
+
+            
+            mycursor.execute("INSERT INTO airline (Airline_ID, Airline_name, passwrd, Email, phone_no, location) VALUES (%s, %s, %s, %s, %s, %s)", (airline_id, name, password, email, phone_number, address))
+            mydb.commit()
+            return render(request, "glideEz/login_airline.html")
+    return render(request, "glideEz/register_airline.html")
+
 def login_airline_view(request):
+    if request.method == "POST":
+        # Getting airline email
+        email = request.POST.get('login_email')
+        # Getting airline password
+        password = request.POST.get('login_password')
+
+        #check if airline exists in mysql database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+        airline = mycursor.fetchone()
+        if airline:
+            # Fetch airline name from database
+            mycursor.execute("SELECT Airline_name FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            airline_name = mycursor.fetchone()
+
+            # Save airline name in session
+            request.session['airline_name'] = airline_name[0]
+            # Save email in session
+            request.session['email'] = email
+            # Capitalize first letter of airline name
+            first_name = airline_name[0].capitalize()
+            # Get address of airline
+            mycursor.execute("SELECT location FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            address = mycursor.fetchone()
+            # Get phone number of airline
+            mycursor.execute("SELECT phone_no FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            phone_number = mycursor.fetchone()
+            # Get airline id of airline
+            mycursor.execute("SELECT Airline_ID FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            airline_id = mycursor.fetchone()
+            # create dict to store airline details
+            airline = {
+                'first_name': first_name,
+                'email': email,
+                'address': address[0],
+                'phone_number': phone_number[0],
+                'airline_id': airline_id[0]
+
+            }
+            print(airline)
+            return render(request, "glideEz/index.html", {'airline': airline})
+        else:
+            return HttpResponse("Airline not found")
     return render(request, "glideEz/login_airline.html")
 
 

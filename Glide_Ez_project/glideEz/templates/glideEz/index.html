@@ -84,21 +84,32 @@
 						<!-- Display username of user which was passed from view.py -->
 						
 						<li class="has-dropdown">
-							{% if user.first_name %}
+							
 								
-								<a href="#">{{ user.first_name }}</a>
-								<ul class="dropdown">
-									<li><a href="/logout">Logout</a></li>
-									<li><a href="/view_account">View Account</a></li>
-								</ul>
-							{% else %}
+								
+								{% if user.first_name %}
+									<a href="#">{{ user.first_name }}</a>
+									<ul class="dropdown">
+										<li><a href="/logout">Logout</a></li>
+										<li><a href="/view_account">View Account</a></li>
+									</ul>
+								{% elif  airline.first_name%}
+									<a href="#">{{ airline.first_name }}</a>
+									<ul class="dropdown">
+										<li><a href="/logout">Logout</a></li>
+										<li><a href="/view_account">View Account</a></li>
+									</ul>
+								{% else %}
 								<a href="#">Login</a>
 								
 								<ul class="dropdown">
 									<li><a href="{% url 'login_user' %}">As User</a></li>
 									<li><a href="{% url 'login_airline' %}">As Airline</a></li>
 								</ul>
-							{% endif %}
+								{% endif %}
+							
+								
+							
 						</li>
 						
 					</ul>	
