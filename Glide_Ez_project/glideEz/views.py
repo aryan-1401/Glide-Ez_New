@@ -102,8 +102,7 @@ def login_user_view(request):
                 'dob': dob[0]
 
             }
-        
-
+            
             return render(request, "glideEz/index.html", {'user': user})
         else:
             return HttpResponse("User not found")
@@ -257,7 +256,6 @@ def view_account_view(request):
         'phone_number': phone_number[0],
         'aadhar': aadhar[0],
         'dob': dob[0]
-
     }
     return render(request, "glideEz/view_account.html", {'user': user})
    
@@ -267,6 +265,8 @@ def pricing_view(request):
     return render(request, "glideEz/pricing.html")
 
 def bookings_view(request):
+    # Get email from session
+    print(request.session['email'])
     return render(request, "glideEz/bookings.html")
 
 def contact_view(request):

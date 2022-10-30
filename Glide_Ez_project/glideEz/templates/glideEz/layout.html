@@ -58,13 +58,15 @@
     <!--[if lt IE 9]>
       <script src="js/respond.min.js"></script>
     <![endif]-->
+
     {% block head %} {% endblock %}
 </head>
 
 <body>
+    {% block header %} {% endblock %}
     <div id="page">
         <!-- <div class="page-inner"> -->
-        <nav class="gtco-nav" role="navigation" style="background: #101735">
+        <nav class="gtco-nav" id="nav-color" role="navigation">
             <div class="gtco-container">
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
@@ -83,8 +85,8 @@
                             <!-- Display username of user which was passed from view.py -->
 
                             <li class="has-dropdown">
-                                {% if user.first_name %}
-                                <a href="#">{{ user.first_name }}</a>
+                                {% if request.session.user_name %}
+                                <a href="#">{{ request.session.user_name }}</a>
                                 <ul class="dropdown">
                                     <li><a href="/logout">Logout</a></li>
                                     <li><a href="/view_account">View Account</a></li>
@@ -112,6 +114,7 @@
         </nav>
         {% block content %} {% endblock %}
     </div>
+    {% block footer %} {% endblock %}
 </body>
 
 </html>
