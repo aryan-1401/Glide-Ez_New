@@ -72,9 +72,10 @@ def login_user_view(request):
             # Fetch user first name from database
             mycursor.execute("SELECT first_name FROM user WHERE Email = %s AND passwrd = %s", (email, password))
             user_name = mycursor.fetchone()
+        
 
             # Save username in session
-            request.session['user_name'] = user_name[0]
+            request.session['user_name'] = user_name[0].capitalize()
             # Save email in session
             request.session['email'] = email
            
@@ -102,7 +103,7 @@ def login_user_view(request):
                 'dob': dob[0]
 
             }
-            
+
             return render(request, "glideEz/index.html", {'user': user})
         else:
             return HttpResponse("User not found")
