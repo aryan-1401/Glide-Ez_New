@@ -206,9 +206,20 @@ def login_airline_view(request):
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def logout_view(request):
-    # Delete user name from session
-    del request.session['user_name']
-    # stop session on clicking back button
+    # if user is logged in
+    if request.session.has_key('user_name'):
+        # delete user_name and email from session
+        del request.session['user_name']
+        del request.session['email']
+        # redirect to home page
+        return redirect('/')
+    # if airline is logged in
+    elif request.session.has_key('airline_name'):
+        # delete airline_name and email from session
+        del request.session['airline_name']
+        del request.session['email']
+        # redirect to home page
+        return redirect('/')
 
     return render(request, "glideEz/index.html")
 
