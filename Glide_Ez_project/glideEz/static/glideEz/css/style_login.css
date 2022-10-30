@@ -97,7 +97,7 @@ input {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 580px;
+  min-height: 680px;
 }
 
 .form-container {
@@ -122,6 +122,7 @@ input {
   width: 50%;
   opacity: 0;
   z-index: 1;
+
 }
 
 .container.right-panel-active .sign-up-container {
