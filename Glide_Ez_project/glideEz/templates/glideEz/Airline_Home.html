@@ -70,13 +70,13 @@
 			
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo"><a href="Airline_Home.html">Glide EZ <em>.</em></a></div>
+					<div id="gtco-logo"><a href="{% url 'airline_home' %}">Glide EZ <em>.</em></a></div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li><a href="Airline_AddTrip.html">Add Trips</a></li>
-						<li><a href="pricing_Airline.html">Pricing</a></li>
-						<li><a href="Airline_contact.html">Contact</a></li>
+						<li><a href="{% url 'airline_AddTrip' %}">Add Trips</a></li>
+						<li><a href="{% url 'airline_pricing' %}">Pricing</a></li>
+						<li><a href="{% url 'airline_contact' %}">Contact</a></li>
 					</ul>	
 				</div>
 			</div>
@@ -84,7 +84,7 @@
 		</div>
 	</nav>
 	
-	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
+	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(../../static/glideEz/images/airlinehome.jpg)">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
@@ -92,7 +92,7 @@
 					
 
 					<div class="row row-mt-15em">
-						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp" style="text-align: left;">
 							<h1>Make Booking Process Easier for Customers With Glide Ez</h1>	
 						</div>
 						
@@ -115,10 +115,10 @@
 			<div class="row">
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/My project (4).png" class="fh5co-card-item image-popup">
+					<a href="../../static/glideEz/images/My project (4).png" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/My project (4).png" alt="Image" class="img-responsive">
+							<img src="../../static/glideEz/images/My project (4).png" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>New User ?</h2>
@@ -128,10 +128,10 @@
 					</a>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/img_student.png" class="fh5co-card-item image-popup">
+					<a href="../../static/glideEz/images/img_student.png" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_student.png" alt="Image" class="img-responsive">
+							<img src="../../static/glideEz/images/img_student.png" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Student Offers</h2>
@@ -141,10 +141,10 @@
 					</a>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/My project (5).png" class="fh5co-card-item image-popup">
+					<a href="../../static/glideEz/images/My project (5).png" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/My project (5).png" alt="Image" class="img-responsive">
+							<img src="../../static/glideEz/images/My project (5).png" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Free Cancellation</h2>
@@ -156,10 +156,10 @@
 
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/My project (6).png" class="fh5co-card-item image-popup">
+					<a href="../../static/glideEz/images/My project (6).png" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/My project (6).png" alt="Image" class="img-responsive">
+							<img src="../../static/glideEz/images/My project (6).png" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Special Offers</h2>
@@ -170,10 +170,10 @@
 				</div>
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/My project (8).png" class="fh5co-card-item image-popup">
+					<a href="../../static/glideEz/images/My project (8).png" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/My project (8).png" alt="Image" class="img-responsive">
+							<img src="../../static/glideEz/images/My project (8).png" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Lucky Travellers</h2>
@@ -184,10 +184,10 @@
 				</div>
 
 				<div class="col-lg-4 col-md-4 col-sm-6">
-					<a href="images/My project (7).png" class="fh5co-card-item image-popup">
+					<a href="../../static/glideEz/images/My project (7).png" class="fh5co-card-item image-popup">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/My project (7).png" alt="Image" class="img-responsive">
+							<img src="../../static/glideEz/images/My project (7).png" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<h2>Enjoy the Trip</h2>
@@ -248,12 +248,12 @@
 
 	<footer id="gtco-footer" role="contentinfo">
 		<div class="gtco-container">
-			<div class="row row-p	b-md">
+			<div class="row row-p	b-md" style="text-align:justify;">
 
 				<div class="col-md-4">
-					<div class="gtco-widget">
+					<div class="gtco-widget" >
 						<h3>About Us</h3>
-						<p>At Glide EZ, you can find the best of deals and cheap air tickets to any place you want by booking your tickets on our website or app. Glide EZ helps you book flight tickets that are affordable and customized to your convenience. With customer satisfaction being our ultimate goal, we also have a 24/7 dedicated helpline to cater to our customer’s queries and concerns. You can get a hold of the cheapest flight of your choice today while also enjoying the other available options for your travel needs with us.</p>
+						<p >At Glide EZ, you can find the best of deals and cheap air tickets to any place you want by booking your tickets on our website or app. Glide EZ helps you book flight tickets that are affordable and customized to your convenience. With customer satisfaction being our ultimate goal, we also have a 24/7 dedicated helpline to cater to our customer’s queries and concerns. You can get a hold of the cheapest flight of your choice today while also enjoying the other available options for your travel needs with us.</p>
 					</div>
 				</div>
 
@@ -270,22 +270,7 @@
 
 			</div>
 
-			<div class="row copyright">
-				<div class="col-md-12">
-					<p class="pull-left">
-						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
-						<small class="block">Designed by <a href="https://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small>
-					</p>
-					<p class="pull-right">
-						<ul class="gtco-social-icons pull-right">
-							<li><a href="#"><i class="icon-twitter"></i></a></li>
-							<li><a href="#"><i class="icon-facebook"></i></a></li>
-							<li><a href="#"><i class="icon-linkedin"></i></a></li>
-							<li><a href="#"><i class="icon-dribbble"></i></a></li>
-						</ul>
-					</p>
-				</div>
-			</div>
+			
 
 		</div>
 	</footer>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" />
+
+    <!-- Animate.css -->
+    <!-- <link rel="stylesheet" href="css/animate.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/animate.css" />
+    <!-- Icomoon Icon Fonts-->
+    <!-- <link rel="stylesheet" href="css/icomoon.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/icomoon.css" />
+    <!-- Themify Icons-->
+    <!-- <link rel="stylesheet" href="css/../../../static/glideEz/fonts/themify-cons.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/themify-icons.css" />
+    <!-- Bootstrap  -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/bootstrap.css" />
+
+    <!-- Magnific Popup -->
+    <!-- <link rel="stylesheet" href="css/magnific-popup.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/magnific-popup.css" />
+
+    <!-- Magnific Popup -->
+    <!-- <link rel="stylesheet" href="css/bootstrap-datepicker.min.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/bootstrap-datepicker.min.css" />
+
+    <!-- Owl Carousel  -->
+    <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/owl.carousel.min.css" />
+
+    <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
+    <link rel="stylesheet" href="../../static/glideEz/css/owl.theme.default.min.css" />
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="../../static/glideEz/css/style.css" />
+
+    <!-- Modernizr JS -->
+    <!-- <script src="js/modernizr-2.6.2.min.js"></script> -->
+    <script src="../../static/glideEz/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+    {% block header %} {% endblock %}
+    <div id="page">
+        <!-- <div class="page-inner"> -->
+        <nav class="gtco-nav" id="nav-color" role="navigation">
+            <div class="gtco-container">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div id="gtco-logo">
+                            <a href="{% url 'home' %}">Glide-Ez <em>.</em></a>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 text-right menu-1">
+                        <ul>
+                            <li>
+                                <a href="{% url 'destination' %}">Popular Destinations</a>
+                            </li>
+
+                            <li><a href="{% url 'pricing' %}">Pricing</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <!-- Display username of user which was passed from view.py -->
+
+                            <li class="has-dropdown">
+                                {% if request.session.user_name %}
+                                <a href="#">{{ request.session.user_name }}</a>
+                                <ul class="dropdown">
+                                    <li><a href="/logout">Logout</a></li>
+                                    <li><a href="/view_account">View Account</a></li>
+                                    <li><a href="/bookings">My Bookings</a></li>
+                                </ul>
+                                {% elif airline.first_name%}
+                                <a href="#">{{ airline.first_name }}</a>
+                                <ul class="dropdown">
+                                    <li><a href="/logout">Logout</a></li>
+                                    <li><a href="/view_account">View Account</a></li>
+                                </ul>
+                                {% else %}
+                                <a href="#">Login</a>
+
+                                <ul class="dropdown">
+                                    <li><a href="{% url 'login_user' %}">As User</a></li>
+                                    <li><a href="{% url 'login_airline' %}">As Airline</a></li>
+                                </ul>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% block content %} {% endblock %}
+    </div>
+    {% block footer %} {% endblock %}
+</body>
+
+</html>
