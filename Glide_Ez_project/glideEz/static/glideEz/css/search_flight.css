@@ -14,3 +14,12 @@ table th {
 .card {
   border-radius: 0.5rem;
 }
+
+#nav-color {
+  background-color: #101735;
+}
+
+.intro {
+  border: 5px solid red;
+
+}
