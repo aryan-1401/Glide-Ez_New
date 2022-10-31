@@ -363,6 +363,9 @@ def search_flight_view(request):
 
 
 def airline_home_view(request):
+    return render(request,'glideEz/Airline_Home.html')
+
+def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -370,12 +373,11 @@ def airline_home_view(request):
             database="glide_ez"
         )
     mycursor = mydb.cursor()
-    mycursor.execute('select distinct loc from Airline order by loc;')
+    mycursor.execute('select distinct loc from Airport order by loc;')
     details=mycursor.fetchall()
-    return render(request,'glideEz/Airline_Home.html',{'details' : details})
-
-def airline_addtrip_view(request):
-    return render(request,'glideEz/airline_addtrip.html')
+    print(details)
+    print('Hi')
+    return render(request,'glideEz/airline_addtrip.html',{'details' : details})
 
 def airline_pricing_view(request):
     return render(request,'glideEz/airline_pricing.html')

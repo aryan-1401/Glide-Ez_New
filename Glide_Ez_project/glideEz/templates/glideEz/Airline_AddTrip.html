@@ -55,20 +55,20 @@
 								</div>
 								<div class="input-box2">
 									<span class="deatils">Source</span>
-									<select name="#" id="source" class="deatils" required>
-										<option value="">Philippines</option>
-										<option value="">USA</option>
-										<option value="">Australia</option>
-										<option value="">Singapore</option>
+									<select name="source" id="source" class="deatils" required>
+										<option value="">Add Source</option>
+										{%for loc in details%}
+										<option value="{{loc.0}}">{{loc.0}}</option>
+										{%endfor%}
 									</select>
 								</div>
 								<div class="input-box2">
 									<span class="deatils">Destination</span>
-									<select name="#" id="source" class="deatils" required>
-										<option value="">Philippines</option>
-										<option value="">USA</option>
-										<option value="">Australia</option>
-										<option value="">Singapore</option>
+									<select name="destination" id="destination" class="deatils" required>
+										<option value="">Add Destination</option>
+										{%for loc in details%}
+										<option value="{{loc.0}}">{{loc.0}}</option>
+										{%endfor%}
 									</select>
 								</div>
 								<div class="input-box2">
@@ -123,24 +123,6 @@
 				</div>
 			</div>
 
-		</div>
-
-		<div class="row copyright">
-			<div class="col-md-12">
-				<p class="pull-left">
-					<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
-					<small class="block">Designed by <a href="https://freehtml5.co/" target="_blank">FreeHTML5.co</a>
-						Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small>
-				</p>
-				<p class="pull-right">
-					<ul class="gtco-social-icons pull-right">
-						<li><a href="#"><i class="icon-twitter"></i></a></li>
-						<li><a href="#"><i class="icon-facebook"></i></a></li>
-						<li><a href="#"><i class="icon-linkedin"></i></a></li>
-						<li><a href="#"><i class="icon-dribbble"></i></a></li>
-					</ul>
-				</p>
-			</div>
 		</div>
 
 	</div>
