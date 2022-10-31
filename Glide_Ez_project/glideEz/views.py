@@ -174,7 +174,7 @@ def login_airline_view(request):
             airline_name = mycursor.fetchone()
 
             # Save airline name in session
-            request.session['airline_name'] = airline_name[0]
+            request.session['airline_username'] = airline_name[0].capitalize()
             # Save email in session
             request.session['email'] = email
             # Capitalize first letter of airline name
