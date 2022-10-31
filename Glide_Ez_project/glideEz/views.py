@@ -8,7 +8,18 @@ from datetime import datetime
 
 # Create your views here.
 def home(request): 
-    return render(request, "glideEz/index.html")
+    mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+    mycursor = mydb.cursor()
+    mycursor.execute('select distinct loc from Airport order by loc;')
+    details=mycursor.fetchall()
+    print(details)
+    print('Hi')
+    return render(request, "glideEz/index.html",{'details' : details})
 
 def destination_view(request):
     return render(request, "glideEz/destination.html")
@@ -35,7 +46,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -67,7 +78,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -133,7 +144,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -169,7 +180,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -237,7 +248,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="12348765",
+        password="2002",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -318,7 +329,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -369,7 +380,7 @@ def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
