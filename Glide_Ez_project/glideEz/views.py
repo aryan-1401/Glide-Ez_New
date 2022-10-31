@@ -35,7 +35,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -44,7 +44,14 @@ def register_user_view(request):
         if user:
             return HttpResponse("User already exists")
         else:
-            mycursor.execute("INSERT INTO user (first_name, Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, email, password, aadhar, address, dob, phone_number))
+            mycursor.execute("select max(User_ID) from User;")
+            id=mycursor.fetchall()
+            name=name.split(' ')
+            if(len(name)<3):
+                name.append('')
+            if(len(name)<3):
+                name.append('')
+            mycursor.execute("INSERT INTO user (User_ID, first_name, middle_name,LAst_Name ,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)", (id[0][0]+1,name[0],name[1],name[2],email, password, aadhar, address, dob, phone_number))
             mydb.commit()
             return render(request, "glideEz/login_user.html")
     return render(request, "glideEz/login_user.html")
@@ -60,7 +67,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -126,7 +133,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -162,7 +169,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -230,7 +237,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -311,7 +318,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -332,7 +339,7 @@ def search_flight_view(request):
          ;""".format(source,destination,date,class_type)
         mycursor.execute(str)
         details = mycursor.fetchall()
-        print(type(details))
+        print(details)
     
 
         # Extract time from datetime in details[0]
@@ -356,10 +363,21 @@ def search_flight_view(request):
 
 
 def airline_home_view(request):
-    return render(request,'glideEz/airline_home.html')
+    return render(request,'glideEz/Airline_Home.html')
 
 def airline_addtrip_view(request):
-    return render(request,'glideEz/airline_addtrip.html')
+    mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+    mycursor = mydb.cursor()
+    mycursor.execute('select distinct loc from Airport order by loc;')
+    details=mycursor.fetchall()
+    print(details)
+    print('Hi')
+    return render(request,'glideEz/airline_addtrip.html',{'details' : details})
 
 def airline_pricing_view(request):
     return render(request,'glideEz/airline_pricing.html')
