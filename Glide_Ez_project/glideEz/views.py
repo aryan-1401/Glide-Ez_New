@@ -357,6 +357,7 @@ def search_flight_view(request):
         #     'depart_time':depart_time,
         #     'arrival_time':arrival_time
         # }
+        print(details)
         return render(request, "glideEz/search_flight.html", {'details': details , 'source' : source , 'destination' : destination , 'Class_Type' : class_type})
 
 
@@ -373,14 +374,14 @@ def airline_home_view(request):
     details=mycursor.fetchall()
     return render(request,'glideEz/Airline_Home.html',{'details' : details})
 
-def airline_Addtrip_view(request):
-    return render(request,'glideEz/Airline_AddTrip.html')
+def airline_addtrip_view(request):
+    return render(request,'glideEz/airline_addtrip.html')
 
 def airline_pricing_view(request):
-    return render(request,'glideEz/pricing_Airline.html')
+    return render(request,'glideEz/airline_pricing.html')
 
 def airline_contact_view(request):
-    return render(request,'glideEz/Airline_contact.html')
+    return render(request,'glideEz/airline_contact.html')
 
 
        
