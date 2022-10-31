@@ -142,11 +142,10 @@
 								</div>
 								<div class="input-box2">
 									<span class="deatils">Destination</span>
-									<select name="#" id="source" class="details" required>
-										<option value="">Philippines</option>
-										<option value="">USA</option>
-										<option value="">Australia</option>
-										<option value="">Singapore</option>
+									<select name="#" id="destination" class="details" required>
+										{% for loc in details %}
+										<option value="{{loc.0}}">{{loc.0}}</option>
+										{% endfor %}
 									</select>
 								</div>
 								<div class="input-box2">
