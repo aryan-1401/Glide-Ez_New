@@ -355,16 +355,16 @@ def search_flight_view(request):
 
 
 def airline_home_view(request):
-    return render(request,'Airline_Home.html')
+    return render(request,'glideEz/Airline_Home.html')
 
 def airline_Addtrip_view(request):
-    return render(request,'Airlne_AddTrip.html')
+    return render(request,'glideEz/Airline_AddTrip.html')
 
 def airline_pricing_view(request):
-    return render(request,'pricing_Airline.html')
+    return render(request,'glideEz/pricing_Airline.html')
 
 def airline_contact_view(request):
-    return render(request,'Airline_contact.html')
+    return render(request,'glideEz/Airline_contact.html')
 
 
        
