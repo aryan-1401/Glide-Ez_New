@@ -1,265 +1,181 @@
-<!DOCTYPE HTML>
-<html>
+{% extends 'glideEz/airline_layout.html' %} {% block head %}
+<title>Add Trips</title>
+{% endblock %}
+{% block header %} <div class="gtco-loader"></div> {% endblock %}
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Glide Ez &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-	<meta name="keywords"
-		content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
+{% block content %}<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner"
+	style="background-image: url(images/img_6.jpg)">
+	<div class="overlay"></div>
+	<div class="gtco-container">
+		<div class="row">
+			<div class="col-md-12 col-md-offset-0 text-center">
+				<div class="row row-mt-15em">
 
-	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content="" />
-	<meta property="og:image" content="" />
-	<meta property="og:url" content="" />
-	<meta property="og:site_name" content="" />
-	<meta property="og:description" content="" />
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="../../static/glideEz/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="../../static/glideEz/css/icomoon.css">
-	<!-- Themify Icons-->
-	<link rel="stylesheet" href="../../static/glideEz/css/themify-icons.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="../../static/glideEz/css/bootstrap.css">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="../../static/glideEz/css/magnific-popup.css">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="../../static/glideEz/css/bootstrap-datepicker.min.css">
-
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="../../static/glideEz/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="../../static/glideEz/css/owl.theme.default.min.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="../../static/glideEz/css/style.css">
-
-	<!-- Modernizr JS -->
-	<script src="../../static/glideEz/js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
-</head>
-
-<body>
-
-	<div class="gtco-loader"></div>
-
-	<div id="page">
-
-
-		<!-- <div class="page-inner"> -->
-		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
-
-				<div class="row">
-					<div class="col-sm-4 col-xs-12">
-						<div id="gtco-logo"><a href="{% url 'airline_home' %}">Glide EZ <em>.</em></a></div>
+					<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+						<h1>Add Trips</h1>
 					</div>
-					<div class="col-xs-8 text-right menu-1">
-						<ul>
-							<li class="active"><a href="{% url 'airline_addTrip' %}">Add Trips</a></li>
-							<li><a href="{% url 'airline_pricing' %}">Pricing</a></li>
-							<li><a href="{% url 'airline_contact' %}">Contact</a></li>
-						</ul>
-					</div>
+
 				</div>
 
 			</div>
-		</nav>
+		</div>
+	</div>
+</header>
 
-		<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner"
-			style="background-image: url(images/img_6.jpg)">
-			<div class="overlay"></div>
-			<div class="gtco-container">
-				<div class="row">
-					<div class="col-md-12 col-md-offset-0 text-center">
-						<div class="row row-mt-15em">
-
-							<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-								<h1>Add Trips</h1>
-							</div>
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</header>
-
-		<div class="gtco-section">
-			<div class="gtco-container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-						<h2>Add Trips Of your Existing Flights</h2>
-						<p>Add Information Regarding Trips and prices to Start Booking Process For customers.</p>
-					</div>
-				</div>
-
-				<div class="container">
-					<div class="title">Add Trips</div>
-					<div class="content">
-						<form action=" =">
-							<div class="user-details">
-								<div class="input-box1">
-									<span class="deatils">Flight ID</span>
-									<input type="text" placeholder="Enter Flight ID " required>
-								</div>
-								<div class="input-box">
-									<span class="deatils">1<sup>st</sup>Class Price</span>
-									<input type="number" placeholder="Enter Price " required>
-								</div>
-								<br>
-								<div class="input-box">
-									<span class="deatils">Economy Class</span>
-									<input type="number" placeholder="Enter Price " required>
-								</div>
-								<div class="input-box">
-									<span class="deatils">Business Class</span>
-									<input type="number" placeholder="Enter Price " required>
-								</div>
-								<div class="input-box2">
-									<span class="deatils">Source</span>
-									<select name="#" id="source" class="deatils" required>
-										<option value="">Philippines</option>
-										<option value="">USA</option>
-										<option value="">Australia</option>
-										<option value="">Singapore</option>
-									</select>
-								</div>
-								<div class="input-box2">
-									<span class="deatils">Destination</span>
-									<select name="#" id="source" class="deatils" required>
-										<option value="">Philippines</option>
-										<option value="">USA</option>
-										<option value="">Australia</option>
-										<option value="">Singapore</option>
-									</select>
-								</div>
-								<div class="input-box2">
-									<span class="deatils">Arrival</span>
-									<input type="time" placeholder="Enter Time " required>
-								</div>
-								<div class="input-box2">
-									<span class="deatils">Departure</span>
-									<input type="time" placeholder="Enter Time " required>
-								</div>
-								<div class="input-box1">
-									<span class="deatils">Enter Date</span>
-									<input type="date" placeholder=" " required>
-								</div>
-							</div>
-
-
-
-							<div class="button">
-								<input type="submit" value="Add Trip For Booking">
-							</div>
-						</form>
-
-					</div>
-				</div>
+<div class="gtco-section">
+	<div class="gtco-container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+				<h2>Add Trips Of your Existing Flights</h2>
+				<p>Add Information Regarding Trips and prices to Start Booking Process For customers.</p>
 			</div>
 		</div>
-		<footer id="gtco-footer" role="contentinfo">
-			<div class="gtco-container">
-				<div class="row row-p	b-md">
 
-					<div class="col-md-4">
-						<div class="gtco-widget">
-							<h3>About Us</h3>
-							<p>At Glide EZ, you can find the best of deals and cheap air tickets to any place you want
-								by booking your tickets on our website or app. Glide EZ helps you book flight tickets
-								that are affordable and customized to your convenience. With customer satisfaction being
-								our ultimate goal, we also have a 24/7 dedicated helpline to cater to our customer’s
-								queries and concerns. You can get a hold of the cheapest flight of your choice today
-								while also enjoying the other available options for your travel needs with us.</p>
+		<div class="container">
+			<div class="title">Add Trips</div>
+			<div class="content">
+				<form action=" =">
+					<div class="user-details">
+						<div class="input-box1">
+							<span class="deatils">Flight ID</span>
+							<input type="text" placeholder="Enter Flight ID " required>
+						</div>
+						<div class="input-box">
+							<span class="deatils">1<sup>st</sup>Class Price</span>
+							<input type="number" placeholder="Enter Price " required>
+						</div>
+						<br>
+						<div class="input-box">
+							<span class="deatils">Economy Class</span>
+							<input type="number" placeholder="Enter Price " required>
+						</div>
+						<div class="input-box">
+							<span class="deatils">Business Class</span>
+							<input type="number" placeholder="Enter Price " required>
+						</div>
+						<div class="input-box2">
+							<span class="deatils">Source</span>
+							<select name="#" id="source" class="deatils" required>
+								<option value="">Philippines</option>
+								<option value="">USA</option>
+								<option value="">Australia</option>
+								<option value="">Singapore</option>
+							</select>
+						</div>
+						<div class="input-box2">
+							<span class="deatils">Destination</span>
+							<select name="#" id="source" class="deatils" required>
+								<option value="">Philippines</option>
+								<option value="">USA</option>
+								<option value="">Australia</option>
+								<option value="">Singapore</option>
+							</select>
+						</div>
+						<div class="input-box2">
+							<span class="deatils">Arrival</span>
+							<input type="time" placeholder="Enter Time " required>
+						</div>
+						<div class="input-box2">
+							<span class="deatils">Departure</span>
+							<input type="time" placeholder="Enter Time " required>
+						</div>
+						<div class="input-box1">
+							<span class="deatils">Enter Date</span>
+							<input type="date" placeholder=" " required>
 						</div>
 					</div>
-					<div class="col-md-3 col-md-push-1">
-						<div class="gtco-widget">
-							<h3>Get In Touch</h3>
-							<ul class="gtco-quick-contact">
-								<li><a href="tel://918989779620"><i class="icon-phone"></i> +91 8989779620</a></li>
-								<li><a href="mailto:info@glideez.com"><i class="icon-mail2"></i> info@glideez.com</a>
-								</li>
-								<li><a href="#"><i class="icon-chat"></i> Live Chat</a></li>
-							</ul>
-						</div>
-					</div>
 
-				</div>
 
-				<div class="row copyright">
-					<div class="col-md-12">
-						<p class="pull-left">
-							<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
-							<small class="block">Designed by <a href="https://freehtml5.co/"
-									target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.com/"
-									target="_blank">Unsplash</a></small>
-						</p>
-						<p class="pull-right">
-							<ul class="gtco-social-icons pull-right">
-								<li><a href="#"><i class="icon-twitter"></i></a></li>
-								<li><a href="#"><i class="icon-facebook"></i></a></li>
-								<li><a href="#"><i class="icon-linkedin"></i></a></li>
-								<li><a href="#"><i class="icon-dribbble"></i></a></li>
-							</ul>
-						</p>
+
+					<div class="button">
+						<input type="submit" value="Add Trip For Booking">
 					</div>
-				</div>
+				</form>
 
 			</div>
-		</footer>
-		<!-- </div> -->
+		</div>
+	</div>
+</div>
+<footer id="gtco-footer" role="contentinfo">
+	<div class="gtco-container">
+		<div class="row row-p	b-md">
+
+			<div class="col-md-4">
+				<div class="gtco-widget">
+					<h3>About Us</h3>
+					<p>At Glide EZ, you can find the best of deals and cheap air tickets to any place you want
+						by booking your tickets on our website or app. Glide EZ helps you book flight tickets
+						that are affordable and customized to your convenience. With customer satisfaction being
+						our ultimate goal, we also have a 24/7 dedicated helpline to cater to our customer’s
+						queries and concerns. You can get a hold of the cheapest flight of your choice today
+						while also enjoying the other available options for your travel needs with us.</p>
+				</div>
+			</div>
+			<div class="col-md-3 col-md-push-1">
+				<div class="gtco-widget">
+					<h3>Get In Touch</h3>
+					<ul class="gtco-quick-contact">
+						<li><a href="tel://918989779620"><i class="icon-phone"></i> +91 8989779620</a></li>
+						<li><a href="mailto:info@glideez.com"><i class="icon-mail2"></i> info@glideez.com</a>
+						</li>
+						<li><a href="#"><i class="icon-chat"></i> Live Chat</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row copyright">
+			<div class="col-md-12">
+				<p class="pull-left">
+					<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
+					<small class="block">Designed by <a href="https://freehtml5.co/" target="_blank">FreeHTML5.co</a>
+						Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small>
+				</p>
+				<p class="pull-right">
+					<ul class="gtco-social-icons pull-right">
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-facebook"></i></a></li>
+						<li><a href="#"><i class="icon-linkedin"></i></a></li>
+						<li><a href="#"><i class="icon-dribbble"></i></a></li>
+					</ul>
+				</p>
+			</div>
+		</div>
 
 	</div>
+</footer>
+{% endblock %}
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
+{% block footer %}
+<div class="gototop js-top">
+	<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
 
-	<!-- jQuery -->
-	<script src="../../static/glideEz/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="../../static/glideEz/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="../../static/glideEz/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="../../static/glideEz/js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="../../static/glideEz/js/owl.carousel.min.js"></script>
-	<!-- countTo -->
-	<script src="../../static/glideEz/js/jquery.countTo.js"></script>
+<!-- jQuery -->
+<script src="../../static/glideEz/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="../../static/glideEz/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="../../static/glideEz/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="../../static/glideEz/js/jquery.waypoints.min.js"></script>
+<!-- Carousel -->
+<script src="../../static/glideEz/js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<script src="../../static/glideEz/js/jquery.countTo.js"></script>
 
-	<!-- Stellar Parallax -->
-	<script src="../../static/glideEz/js/jquery.stellar.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="../../static/glideEz/js/jquery.stellar.min.js"></script>
 
-	<!-- Magnific Popup -->
-	<script src="../../static/glideEz/js/jquery.magnific-popup.min.js"></script>
-	<script src="../../static/glideEz/js/magnific-popup-options.js"></script>
+<!-- Magnific Popup -->
+<script src="../../static/glideEz/js/jquery.magnific-popup.min.js"></script>
+<script src="../../static/glideEz/js/magnific-popup-options.js"></script>
 
-	<!-- Datepicker -->
-	<script src="../../static/glideEz/js/bootstrap-datepicker.min.js"></script>
+<!-- Datepicker -->
+<script src="../../static/glideEz/js/bootstrap-datepicker.min.js"></script>
 
 
-	<!-- Main -->
-	<script src="../../static/glideEz/js/main.js"></script>
-
-</body>
-
-</html>
+<!-- Main -->
+<script src="../../static/glideEz/js/main.js"></script>
+{% endblock %}
