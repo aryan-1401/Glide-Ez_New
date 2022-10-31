@@ -44,7 +44,14 @@ def register_user_view(request):
         if user:
             return HttpResponse("User already exists")
         else:
-            mycursor.execute("INSERT INTO user (first_name, Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, email, password, aadhar, address, dob, phone_number))
+            mycursor.execute("select max(User_ID) from User;")
+            id=mycursor.fetchall()
+            name=name.split(' ')
+            if(len(name)<3):
+                name.append('')
+            if(len(name)<3):
+                name.append('')
+            mycursor.execute("INSERT INTO user (User_ID, first_name, middle_name,LAst_Name ,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)", (id[0][0]+1,name[0],name[1],name[2],email, password, aadhar, address, dob, phone_number))
             mydb.commit()
             return render(request, "glideEz/login_user.html")
     return render(request, "glideEz/login_user.html")
@@ -332,7 +339,7 @@ def search_flight_view(request):
          ;""".format(source,destination,date,class_type)
         mycursor.execute(str)
         details = mycursor.fetchall()
-        print(type(details))
+        print(details)
     
 
         # Extract time from datetime in details[0]
@@ -365,6 +372,3 @@ def airline_pricing_view(request):
 
 def airline_contact_view(request):
     return render(request,'Airline_contact.html')
-
-
-       

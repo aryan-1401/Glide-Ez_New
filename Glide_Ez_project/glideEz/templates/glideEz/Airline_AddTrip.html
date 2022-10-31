@@ -68,13 +68,13 @@
 
 				<div class="row">
 					<div class="col-sm-4 col-xs-12">
-						<div id="gtco-logo"><a href="Airline_Home.html">Glide EZ <em>.</em></a></div>
+						<div id="gtco-logo"><a href="{% url 'airline_home' %}">Glide EZ <em>.</em></a></div>
 					</div>
 					<div class="col-xs-8 text-right menu-1">
 						<ul>
-							<li class="active"><a href="Airline_AddTrip.html">Add Trips</a></li>
-							<li><a href="pricing_Airline.html">Pricing</a></li>
-							<li><a href="Airline_contact.html">Contact</a></li>
+							<li class="active"><a href="{% url 'airline_AddTrip' %}">Add Trips</a></li>
+							<li><a href="{% url 'airline_pricing' %}">Pricing</a></li>
+							<li><a href="{% url 'airline_contact' %}">Contact Us</a></li>
 						</ul>
 					</div>
 				</div>
@@ -113,7 +113,8 @@
 				<div class="container">
 					<div class="title">Add Trips</div>
 					<div class="content">
-						<form action=" =">
+						<form action="">
+							{% csrf_token %}
 							<div class="user-details">
 								<div class="input-box1">
 									<span class="deatils">Flight ID</span>
@@ -134,16 +135,14 @@
 								</div>
 								<div class="input-box2">
 									<span class="deatils">Source</span>
-									<select name="#" id="source" class="deatils" required>
-										<option value="">Philippines</option>
-										<option value="">USA</option>
-										<option value="">Australia</option>
-										<option value="">Singapore</option>
-									</select>
+									<select name="#" id="source" class="details" required>
+										{% for loc in details %}
+										<option value="{{loc.0}}">{{loc.0}}</option>
+										{% endfor %}
 								</div>
 								<div class="input-box2">
 									<span class="deatils">Destination</span>
-									<select name="#" id="source" class="deatils" required>
+									<select name="#" id="source" class="details" required>
 										<option value="">Philippines</option>
 										<option value="">USA</option>
 										<option value="">Australia</option>
