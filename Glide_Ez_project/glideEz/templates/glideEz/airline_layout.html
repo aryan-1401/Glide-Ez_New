@@ -84,8 +84,8 @@
 
                             <li class="has-dropdown">
 
-                                {% if airline.first_name%}
-                                <a href="#">{{ airline.first_name }}</a>
+                                {% if request.session.airline_username%}
+                                <a href="#">{{ request.session.airline_username }}</a>
                                 <ul class="dropdown">
                                     <li><a href="/logout">Logout</a></li>
                                     <li><a href="/view_account">View Account</a></li>
