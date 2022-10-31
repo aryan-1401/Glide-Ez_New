@@ -11,7 +11,7 @@
   --cyan: #2bffc6;
   --white: #fff;
   --gray: #8898aa;
-  --gray-dark: #32325d;
+  --gray-dark: #fff;
   --light: #ced4da;
   --lighter: #e9ecef;
   --primary: #5e72e4;
@@ -285,7 +285,7 @@ h6,
   font-weight: 600;
   line-height: 1.5;
   margin-bottom: .5rem;
-  color: #32325d;
+  color: #fff;
 }
 
 h1,
@@ -634,8 +634,8 @@ textarea.form-control {
 
 .btn-primary {
   color: #fff;
-  border-color: #5e72e4;
-  background-color: #5e72e4;
+  border-color: #101735;
+  background-color: #101735;
   box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 
@@ -1183,6 +1183,16 @@ button.bg-white:focus {
 
 .mb-0 {
   margin-bottom: 0 !important;
+}
+
+.head1 {
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  text-decoration: double;
+
 }
 
 .mr-2 {
