@@ -239,7 +239,7 @@ def logout_view(request):
         # redirect to home page
         return redirect('/')
 
-    return render(request, "glideEz/index.html")
+    return redirect('/')
 
 def view_account_view(request):
     # Get email from session

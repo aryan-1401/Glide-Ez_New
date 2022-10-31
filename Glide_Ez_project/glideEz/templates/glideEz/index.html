@@ -39,18 +39,18 @@
 											</div>
 											<div class="row form-group">
 												<div class="col-md-12">
-													<label for="source">Source</label>
+													<label for="source_place">Source</label>
 													<select name="source" id="source_place" class="form-control">
 														<option value="">Source</option>
-														{%for loc in details%}
+														{% for loc in details %}
 														<option value="{{loc.0}}">{{loc.0}}</option>
-														{%endfor%}
+														{% endfor %}
 													</select>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col-md-12">
-													<label for="destination">Destination</label>
+													<label for="destination_place">Destination</label>
 													<select name="destination" id="destination_place"
 														class="form-control">
 														<option value="">Destination</option>
