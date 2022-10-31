@@ -326,7 +326,7 @@ def search_flight_view(request):
         where s.loc='{}' and t.loc='{}') , temp2(tr_ID,arr,dept,FL_ID) as 
         (select Trip.Trip_ID,Trip.Arrival_Time,Trip.Depart_Time,Flight_ID from Trip,temp1 
         where Trip.Depart_Time LIKE '{}%' and Trip.src_ID=temp1.src and Trip.dest_ID=temp1.dest) 
-        Select Airline.Airline_ID, Airline.Airline_Name,temp2.dept,temp2.arr,Seat.Price from Airline,Flight,temp2,Seat 
+        Select Flight.Flight_ID,Airline.Airline_Name,temp2.dept,temp2.arr,Seat.Price from Airline,Flight,temp2,Seat 
         where Airline.Airline_Id=Flight.fk_Airline_ID and Flight.Flight_ID=temp2.FL_ID and 
         Seat.Trip_ID=temp2.tr_ID and Seat.Class_type='{}'
          ;""".format(source,destination,date,class_type)
@@ -350,11 +350,21 @@ def search_flight_view(request):
         #     'depart_time':depart_time,
         #     'arrival_time':arrival_time
         # }
-        return render(request, "glideEz/search_flight.html", {'details': details})
+        return render(request, "glideEz/search_flight.html", {'details': details , 'source' : source , 'destination' : destination , 'Class_Type' : class_type})
 
 
 
+def airline_home_view(request):
+    return render(request,'Airline_Home.html')
 
+def airline_Addtrip_view(request):
+    return render(request,'Airlne_AddTrip.html')
+
+def airline_pricing_view(request):
+    return render(request,'pricing_Airline.html')
+
+def airline_contact_view(request):
+    return render(request,'Airline_contact.html')
 
 
        
