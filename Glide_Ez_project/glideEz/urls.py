@@ -17,5 +17,6 @@ urlpatterns = [
     path("airline_home", views.airline_home_view, name="airline_home"),
     path("airline_contact", views.airline_contact_view, name="airline_contact"),
     path("airline_pricing", views.airline_pricing_view, name="airline_pricing"),
-    path("airline_addTrip", views.airline_addtrip_view, name="airline_addTrip")
+    path("airline_addTrip", views.airline_addtrip_view, name="airline_addTrip"),
+    path("airline_addflight", views.airline_flight_view, name="airline_addflight")
 ]

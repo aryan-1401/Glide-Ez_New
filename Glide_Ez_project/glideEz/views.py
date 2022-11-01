@@ -385,5 +385,8 @@ def airline_pricing_view(request):
 def airline_contact_view(request):
     return render(request,'glideEz/airline_contact.html')
 
+def airline_flight_view(request):
+    return render(request,'glideEz/addflight.html')
+
 
        
