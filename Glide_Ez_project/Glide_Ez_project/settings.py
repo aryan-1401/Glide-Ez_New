@@ -27,11 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2' 
 # Application definition
 
 INSTALLED_APPS = [
     'glideEz',
+    'sweetify',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

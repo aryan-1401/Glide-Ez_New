@@ -4,7 +4,8 @@ from django.core.mail import send_mail
 from django.views.decorators.cache import cache_control # for stopping session on clicking back button
 import mysql.connector
 from datetime import datetime
-
+from django.contrib import messages #import messages
+import sweetify
 
 # Create your views here.
 def home(request): 
@@ -53,7 +54,9 @@ def register_user_view(request):
         mycursor.execute("SELECT * FROM user WHERE Email = %s", (email,))
         user = mycursor.fetchone()
         if user:
-            return HttpResponse("User already exists")
+            sweetify.success(request, 'You did it', text='Good job! You successfully showed a SweetAlert message', persistent='Hell yeah')
+            return redirect('/register_user')
+            # return redirect('register_user')
         else:
             mycursor.execute("select max(User_ID) from User;")
             id=mycursor.fetchall()
