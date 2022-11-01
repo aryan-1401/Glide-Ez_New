@@ -128,7 +128,8 @@ def login_user_view(request):
 
             return render(request, "glideEz/index.html", {'user': user})
         else:
-            return HttpResponse("User not found")
+            sweetify.error(request, 'User Not Found', text='User doesn\'t exist', persistent='Try Again')
+            return redirect('/login_user')
     return render(request, "glideEz/login_user.html")
 
 def register_airline_view(request):
@@ -155,7 +156,8 @@ def register_airline_view(request):
         mycursor.execute("SELECT * FROM airline WHERE Email = %s", (email,))
         airline = mycursor.fetchone()
         if airline:
-            return HttpResponse("Airline already exists")
+            sweetify.error(request, 'Registration Failed', text='Airline Already exists', persistent='Try Again')
+            return redirect('/register_airline')
         else:
 
             # Generate unique airline id which is not present in database which starts with first two letters of airline name
@@ -222,6 +224,7 @@ def login_airline_view(request):
             print(airline)
             return render(request, "glideEz/Airline_Home.html", {'airline': airline})
         else:
+            sweetify.error(request, 'Airline Not Found', text='Airline doesn\'t exist', persistent='Try Again')
             return HttpResponse("Airline not found")
     return render(request, "glideEz/login_airline.html")
 
