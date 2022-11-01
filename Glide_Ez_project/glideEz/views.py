@@ -54,7 +54,7 @@ def register_user_view(request):
         mycursor.execute("SELECT * FROM user WHERE Email = %s", (email,))
         user = mycursor.fetchone()
         if user:
-            sweetify.success(request, 'You did it', text='Good job! You successfully showed a SweetAlert message', persistent='Hell yeah')
+            sweetify.error(request, 'Registration Failed', text='User Already exists', persistent='Try Again')
             return redirect('/register_user')
             # return redirect('register_user')
         else:
@@ -67,7 +67,8 @@ def register_user_view(request):
                 name.append('')
             mycursor.execute("INSERT INTO user (User_ID, first_name, middle_name,LAst_Name ,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)", (id[0][0]+1,name[0],name[1],name[2],email, password, aadhar, address, dob, phone_number))
             mydb.commit()
-            return render(request, "glideEz/login_user.html")
+            sweetify.success(request, 'Registration Successfull', text='Your account was created successfully!', persistent='Login')
+            return redirect('/login_user')
     return render(request, "glideEz/login_user.html")
 
 def login_user_view(request):
