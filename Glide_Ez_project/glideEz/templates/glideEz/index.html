@@ -39,25 +39,24 @@
 											</div>
 											<div class="row form-group">
 												<div class="col-md-12">
-													<label for="source">Source</label>
+													<label for="source_place">Source</label>
 													<select name="source" id="source_place" class="form-control">
-														<option value="Delhi">Delhi</option>
-														<option value="Mumbai">Mumbai</option>
-														<option value="Pune">Pune</option>
-														<option value="Banglore">Banglore</option>
-														<option value="London">London</option>
+														<option value="">Source</option>
+														{% for loc in details %}
+														<option value="{{loc.0}}">{{loc.0}}</option>
+														{% endfor %}
 													</select>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col-md-12">
-													<label for="destination">Destination</label>
+													<label for="destination_place">Destination</label>
 													<select name="destination" id="destination_place"
 														class="form-control">
-														<option value="Delhi">Delhi</option>
-														<option value="Mumbai">Mumbai</option>
-														<option value="Pune">Pune</option>
-														<option value="Banglore">Banglore</option>
+														<option value="">Destination</option>
+														{%for loc in details%}
+														<option value="{{loc.0}}">{{loc.0}}</option>
+														{%endfor%}
 													</select>
 												</div>
 											</div>

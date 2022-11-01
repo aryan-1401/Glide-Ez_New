@@ -2,6 +2,11 @@ html,
 body,
 .intro {
   height: 100%;
+
+}
+
+.intro {
+  padding-top: 3%;
 }
 
 table td,

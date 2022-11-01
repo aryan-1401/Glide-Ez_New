@@ -9,107 +9,108 @@
 <!-- <h1>{{details_dict.arrival_time}}</h1>
   <h1>{{details_dict.source}}</h1>
   <h1>{{details_dict.destination}}</h1> -->
-<section class="intro">
-  <div class="bg-image h-100" style="
+
+<div class="bg-image h-100" style="
         background-image: url('../../static/glideEz/images/img_bg_1.jpg');
       ">
-    <div class="mask d-flex align-items-center h-100"
-      style="box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);">
-      {% if details %}
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-hover mb-0">
-                    <thead>
-                      <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Airline</th>
-                        <th scope="col">Departure</th>
-                        <th scope="col">Arrival</th>
-                        <th scope="col">Class</th>
-                        <th scope="col">Price</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for flight in details %}
-                      <tr>
-                        <th scope="col">
-                          <div class="flight-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                              aria-hidden="true" focusable="false" width="1.5em" height="1.3em"
-                              style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                              preserveAspectRatio="xMidYMid meet" viewBox="0 0 440 384">
-                              <path
-                                d="M14 335h405v43H14v-43zm417.5-199.5q3.5 12.5-3 24T409 175l-114 30l-92 25l-114 30l-34 10l-16-29l-39-67l31-9l42 33l106-28L91 17l41-11l147 137l113-30q13-4 24.5 3t15 19.5z"
-                                fill="#434445" />
-                              <rect x="0" y="0" width="440" height="384" fill="rgba(0, 0, 0, 0)" /></svg>
+  <div class="mask d-flex align-items-start h-100"
+    style="box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);">
+    {% if details %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Airline</th>
+                      <th scope="col">Departure</th>
+                      <th scope="col">Arrival</th>
+                      <th scope="col">Class</th>
+                      <th scope="col">Price</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for flight in details %}
+                    <tr>
+                      <th scope="col">
+                        <div class="flight-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            aria-hidden="true" focusable="false" width="1.5em" height="1.3em"
+                            style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
+                            preserveAspectRatio="xMidYMid meet" viewBox="0 0 440 384">
+                            <path
+                              d="M14 335h405v43H14v-43zm417.5-199.5q3.5 12.5-3 24T409 175l-114 30l-92 25l-114 30l-34 10l-16-29l-39-67l31-9l42 33l106-28L91 17l41-11l147 137l113-30q13-4 24.5 3t15 19.5z"
+                              fill="#434445" />
+                            <rect x="0" y="0" width="440" height="384" fill="rgba(0, 0, 0, 0)" /></svg>
+                        </div>
+                      </th>
+                      <th scope="col">
+                        <div class="flight-destination-time2">
+                          <div class="flight-time">
+                            <h5>{{flight.1}}</h5>
                           </div>
-                        </th>
-                        <th scope="col">
-                          <div class="flight-destination-time2">
-                            <div class="flight-time">
-                              <h5>{{flight.1}}</h5>
-                            </div>
-                            <div class="flight-place">
-                              {{flight.0}}
-                            </div>
+                          <div class="flight-place">
+                            {{flight.0}}
                           </div>
-                        </th>
-                        <th scope="col">
-                          <div class="flight-destination-time2">
-                            <div class="flight-time">
-                              <h5>{{flight.2|time:"H:i"}}</h5>
-                            </div>
-                            <div class="flight-place">
-                              {{source}}
-                            </div>
+                        </div>
+                      </th>
+                      <th scope="col">
+                        <div class="flight-destination-time2">
+                          <div class="flight-time">
+                            <h5>{{flight.2|time:"H:i"}}</h5>
                           </div>
-                        </th>
-                        <th scope="col">
-                          <div class="flight-destination-time2">
-                            <div class="flight-time">
-                              <h5>{{flight.3|time:"H:i"}}</h5>
-                            </div>
-                            <div class="flight-place">
-                              {{destination}}
-                            </div>
+                          <div class="flight-place">
+                            {{source}}
                           </div>
-                        </th>
-                        <th scope="col"> {{Class_Type}}</th>
-                        <th scope="col">{{flight.4}}</th>
-                        <th scope="col"><button class="btn btn-primary btn-danger" type="submit"
-                            style="background-color: #101735; border-color: #101735;">
-                            Book Flight &#8594;
-                          </button></th>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-                </div>
+                        </div>
+                      </th>
+                      <th scope="col">
+                        <div class="flight-destination-time2">
+                          <div class="flight-time">
+                            <h5>{{flight.3|time:"H:i"}}</h5>
+                          </div>
+                          <div class="flight-place">
+                            {{destination}}
+                          </div>
+                        </div>
+                      </th>
+                      <th scope="col"> {{Class_Type}}</th>
+                      <th scope="col">{{flight.4}}</th>
+                      <th scope="col">
+                        <button class="btn btn-primary btn-danger" type="submit"
+                          style="background-color: #101735; border-color: #101735;">
+                          Book Flight &#8594;
+                        </button></th>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {% else %}
-      <div style="height: 100%; width: 100%; padding: 10%">
-        <div style="text-align: center; margin: auto">
-          <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-exclamation-circle" fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-            <path
-              d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
-          </svg>
-          <br /><br />
-          <h3>Oops! Looks empty</h3>
-          <p>Looks like There are no Flights Available</p>
-        </div>
-      </div>
-      {% endif %}
     </div>
+    {% else %}
+    <div style="height: 100%; width: 100%; padding: 10%">
+      <div style="text-align: center; margin: auto">
+        <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-exclamation-circle" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path
+            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+        </svg>
+        <br /><br />
+        <h3>Oops! Looks empty</h3>
+        <p>Looks like There are no Flights Available</p>
+      </div>
+    </div>
+    {% endif %}
   </div>
-</section> {% endblock %}
+</div>
+{% endblock %}
