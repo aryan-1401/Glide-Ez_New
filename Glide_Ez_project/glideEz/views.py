@@ -172,8 +172,10 @@ def register_airline_view(request):
             
             mycursor.execute("INSERT INTO airline (Airline_ID, Airline_name, passwrd, Email, phone_no, location) VALUES (%s, %s, %s, %s, %s, %s)", (airline_id, name, password, email, phone_number, address))
             mydb.commit()
-            return render(request, "glideEz/login_airline.html")
-    return render(request, "glideEz/register_airline.html")
+            sweetify.success(request, 'Registration Successfull', text='Your account was created successfully!', persistent='Login')
+            return redirect('/login_airline')
+    return render(request, "glideEz/login_airline.html")
+    
 
 def login_airline_view(request):
     if request.method == "POST":
