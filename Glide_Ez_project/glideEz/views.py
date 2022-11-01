@@ -421,7 +421,7 @@ def forgot_password_view(request):
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        mycursor.execute("select Password from User where Email = '{}'".format(email))
+        mycursor.execute("select passwrd from User where Email = '{}'".format(email))
         details = mycursor.fetchall()
         print(details)
         if details:
