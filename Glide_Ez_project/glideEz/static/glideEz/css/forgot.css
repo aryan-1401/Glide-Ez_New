@@ -1,3 +1,35 @@
 .input-email {
     margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* round corners */
+    border-radius: 10px;
+    align-content: flex-start;
+}
+
+.text-black {
+    color: black;
+    align-self: flex-start;
+
+}
+
+/* add styling for submit button */
+input[type="submit"] {
+    background-color: #101735;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }

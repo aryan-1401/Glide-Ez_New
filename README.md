@@ -47,3 +47,4 @@
 
 - py -m pip install django-environ
 - py -m pip install --upgrade sweetify
+
