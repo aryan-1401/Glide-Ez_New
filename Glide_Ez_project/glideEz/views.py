@@ -409,4 +409,31 @@ def airline_flight_view(request):
     return render(request,'glideEz/addflight.html')
 
 
-       
+def forgot_password_view(request):
+    # send email to user with link to reset password with smtp
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        # send user his old password via email
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        mycursor.execute("select passwrd from User where Email = '{}'".format(email))
+        details = mycursor.fetchall()
+        print(details)
+        if details:
+            send_mail('Your password', details[0][0], '', [email])
+            return render(request, 'glideEz/forgot_password.html', {'message': 'Email sent successfully'})
+        else:
+            return render(request, 'glideEz/forgot_password.html', {'message': 'Email not found'})
+    return render(request, 'glideEz/forgot_password.html')
+
+        
+
+
+
+
+
