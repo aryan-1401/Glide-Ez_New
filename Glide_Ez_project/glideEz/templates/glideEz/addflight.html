@@ -34,35 +34,30 @@
 				<div class="container">
 					<div class="title">Add Flights</div>
 					<div class="content">
-						<form action=" =">
+						<form action="{% url 'addflight' %}" method="post">
+							{% csrf_token %}
 							<div class="user-details">
 								<div class="input-box1">
 									<span class="deatils">Flight ID</span>
-									<input type="text" placeholder="Enter Flight ID " required>
-								</div>
-                                <div class="input-box1">
-									<span class="deatils">Airline ID</span>
-									<input type="text" placeholder="Enter Flight ID " required>
+									<input name="Flight_ID" type="text" placeholder="Enter Flight ID " required>
 								</div>
                                 <div class="input-box1">
 									<span class="deatils">Flight Name</span>
-									<input type="text" placeholder="Enter Flight ID " required>
+									<input name="Flight_Name" type="text" placeholder="Enter Flight Name " required>
 								</div>
 								<div class="input-box">
 									<span class="deatils">1<sup>st</sup>Class Seat No.</span>
-									<input type="number" placeholder="Enter Seat No" required>
+									<input name="First" type="number" placeholder="Enter Number of Seats" required>
 								</div>
 								<br>
 								<div class="input-box">
 									<span class="deatils">Economy Class</span>
-									<input type="number" placeholder="Enter Seat No " required>
+									<input name="Economy" type="number" placeholder="Enter Number of Seats" required>
 								</div>
 								<div class="input-box">
 									<span class="deatils">Business Class</span>
-									<input type="number" placeholder="Enter Seat No " required>
+									<input name="Business" type="number" placeholder="Enter Number of Seats" required>
 								</div>
-								
-								
 							</div>
 
 

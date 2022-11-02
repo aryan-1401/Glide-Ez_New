@@ -12,7 +12,7 @@ def home(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -47,7 +47,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -82,7 +82,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -149,7 +149,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -188,7 +188,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -257,7 +257,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -338,7 +338,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -390,14 +390,12 @@ def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
     mycursor.execute('select distinct loc from Airport order by loc;')
     details=mycursor.fetchall()
-    print(details)
-    print('Hi')
     return render(request,'glideEz/airline_addtrip.html',{'details' : details})
 
 def airline_pricing_view(request):
@@ -409,6 +407,25 @@ def airline_contact_view(request):
 def airline_flight_view(request):
     return render(request,'glideEz/addflight.html')
 
+def addflight_view(request):
+    if request.method == "POST":
+        Flight_ID = request.POST.get('Flight_ID')
+        Flight_Name = request.POST.get('Flight_Name')
+        First = request.POST.get('First')
+        Business = request.POST.get('Business')
+        Economy = request.POST.get('Economy')
+
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},{},'{}',{},{},{})""".format(Flight_ID,3,Flight_Name,First,Business,Economy)
+        #mycursor.execute(str)
+        return redirect('/airline_addTrip')
+
 
 def forgot_password_view(request):
     # send email to user with link to reset password with smtp
@@ -418,7 +435,7 @@ def forgot_password_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -436,7 +453,27 @@ def forgot_password_view(request):
 
         
 
+def addtrip_view(request):
+    if request.method == "POST":
+        Flight_ID = request.POST.get('Flight_ID')
+        Source = request.POST.get('Flight_Name')
+        Destination = request.POST.get('Flight_Name')
+        Arrival=request.POST.get('Flight_Name')
+        Departure=request.POST.get('Flight_Name')
+        First_Price = request.POST.get('First')
+        Business_Price = request.POST.get('Business')
+        Economy_Price = request.POST.get('Economy')
 
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},{},'{}',{},{},{})""".format(Flight_ID,3,Flight_Name,First,Business,Economy)
+        #mycursor.execute(str)
+        return redirect('/airline_addTrip')
 
 
 
