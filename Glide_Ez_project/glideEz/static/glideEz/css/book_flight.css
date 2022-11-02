@@ -8,6 +8,10 @@ html {
     font-size: 16px;
 }
 
+body {
+    background-color: #101735;
+}
+
 .plane {
     margin: 20px auto;
     max-width: 300px;
@@ -70,6 +74,7 @@ html {
 .fuselage {
     border-right: 5px solid #d8d8d8;
     border-left: 5px solid #d8d8d8;
+    padding: 0 12px;
 }
 
 ol {
@@ -138,7 +143,7 @@ ol {
     font-weight: bold;
     line-height: 1.5rem;
     padding: 4px 0;
-    background: #F42536;
+    background: #d8d8d8;
     border-radius: 5px;
     animation-duration: 300ms;
     animation-fill-mode: both;
@@ -247,4 +252,20 @@ form {
     justify-content: center;
     margin: 0;
     padding: 0;
+}
+
+.border-upper {
+    border-top: 5px solid #d8d8d8;
+}
+
+.exit-border {
+    border-bottom: 5px solid #d8d8d8;
+}
+
+.container {
+    background-color: transparent;
+}
+
+form {
+    border: none;
 }
