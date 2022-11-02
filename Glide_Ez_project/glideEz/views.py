@@ -381,6 +381,7 @@ def search_flight_view(request):
         return render(request, "glideEz/search_flight.html", {'details': details , 'source' : source , 'destination' : destination , 'Class_Type' : class_type})
 
 def book_flight_view(request):
+
     return render(request, "glideEz/book_flight.html")
 
 def airline_home_view(request):
@@ -451,7 +452,9 @@ def forgot_password_view(request):
             return render(request, 'glideEz/forgot_password.html', {'message': 'Email not found'})
     return render(request, 'glideEz/forgot_password.html')
 
-        
+
+def payment_view(request):
+    return render(request, 'glideEz/payment.html')
 
 def addtrip_view(request):
     if request.method == "POST":

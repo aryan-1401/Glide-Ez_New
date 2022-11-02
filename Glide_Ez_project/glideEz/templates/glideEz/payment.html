@@ -1,0 +1,104 @@
+{% extends 'glideEz/layout.html' %} {% block head %}
+<title>Payment Page</title>
+<link rel="stylesheet" href="../../static/glideEz/css/payment.css">
+{% endblock %}
+
+{% block content %}
+<div class="card-container">
+    <div class="top">
+        <div class="top-l">
+            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M15 19l-7-7 7-7"></path>
+            </svg>
+            <h3>Checkout</h3>
+        </div>
+        <div class="top-r">
+            <svg id="cart" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+            </svg>
+            <div class="dot">
+            </div>
+            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M4 6h16M4 12h8m-8 6h16"></path>
+            </svg>
+        </div>
+    </div>
+    <div class="middle">
+        <h3>Payment Details</h3>
+        <div class="extra-detail">
+            <div class="detail">
+                <p>Subtotal</p>
+                <p>Delivery Charges</p>
+                <p>Taxes(18%)</p>
+                <p id="dark">Total Amount</p>
+            </div>
+            <div class="detail-price">
+                <p>$851.00</p>
+                <p>$0.00</p>
+                <p>$154.00</p>
+                <p id="dark">$1,005.00</p>
+            </div>
+        </div>
+        <div class="border"></div>
+    </div>
+
+    <div class="form-box">
+        <div class="card-box">
+            <div class="main-content">
+                <div class="pay-method">
+                    <h3>Payment Method</h3>
+                </div>
+                <div class="pay-methods">
+                    <svg id="credit" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
+                        </path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M6.47005 3.54443H14.4701C16.1089 3.54443 17.4146 4.31866 18.0963 5.51496C19.3165 6.38743 19.9427 7.91487 19.6082 9.65332C19.0865 12.365 16.425 14.5633 13.6636 14.5633H11.6636L10.5301 20.4553H6.39824L6.62891 19.2563H3.44727L6.47005 3.54443ZM8.0922 5.50842H14.0922C15.7491 5.50842 16.8385 6.82737 16.5254 8.45439C16.2124 10.0814 14.6155 11.4004 12.9587 11.4004H8.95866L7.82511 17.2923H5.82511L8.0922 5.50842Z"
+                            fill="currentColor" />
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 12C6 15.3137 8.68629 18 12 18C14.6124 18 16.8349 16.3304 17.6586 14H12V10H21.8047V14H21.8C20.8734 18.5645 16.8379 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.445 2 18.4831 3.742 20.2815 6.39318L17.0039 8.68815C15.9296 7.06812 14.0895 6 12 6C8.68629 6 6 8.68629 6 12Z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+            </div>
+            <div class="name-area">
+                <div class="name">
+                    <h3>Name On Card</h3>
+                    <h2>Ankit Pavar &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp</h2>
+                </div>
+                <div class="card-num">
+                    <h3>Card Number &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp<img
+                            src="https://img.icons8.com/ios/48/000000/visa.png" /></h3>
+                    <h2>5252 &nbsp 6585 &nbsp 6585 &nbsp 6585 </h2>
+                </div>
+                <div class="dates">
+                    <div class="exp">
+                        <h3>Expiry date</h3>
+                        <h2>01/25 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </h2>
+                    </div>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <div class="cvv">
+                        <h3>CVV</h3>
+                        <h2>***</h2>
+                    </div>
+                </div>
+                <div class="pay-btn">
+                    <a href="#">Pay - $ 1,005</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
