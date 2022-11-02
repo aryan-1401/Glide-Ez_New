@@ -19,5 +19,7 @@ urlpatterns = [
     path("airline_pricing", views.airline_pricing_view, name="airline_pricing"),
     path("airline_addTrip", views.airline_addtrip_view, name="airline_addTrip"),
     path("airline_addflight", views.airline_flight_view, name="airline_addflight"),
-    path("forgot_password", views.forgot_password_view, name="forgot_password")
+    path("forgot_password", views.forgot_password_view, name="forgot_password"),
+    path("addflight", views.addflight_view, name="addflight"),
+    path("addtrip", views.addtrip_view, name="addtrip")
 ]
