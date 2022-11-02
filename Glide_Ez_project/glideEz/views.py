@@ -380,7 +380,8 @@ def search_flight_view(request):
         print(details)
         return render(request, "glideEz/search_flight.html", {'details': details , 'source' : source , 'destination' : destination , 'Class_Type' : class_type})
 
-
+def book_flight_view(request):
+    return render(request, "glideEz/book_flight.html")
 
 def airline_home_view(request):
     return render(request,'glideEz/Airline_Home.html')

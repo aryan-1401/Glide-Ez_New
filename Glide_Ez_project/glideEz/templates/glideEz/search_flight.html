@@ -82,10 +82,13 @@
                       <th scope="col"> {{Class_Type}}</th>
                       <th scope="col">{{flight.4}}</th>
                       <th scope="col">
-                        <button class="btn btn-primary btn-danger" type="submit"
-                          style="background-color: #101735; border-color: #101735;">
-                          Book Flight &#8594;
-                        </button></th>
+                        <form action="/book_flight">
+                          {% csrf_token %}
+                          <input class="btn btn-primary btn-danger" type="submit" value="Book Flight &#8594;"
+                            style="background-color: #101735; border-color: #101735;">
+                          </input>
+                      </th>
+                      </form>
                     </tr>
                     {% endfor %}
                   </tbody>
