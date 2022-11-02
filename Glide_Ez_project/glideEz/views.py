@@ -426,8 +426,10 @@ def forgot_password_view(request):
         print(details)
         if details:
             send_mail('Your password', details[0][0], '', [email])
-            return render(request, 'glideEz/forgot_password.html', {'message': 'Email sent successfully'})
+            sweetify.info(request, 'Password Sent Successfully.', button='Ok', timer=3000)
+            return render(request, 'glideEz/forgot_password.html')
         else:
+            sweetify.error(request, 'Email Not Found', text='Email doesn\'t exist', persistent='Try Again')
             return render(request, 'glideEz/forgot_password.html', {'message': 'Email not found'})
     return render(request, 'glideEz/forgot_password.html')
 
