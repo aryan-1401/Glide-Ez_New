@@ -4,101 +4,190 @@
 {% endblock %}
 
 {% block content %}
-<div class="card-container">
-    <div class="top">
-        <div class="top-l">
-            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path d="M15 19l-7-7 7-7"></path>
-            </svg>
-            <h3>Checkout</h3>
-        </div>
-        <div class="top-r">
-            <svg id="cart" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
-                </path>
-            </svg>
-            <div class="dot">
+<h1>Choose Payment</h1>
+<p id="choosen-paymenttype">Credit Card</p>
+<ul class="payment-types">
+  <li class="paymenttype pp unselected-left">
+    <div class="box">
+    <header>
+      <div class="card" id="pp-card">
+        <div class="flipper">
+          <div class="front">
+            <div class="shine"></div>
+            <div class="shadow"></div>
+            <div class="card-bg">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/513985/pp-front-bg.png" />
             </div>
-            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path d="M4 6h16M4 12h8m-8 6h16"></path>
-            </svg>
+          </div>
         </div>
+      </div>
+    </header>
+    <form>
+      <div class="form-content">
+        <p><strong>About</strong></p>
+ <p>This is a basic concept for a payment, checkout process. The user can select between the different payment types, each type has a seperate form to fill in the required data for the transaction. What I tried to provide:</p> 
+      <ul>
+        <li>A quick and easy way to fill the required form fields.</li>
+        <li>Mobile friendly keyboard display</li>
+        <li>Disabling auto-correction and spellcheck for names</li>
+        <li>Avoid dropdown fields for a better UX.</li>
+      </ul>     
+      </div>
+    </form>
     </div>
-    <div class="middle">
-        <h3>Payment Details</h3>
-        <div class="extra-detail">
-            <div class="detail">
-                <p>Subtotal</p>
-                <p>Delivery Charges</p>
-                <p>Taxes(18%)</p>
-                <p id="dark">Total Amount</p>
+  </li>
+  <li class="paymenttype selected cc">
+    <div class="box">
+    <header>
+      <div class="card" id="cc-card">
+        <div class="flipper">
+          <div class="front">
+            <div class="shine"></div>
+            <div class="shadow"></div>
+            <div class="card-bg">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/513985/cc-front-bg.png" />
             </div>
-            <div class="detail-price">
-                <p>$851.00</p>
-                <p>$0.00</p>
-                <p>$154.00</p>
-                <p id="dark">$1,005.00</p>
+            <div class="card-content">
+              <div class="credit-card-type"></div>
+              <div class="card-number">
+                <span>1234 1234 1234 1234</span>
+                <span>1234 1234 1234 1234</span>
+              </div>
+              <div class="card-holder">
+                <em>Card holder</em>
+                <span>Your Name</span>
+                <span>Your Name</span>
+              </div>
+              <div class="validuntil">
+                <em>Expire</em>
+                <div class="e-month">
+                    <span>
+                      MM
+                    </span>
+                    <span>
+                      MM
+                    </span>
+                </div>
+                <div class="e-divider">
+                     <span>
+                      /
+                    </span>
+                    <span>
+                      /
+                    </span>
+                </div>
+                <div class="e-year">
+                    <span>
+                      YY
+                    </span>
+                    <span>
+                      YY
+                    </span>
+                </div>
+                
+              </div>
             </div>
+          </div>
+
+          <div class="back">
+            <div class="shine"></div>
+            <div class="shadow"></div>
+            <div class="card-bg">
+             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/513985/cc-back-bg-new.png" />
+            </div>
+            <div class="ccv">
+              <em>CCV Number</em>
+              <strong></strong>
+            </div>
+            <div class="card-content">
+              <div class="card-number">
+                <span>4111 1111 1111 1111</span>
+                <span>4111 1111 1111 1111</span>
+              </div>
+              <div class="card-holder">
+                <span>Your Name</span>
+                <span>Your Name</span>
+              </div>
+              <div class="validuntil">
+                <span>
+                  <strong class="e-month">MM</strong> /                 <strong class="e-year">YY</strong>
+                </span>
+                <span>
+                  <strong class="e-month">MM</strong> /
+                  <strong class="e-year">YY</strong>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="border"></div>
-    </div>
+      </div>
+    </header>
 
-    <div class="form-box">
-        <div class="card-box">
-            <div class="main-content">
-                <div class="pay-method">
-                    <h3>Payment Method</h3>
-                </div>
-                <div class="pay-methods">
-                    <svg id="credit" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
-                        </path>
-                    </svg>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M6.47005 3.54443H14.4701C16.1089 3.54443 17.4146 4.31866 18.0963 5.51496C19.3165 6.38743 19.9427 7.91487 19.6082 9.65332C19.0865 12.365 16.425 14.5633 13.6636 14.5633H11.6636L10.5301 20.4553H6.39824L6.62891 19.2563H3.44727L6.47005 3.54443ZM8.0922 5.50842H14.0922C15.7491 5.50842 16.8385 6.82737 16.5254 8.45439C16.2124 10.0814 14.6155 11.4004 12.9587 11.4004H8.95866L7.82511 17.2923H5.82511L8.0922 5.50842Z"
-                            fill="currentColor" />
-                    </svg>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M6 12C6 15.3137 8.68629 18 12 18C14.6124 18 16.8349 16.3304 17.6586 14H12V10H21.8047V14H21.8C20.8734 18.5645 16.8379 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.445 2 18.4831 3.742 20.2815 6.39318L17.0039 8.68815C15.9296 7.06812 14.0895 6 12 6C8.68629 6 6 8.68629 6 12Z"
-                            fill="currentColor" />
-                    </svg>
-                </div>
-            </div>
-            <div class="name-area">
-                <div class="name">
-                    <h3>Name On Card</h3>
-                    <h2>Ankit Pavar &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp</h2>
-                </div>
-                <div class="card-num">
-                    <h3>Card Number &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp<img
-                            src="https://img.icons8.com/ios/48/000000/visa.png" /></h3>
-                    <h2>5252 &nbsp 6585 &nbsp 6585 &nbsp 6585 </h2>
-                </div>
-                <div class="dates">
-                    <div class="exp">
-                        <h3>Expiry date</h3>
-                        <h2>01/25 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </h2>
-                    </div>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <div class="cvv">
-                        <h3>CVV</h3>
-                        <h2>***</h2>
-                    </div>
-                </div>
-                <div class="pay-btn">
-                    <a href="#">Pay - $ 1,005</a>
-                </div>
-            </div>
-
+    <form>
+      <div class="form-content">
+        <div class="field">
+          <input type="tel" id="cardnumber" maxlength="20" />
+          <span class="focus-bar"></span>
+          <label for="cardnumber">Card number</label>
         </div>
+        <div class="field">
+          <input type="text" autocorrect="off" spellcheck="false" id="cardholder" maxlength="25" />
+          <span class="focus-bar"></span>
+          <label for="cardholder">Card holder (Name on card)</label>
+        </div>
+        <div class="field-group">
+          <div class="col-50">
+            <label for="expires-month">Expire (Valid until)</label>   
+            <div class="field expire-date">
+              <div>
+                <input type="tel" id="expires-month" placeholder="MM" allowed-pattern="[0-9]" maxlength="2">
+                <span class="focus-bar"></span>
+              </div>
+              <div class="divider">/</div>
+              <div>
+                <input type="tel" id="expires-year" placeholder="YY" allowed-pattern="[0-9]" maxlength="2">
+                <span class="focus-bar"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-50">
+            <div class="field ccv">
+              <input type="tel" id="ccv" autocomplete="off" maxlength="3" />
+              <span class="focus-bar"></span>
+              <label for="ccv">CCV</label>
+            </div>
+          </div>
+        </div>
+        <button><span>Submit</span></button>
+      </div>
+    </form>
     </div>
-</div>
+  </li>
+  <li class="paymenttype ec unselected-right">
+    <div class="box">
+    <header>
+      <div class="card" id="ec-card">
+        <div class="flipper">
+          <div class="front">
+            <div class="shine"></div>
+            <div class="shadow"></div>
+            <div class="card-bg">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/513985/ec-front-bg.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <form>
+      <div class="form-content">
+        <p><strong>This is just a demo</strong></p>
+       <p>It is neither complete, nor optimized code. In CSS it is playing around with text-shadow, transformations, transitions and a few animations. Some quick coded JavaScript to handle the required interactions. Anyway it might be an inspiration or a starting point.</p>
+        <p>Made with &#10084; by webandapp.fr</p>
+      </div>
+    </form>
+     </div>
+  </li>
+</ul>
 
+<script src="../../static/glideEz/js/payment.js"></script>
 {% endblock %}
