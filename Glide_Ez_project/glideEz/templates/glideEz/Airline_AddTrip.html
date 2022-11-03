@@ -63,11 +63,29 @@
 									</select>
 								</div>
 								<div class="input-box2">
+									<span class="deatils">Source Airport</span>
+									<select name="source_ap" id="source_ap" class="deatils" required>
+										<option value="">Choose Source Airport</option>
+										{%for airp in airports %}
+										<option value="{{airp.0}}" data-tag="{{airp.2}}", >{{airp.1}}</option>
+										{%endfor%}
+									</select>
+								</div>
+								<div class="input-box2">
 									<span class="deatils">Destination</span>
 									<select name="destination" id="destination" class="deatils" required>
 										<option value="">Add Destination</option>
 										{%for loc in details%}
 										<option value="{{loc.0}}">{{loc.0}}</option>
+										{%endfor%}
+									</select>
+								</div>
+								<div class="input-box2">
+									<span class="deatils">Destination Airport</span>
+									<select name="destination_ap" id="destination_ap" class="deatils" required>
+										<option value="">Choose Destination Airport</option>
+										{%for airp in airports %}
+										<option value="{{airp.0}}" data-tag="{{airp.2}}", >{{airp.1}}</option>
 										{%endfor%}
 									</select>
 								</div>
@@ -156,4 +174,41 @@
 
 <!-- Main -->
 <script src="../../static/glideEz/js/main.js"></script>
+
+<script>
+	$('#destination').change( function() {
+		var selected = $(this).val();
+		$("#destination_ap option").each(function(item){
+			console.log(selected) ;  
+			var element =  $(this) ; 
+			console.log(element.data("tag")) ; 
+			if (element.data("tag") != selected){
+				element.hide() ; 
+			}else{
+				element.show();
+			}
+		}) ; 
+		
+		$("#destination_ap").val($("#destination_ap option:visible:first").val());
+		
+});
+</script>
+<script>
+	$('#source').on('change', function() {
+		var selected = $(this).val();
+		$("#source_ap option").each(function(item){
+			console.log(selected) ;  
+			var element =  $(this) ; 
+			console.log(element.data("tag")) ; 
+			if (element.data("tag") != selected){
+				element.hide() ; 
+			}else{
+				element.show();
+			}
+		}) ; 
+		
+		$("#source_ap").val($("#source_ap option:visible:first").val());
+		
+});
+</script>
 {% endblock %}
