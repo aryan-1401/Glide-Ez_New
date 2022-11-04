@@ -18,8 +18,8 @@ def home(request):
     mycursor = mydb.cursor()
     mycursor.execute('select distinct loc from Airport order by loc;')
     details=mycursor.fetchall()
-    print(details)
-    print('Hi')
+    # print(details)
+    # print('Hi')
     return render(request, "glideEz/index.html",{'details' : details})
 
 def destination_view(request):
@@ -222,7 +222,7 @@ def login_airline_view(request):
                 'airline_id': airline_id[0]
 
             }
-            print(airline)
+            # print(airline)
             return render(request, "glideEz/Airline_Home.html", {'airline': airline})
         else:
             sweetify.error(request, 'Airline Not Found', text='Airline doesn\'t exist', persistent='Try Again')
@@ -268,22 +268,29 @@ def view_account_view(request):
     # fetch user phone number from database
     mycursor.execute("SELECT phone_no FROM user WHERE Email = %s", (email,))
     phone_number = mycursor.fetchone()
+    #convert phone number to string
+    phone_number = str(phone_number[0])
     # fetch user aadhar number from database
     mycursor.execute("SELECT adhaar_no FROM user WHERE Email = %s", (email,))
     aadhar = mycursor.fetchone()
+    #convert aadhar number to string
+    aadhar = str(aadhar[0])
     # fetch user date of birth from database
     mycursor.execute("SELECT DOB FROM user WHERE Email = %s", (email,))
     dob = mycursor.fetchone()
+    # convert date of birth to date format
+    dob = dob[0].strftime("%d/%m/%Y")
     # create dict to store user details
     user = {
 
         'first_name': user_name,
         'email': email,
         'address': address[0],
-        'phone_number': phone_number[0],
-        'aadhar': aadhar[0],
-        'dob': dob[0]
+        'phone_number': phone_number,
+        'aadhar': aadhar,
+        'dob': dob
     }
+    print(user)
     return render(request, "glideEz/view_account.html", {'user': user})
    
      
@@ -293,7 +300,7 @@ def pricing_view(request):
 
 def bookings_view(request):
     # Get email from session
-    print(request.session['email'])
+    # print(request.session['email'])
     return render(request, "glideEz/bookings.html")
 
 def contact_view(request):
@@ -445,7 +452,7 @@ def forgot_password_view(request):
         mycursor = mydb.cursor()
         mycursor.execute("select passwrd from User where Email = '{}'".format(email))
         details = mycursor.fetchall()
-        print(details)
+        # print(details)
         if details:
             send_mail('Your password', details[0][0], '', [email])
             sweetify.info(request, 'Password Sent Successfully.', button='Ok', timer=3000)
