@@ -292,9 +292,86 @@ def view_account_view(request):
     }
     print(user)
     return render(request, "glideEz/view_account.html", {'user': user})
-   
+
+# FIXME: BROKEN  
 def edit_account_details_view(request):
-    pass
+    if request.method == "POST":
+        #Get first name from form
+        first_name = request.POST.get('first_name')
+        print(first_name)
+        #Get last name from form
+        last_name = request.POST.get('last_name')
+        print(last_name)
+        #Get phone number from form
+        phone_number = request.POST.get('phone_number')
+        print(phone_number)
+        #Get address from form
+        address = request.POST.get('address')
+        print(address)
+
+        # Connect to mysql database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        # Get email from session
+        email = request.session['email']
+        print(email)
+        # Update user details in database
+        mycursor.execute("UPDATE user SET First_name = %s, Last_name = %s, phone_No = %s, Address = %s WHERE Email = %s", (first_name, last_name, phone_number, address, email))
+        mydb.commit()
+        # Save first name in session
+        request.session['user_name'] = first_name
+        # redirect to view account page
+        return redirect('/view_account')
+    else:
+    # Get email from session
+        email = request.session['email']
+        
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        # Fetch user first name from session
+        user_name = request.session['user_name']
+        # fetch user address from database
+        mycursor.execute("SELECT address FROM user WHERE Email = %s", (email,))
+        address = mycursor.fetchone()
+        # fetch user phone number from database
+        mycursor.execute("SELECT phone_no FROM user WHERE Email = %s", (email,))
+        phone_number = mycursor.fetchone()
+        #convert phone number to string
+        phone_number = str(phone_number[0])
+        # fetch user aadhar number from database
+        mycursor.execute("SELECT adhaar_no FROM user WHERE Email = %s", (email,))
+        aadhar = mycursor.fetchone()
+        #convert aadhar number to string
+        aadhar = str(aadhar[0])
+        # fetch user date of birth from database
+        mycursor.execute("SELECT DOB FROM user WHERE Email = %s", (email,))
+        dob = mycursor.fetchone()
+        # convert date of birth to date format
+        dob = dob[0].strftime("%d/%m/%Y")
+        # create dict to store user details
+        user = {
+
+            'first_name': user_name,
+            'email': email,
+            'address': address[0],
+            'phone_number': phone_number,
+            'aadhar': aadhar,
+            'dob': dob
+        }
+        print(user)
+        
+        return render(request, "glideEz/edit_account_details.html", {'user': user})
+
 
 
 def pricing_view(request):
