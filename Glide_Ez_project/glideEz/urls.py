@@ -10,6 +10,7 @@ urlpatterns = [
     path("login_airline", views.login_airline_view, name="login_airline"),
     path("logout", views.logout_view, name="logout"),
     path("view_account", views.view_account_view, name="view_account"),
+    path("edit_account_details", views.edit_account_details_view, name="edit_account_details"),
     path("pricing", views.pricing_view, name="pricing"),
     path("contact", views.contact_view, name="contact"),
     path("bookings", views.bookings_view, name="bookings"),

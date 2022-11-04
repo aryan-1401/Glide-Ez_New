@@ -19,7 +19,7 @@
             <h3 class="mb-0">My account</h3>
           </div>
           <div class="col-4 text-right">
-            <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+            <a href="{% url 'edit_account_details' %}" class="btn btn-sm btn-primary">Settings</a>
           </div>
         </div>
       </div>
@@ -33,14 +33,14 @@
               <div class="col-lg-6">
                 <div class="form-group focused">
                   <label class="form-control-label" for="input-first-name">First Name</label>
-                  <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                  <input readonly type="text" id="input-first-name" class="form-control form-control-alternative"
                     placeholder="first-name" value="{{ user.first_name }}" />
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-last-name">Last name</label>
-                  <input type="text" id="input-last-name" class="form-control form-control-alternative"
+                  <input readonly type="text" id="input-last-name" class="form-control form-control-alternative"
                     placeholder="Last name" value="{{ user.last_name }}" />
                 </div>
               </div>
@@ -49,14 +49,14 @@
               <div class="col-lg-6">
                 <div class="form-group focused">
                   <label class="form-control-label" for="input-adhaar_no">Adhaar Number</label>
-                  <input type="number" id="input-adhaar_no" class="form-control form-control-alternative"
+                  <input readonly type="number" id="input-adhaar_no" class="form-control form-control-alternative"
                     placeholder="{{ user.aadhar }}" value="{{ user.adhaar_no }}" />
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group focused">
                   <label class="form-control-label" for="input-email">Email address</label>
-                  <input type="email" id="input-email" class="form-control form-control-alternative"
+                  <input readonly type="email" id="input-email" class="form-control form-control-alternative"
                     placeholder="{{ user.email }}" />
                 </div>
               </div>
@@ -65,7 +65,7 @@
               <div class="col-lg-6">
                 <div class="form-group focused">
                   <label class="form-control-label" for="input-DOB">Date of Birth</label>
-                  <input type="text" id="input-first-name" class="form-control form-control-alternative" <input
+                  <input readonly type="text" id="input-first-name" class="form-control form-control-alternative" <input
                     type="date" id="input-date" class="form-control form-control-alternative" placeholder="DD/MM/YYYY"
                     value="{{ user.dob }}" value="{{ user.first_name }}" />
 
@@ -74,7 +74,7 @@
               <div class="col-lg-6">
                 <div class="form-group focused">
                   <label class="form-control-label" for="input-user.phone_No">Phone Number</label>
-                  <input type="text" id="input-last-name" class="form-control form-control-alternative" <input
+                  <input readonly type="text" id="input-last-name" class="form-control form-control-alternative" <input
                     type="number" id="input-user.phone_No" class="form-control form-control-alternative"
                     placeholder="{{ user.phone_number}}" value="{{ user.phone_No }}" />
                 </div>
@@ -91,8 +91,8 @@
               <div class="col-md-12">
                 <div class="form-group focused">
                   <label class="form-control-label" for="input-address">Address</label>
-                  <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"
-                    value="{{ user.address }}" type="text" />
+                  <input readonly id="input-address" class="form-control form-control-alternative"
+                    placeholder="Home Address" value="{{ user.address }}" type="text" />
                 </div>
               </div>
             </div>

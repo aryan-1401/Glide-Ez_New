@@ -293,7 +293,9 @@ def view_account_view(request):
     print(user)
     return render(request, "glideEz/view_account.html", {'user': user})
    
-     
+def edit_account_details_view(request):
+    pass
+
 
 def pricing_view(request):
     return render(request, "glideEz/pricing.html")
