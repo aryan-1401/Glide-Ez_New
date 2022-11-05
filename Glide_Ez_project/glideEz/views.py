@@ -511,8 +511,8 @@ def book_flight_view(request):
 
     # Calculate no of rows for first class
     first_rows = first_seats//6
-    #convert into 2d array
-    first_seats = [[0 for i in range(6)] for j in range(first_rows)]
+    
+    
 
     # Calculate no of rows for business class
     business_rows = business_seats//6
@@ -534,9 +534,9 @@ def book_flight_view(request):
         'economy_seats': economy_seats,
         'business_seats': business_seats,
         'first_seats': first_seats,
-        'first_rows': first_rows,
-        'business_rows': business_rows,
-        'economy_rows': economy_rows
+        'first_rows': range(first_rows),
+        'business_rows': range(business_rows),
+        'economy_rows': range(economy_rows)
     }
     print(book_details)
     return render(request, "glideEz/book_flight.html", {'book_details': book_details})

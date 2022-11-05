@@ -22,7 +22,7 @@
             <h2 class="label">First Class</h2>
 
             <!-- Dynamically generate row based on first_class -->
-            {% for row in book_details.first_rows|make_list %}
+            {% for row in book_details.first_rows %}
             <li class="row row--{{row}}">
                 <ol class="seats" type="A">
                     {% for seat in '123456'|make_list %}
@@ -33,16 +33,6 @@
                     {% endfor %}
                 </ol>
 
-            </li>
-            <li class="row row--{{row}}">
-                <ol class="seats" type="A">
-                    {% for seat in '123456'|make_list %}
-                    <li class="seat">
-                        <input type="checkbox" id="{{row}}{{seat}}" />
-                        <label for="{{row}}{{seat}}">{{seat}}B</label>
-                    </li>
-                    {% endfor %}
-                </ol>
             </li>
             {% endfor %}
 
