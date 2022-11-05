@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'glide_ez',
         'USER': 'root',
-        'PASSWORD': 'Rvya@1842',
+        'PASSWORD': '2002',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {  
