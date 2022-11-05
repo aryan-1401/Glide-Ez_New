@@ -503,15 +503,41 @@ def book_flight_view(request):
     business_seats = mycursor.fetchall()
     mycursor.execute(str2)
     first_seats = mycursor.fetchall()
-    print("hello")
-    print(economy_seats[0][0])
-    print(business_seats[0][0])
-    print(first_seats[0][0])
+    
     economy_seats = economy_seats[0][0]
     business_seats = business_seats[0][0]
     first_seats = first_seats[0][0]
 
-    return render(request, "glideEz/book_flight.html")
+    # Calculate no of rows for first class
+    first_rows = first_seats//6
+
+    # Calculate no of rows for business class
+    business_rows = business_seats//6
+
+    # Calculate no of rows for economy class
+    economy_rows = economy_seats//6
+
+    # Store all the details in a dictionary name book_details
+
+    book_details = {
+        'airline_name': airline_name,
+        'flight_id': flight_id,
+        'source': source,
+        'destination': destination,
+        'class_type': class_type,
+        'departure_time': departure_time,
+        'arrival_time': arrival_time,
+        'price': price,
+        'economy_seats': economy_seats,
+        'business_seats': business_seats,
+        'first_seats': first_seats,
+        'first_rows': first_rows,
+        'business_rows': business_rows,
+        'economy_rows': economy_rows
+    }
+    print(book_details)
+    return render(request, "glideEz/book_flight.html", {'book_details': book_details})
+
 
 def airline_home_view(request):
     return render(request,'glideEz/Airline_Home.html')
