@@ -370,11 +370,11 @@ img {
 
 @font-face {
   font-family: "icomoon";
-  src: url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx");
-  src: url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"),
-    url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"),
-    url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.woff?srf3rx") format("woff"),
-    url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
+  src: url("../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx");
+  src: url("../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"),
+    url("../../static/glideEz/fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"),
+    url("../../static/glideEz/fonts/icomoon/icomoon.woff?srf3rx") format("woff"),
+    url("../../static/glideEz/fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -2564,7 +2564,7 @@ btn-primary:hover,
   padding: 16px;
 }
 
-.container{
+.container {
   max-width: 700px;
   width: 100%;
   background-color: white;
@@ -2573,13 +2573,13 @@ btn-primary:hover,
   box-shadow: 0 5px 10px rgb(6, 7, 6);
 }
 
-.container .title{
+.container .title {
   font-size: 25px;
   font-weight: bold;
   position: relative;
 }
 
-.container .title::before{
+.container .title::before {
   content: "";
   position: absolute;
   left: 0;
@@ -2590,7 +2590,7 @@ btn-primary:hover,
   background: linear-gradient(135deg, #101735 rgb(238, 238, 112));
 }
 
-.container form .user-details{
+.container form .user-details {
 
   display: flex;
   flex-wrap: wrap;
@@ -2599,49 +2599,54 @@ btn-primary:hover,
 
 }
 
-form .user-details .input-box1{
+form .user-details .input-box1 {
 
   margin-bottom: 15px;
   width: calc(100%);
 }
-form .user-details .input-box2{
+
+form .user-details .input-box2 {
 
   margin-bottom: 15px;
   width: calc(100%/2);
 }
-form .user-details .input-box{
+
+form .user-details .input-box {
 
   margin-bottom: 15px;
   width: calc(100%/3);
 }
 
-form .input-box1 span.deatils{
+form .input-box1 span.deatils {
 
   display: block;
   font-weight: bold;
   margin-bottom: 7px;
-  
-}
-form .input-box2 span.deatils{
 
-  display: block;
-  font-weight: bold;
-  margin-bottom: 7px;
 }
-form .input-box span.deatils{
 
-  display: block;
-  font-weight: bold;
-  margin-bottom: 7px;
-}
-form .input-box2 .deatils{
+form .input-box2 span.deatils {
 
   display: block;
   font-weight: bold;
   margin-bottom: 7px;
 }
 
-.user-details .input-box1 input{
+form .input-box span.deatils {
+
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+form .input-box2 .deatils {
+
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.user-details .input-box1 input {
 
   height: 45px;
   width: 100%;
@@ -2653,7 +2658,8 @@ form .input-box2 .deatils{
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
-.user-details .input-box2 input{
+
+.user-details .input-box2 input {
 
   height: 45px;
   width: 90%;
@@ -2666,7 +2672,8 @@ form .input-box2 .deatils{
   transition: all 0.3s ease;
   margin: 2px;
 }
-.user-details .input-box2 select{
+
+.user-details .input-box2 select {
 
   height: 45px;
   width: 90%;
@@ -2679,7 +2686,8 @@ form .input-box2 .deatils{
   transition: all 0.3s ease;
   margin: 2px;
 }
-.user-details .input-box input{
+
+.user-details .input-box input {
 
   height: 45px;
   width: 90%;
@@ -2693,27 +2701,29 @@ form .input-box2 .deatils{
 }
 
 .user-details .input-box1 input:focus,
-.user-details .input-box1 input:valid{
+.user-details .input-box1 input:valid {
 
   border-color: #101735;
 }
+
 .user-details .input-box2 input:focus,
-.user-details .input-box2 input:valid{
-
-  border-color: #101735 ;
-}
-.user-details .input-box input:focus,
-.user-details .input-box input:valid{
+.user-details .input-box2 input:valid {
 
   border-color: #101735;
 }
 
-form .button{
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+
+  border-color: #101735;
+}
+
+form .button {
   height: 50px;
   margin: 35px 0;
 }
 
-form .button input{
+form .button input {
 
   height: 100%;
   width: 100%;
@@ -2725,12 +2735,13 @@ form .button input{
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #101735 ,#101735);
+  background: linear-gradient(135deg, #101735, #101735);
 
 }
 
-form .button input:hover{
+form .button input:hover {
 
-  background: linear-gradient(135deg,#101735  ,#101735);
+  background: linear-gradient(135deg, #101735, #101735);
 }
+
 /*# sourceMappingURL=style.css.map */
