@@ -1667,7 +1667,7 @@ form label {
   border: 2px solid #101735 !important;
 }
 
-.btn-primary:hover,
+btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
   background: #162049 !important;
@@ -2389,7 +2389,7 @@ form label {
   height: 5px;
   width: 30px;
   border-radius: 8px;
-  background: linear-gradient(135deg, rgb(145, 243, 243) rgb(238, 238, 112));
+  background: linear-gradient(135deg, #101735 rgb(238, 238, 112));
 }
 
 .container form .user-details{
@@ -2497,17 +2497,17 @@ form .input-box2 .deatils{
 .user-details .input-box1 input:focus,
 .user-details .input-box1 input:valid{
 
-  border-color: rgb(16, 235, 177);
+  border-color: #101735;
 }
 .user-details .input-box2 input:focus,
 .user-details .input-box2 input:valid{
 
-  border-color: rgb(16, 235, 177);
+  border-color: #101735 ;
 }
 .user-details .input-box input:focus,
 .user-details .input-box input:valid{
 
-  border-color: rgb(16, 235, 177);
+  border-color: #101735;
 }
 
 form .button{
