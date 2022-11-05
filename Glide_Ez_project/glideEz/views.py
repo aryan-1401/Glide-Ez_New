@@ -490,8 +490,26 @@ def book_flight_view(request):
         database="glide_ez"
     )
     mycursor = mydb.cursor()
-    # get first class seats from database
-    
+    # Get no of economy seats from flight table
+    str = """select Economy_Class from Flight where Flight_ID = {};""".format(flight_id)
+    # Get no of business seats from flight table
+    str1 = """select Business_Class from Flight where Flight_ID = {};""".format(flight_id)
+    # Get no of first class seats from flight table
+    str2 = """select First_Class from Flight where Flight_ID = {};""".format(flight_id)
+
+    mycursor.execute(str)
+    economy_seats = mycursor.fetchall()
+    mycursor.execute(str1)
+    business_seats = mycursor.fetchall()
+    mycursor.execute(str2)
+    first_seats = mycursor.fetchall()
+    print("hello")
+    print(economy_seats[0][0])
+    print(business_seats[0][0])
+    print(first_seats[0][0])
+    economy_seats = economy_seats[0][0]
+    business_seats = business_seats[0][0]
+    first_seats = first_seats[0][0]
 
     return render(request, "glideEz/book_flight.html")
 
