@@ -1,3 +1,4 @@
+from gettext import npgettext
 from django.shortcuts import HttpResponse, redirect, render
 from django.http import HttpResponse
 from django.core.mail import send_mail
@@ -510,6 +511,8 @@ def book_flight_view(request):
 
     # Calculate no of rows for first class
     first_rows = first_seats//6
+    #convert into 2d array
+    first_seats = [[0 for i in range(6)] for j in range(first_rows)]
 
     # Calculate no of rows for business class
     business_rows = business_seats//6
