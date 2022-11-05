@@ -218,7 +218,8 @@ def login_airline_view(request):
 
             }
             # print(airline)
-            return render(request, "glideEz/Airline_Home.html", {'airline': airline})
+            return redirect('airline_pricing', {'airline': airline})
+            # return render(request, "glideEz/Airline_Home.html", {'airline': airline})
         else:
             sweetify.error(request, 'Airline Not Found', text='Airline doesn\'t exist', persistent='Try Again')
             return redirect('/login_airline')
@@ -440,6 +441,7 @@ def search_flight_view(request):
         mycursor.execute(str)
         details = mycursor.fetchall()
         print(details)
+        
     
 
         # Extract time from datetime in details[0]
@@ -461,6 +463,23 @@ def search_flight_view(request):
         return render(request, "glideEz/search_flight.html", {'details': details , 'source' : source , 'destination' : destination , 'Class_Type' : class_type})
 
 def book_flight_view(request):
+    print("hi")
+    airline_name = request.GET.get('airline')
+    flight_id = request.GET.get('flight_id')
+    source = request.GET.get('source')
+    destination = request.GET.get('destination')
+    class_type = request.GET.get('Class_Type')
+    departure_time = request.GET.get('departure_time')
+    arrival_time = request.GET.get('arrival_time')
+    price = request.GET.get('price')
+    print(source)
+    print(flight_id)
+    print(airline_name)
+    print(class_type)
+    print(departure_time)
+    print(arrival_time)
+    print(price)
+
     if not request.session.has_key('email'):
         return redirect('/login_user')
     # connect to database
