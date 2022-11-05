@@ -58,14 +58,8 @@ def register_user_view(request):
             return redirect('/register_user')
             # return redirect('register_user')
         else:
-            mycursor.execute("select max(User_ID) from User;")
-            id=mycursor.fetchall()
-            name=name.split(' ')
-            if(len(name)<3):
-                name.append('')
-            if(len(name)<3):
-                name.append('')
-            mycursor.execute("INSERT INTO user (User_ID, first_name, middle_name,LAst_Name ,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)", (id[0][0]+1,name[0],name[1],name[2],email, password, aadhar, address, dob, phone_number))
+            # TODO: fix format of query
+            mycursor.execute("INSERT INTO user (User_ID, first_name, middle_name,LAst_Name ,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (null,{},{},{},{},{},{},{},{},{})", (id[0][0]+1,name[0],name[1],name[2],email, password, aadhar, address, dob, phone_number))
             mydb.commit()
             sweetify.success(request, 'Registration Successfull', text='Your account was created successfully!', persistent='Login')
             return redirect('/login_user')
