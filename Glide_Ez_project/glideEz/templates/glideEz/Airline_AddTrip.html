@@ -65,7 +65,7 @@
 								<div class="input-box2">
 									<span class="deatils">Source Airport</span>
 									<select name="source_ap" id="source_ap" class="deatils" required>
-										<option value="">Choose Source Airport</option>
+										<option value="" data-tag="">Choose Source Airport</option>
 										{%for airp in airports %}
 										<option value="{{airp.0}}" data-tag="{{airp.2}}", >{{airp.1}}</option>
 										{%endfor%}
@@ -83,7 +83,7 @@
 								<div class="input-box2">
 									<span class="deatils">Destination Airport</span>
 									<select name="destination_ap" id="destination_ap" class="deatils" required>
-										<option value="">Choose Destination Airport</option>
+										<option value="" data-tag="">Choose Destination Airport</option>
 										{%for airp in airports %}
 										<option value="{{airp.0}}" data-tag="{{airp.2}}", >{{airp.1}}</option>
 										{%endfor%}
