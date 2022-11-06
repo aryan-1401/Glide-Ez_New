@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'Glide_Ez_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'glide_Ez',
+        'NAME': 'glide_ez',
         'USER': 'root',
-        'PASSWORD': '12348765',
+        'PASSWORD': 'Rvya@1842',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {  

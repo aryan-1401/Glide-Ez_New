@@ -11,7 +11,7 @@
 <h2>Sign In/Up Form</h2>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form onclick="validateUser()" action="/register_user" method="post">
+    <form name="register" onsubmit="return registervalidate()" action="/register_user" method="post">
       {% csrf_token %}
       <h1 class="font-black">Create Account</h1>
       <div class="social-container">
@@ -71,8 +71,9 @@
 {% endblock %}
 
 {% block footer %}
+<script src="../../static/glideEz/js/main.js"></script>
 <script src="../../static/glideEz/js/login.js"></script>
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="" <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <!-- <link rel="stylesheet" href="alert/dist/sweetalert.css" /> -->
 <!-- For Register -->
 <!-- <script type="text/javascript">
@@ -88,8 +89,5 @@
 			swal("Sorry", "Wrong username or password", "error");
 		}
 	</script> -->
-<script>
 
-
-</script>
 {% endblock %}

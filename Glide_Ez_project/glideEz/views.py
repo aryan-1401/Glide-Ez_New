@@ -1,3 +1,4 @@
+from gettext import npgettext
 from django.shortcuts import HttpResponse, redirect, render
 from django.http import HttpResponse
 from django.core.mail import send_mail
@@ -12,7 +13,7 @@ def home(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -47,7 +48,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -58,14 +59,9 @@ def register_user_view(request):
             return redirect('/register_user')
             # return redirect('register_user')
         else:
-            mycursor.execute("select max(User_ID) from User;")
-            id=mycursor.fetchall()
-            name=name.split(' ')
-            if(len(name)<3):
-                name.append('')
-            if(len(name)<3):
-                name.append('')
-            mycursor.execute("INSERT INTO user (User_ID, first_name, middle_name,LAst_Name ,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)", (id[0][0]+1,name[0],name[1],name[2],email, password, aadhar, address, dob, phone_number))
+            # TODO: fix format of query
+            mycursor.execute("""INSERT INTO user (User_ID, first_name,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (null,{},{},{},{},{},{},{})
+            """.format(name,email, password, aadhar, address, dob, phone_number))
             mydb.commit()
             sweetify.success(request, 'Registration Successfull', text='Your account was created successfully!', persistent='Login')
             return redirect('/login_user')
@@ -82,7 +78,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -148,7 +144,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -187,7 +183,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -223,6 +219,7 @@ def login_airline_view(request):
 
             }
             # print(airline)
+            # return redirect('airline_pricing', {'airline': airline})
             return render(request, "glideEz/Airline_Home.html", {'airline': airline})
         else:
             sweetify.error(request, 'Airline Not Found', text='Airline doesn\'t exist', persistent='Try Again')
@@ -256,7 +253,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="12348765",
+        password="Rvya@1842",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -313,7 +310,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -334,7 +331,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -423,7 +420,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -445,6 +442,7 @@ def search_flight_view(request):
         mycursor.execute(str)
         details = mycursor.fetchall()
         print(details)
+        
     
 
         # Extract time from datetime in details[0]
@@ -466,9 +464,83 @@ def search_flight_view(request):
         return render(request, "glideEz/search_flight.html", {'details': details , 'source' : source , 'destination' : destination , 'Class_Type' : class_type})
 
 def book_flight_view(request):
+    print("hi")
+    airline_name = request.GET.get('airline')
+    flight_id = request.GET.get('flight_id')
+    source = request.GET.get('source')
+    destination = request.GET.get('destination')
+    class_type = request.GET.get('Class_Type')
+    departure_time = request.GET.get('departure_time')
+    arrival_time = request.GET.get('arrival_time')
+    price = request.GET.get('price')
+    print(source)
+    print(flight_id)
+    print(airline_name)
+    print(class_type)
+    print(departure_time)
+    print(arrival_time)
+    print(price)
+
     if not request.session.has_key('email'):
         return redirect('/login_user')
-    return render(request, "glideEz/book_flight.html")
+    # connect to database
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="Rvya@1842",
+        database="glide_ez"
+    )
+    mycursor = mydb.cursor()
+    # Get no of economy seats from flight table
+    str = """select Economy_Class from Flight where Flight_ID = {};""".format(flight_id)
+    # Get no of business seats from flight table
+    str1 = """select Business_Class from Flight where Flight_ID = {};""".format(flight_id)
+    # Get no of first class seats from flight table
+    str2 = """select First_Class from Flight where Flight_ID = {};""".format(flight_id)
+
+    mycursor.execute(str)
+    economy_seats = mycursor.fetchall()
+    mycursor.execute(str1)
+    business_seats = mycursor.fetchall()
+    mycursor.execute(str2)
+    first_seats = mycursor.fetchall()
+    
+    economy_seats = economy_seats[0][0]
+    business_seats = business_seats[0][0]
+    first_seats = first_seats[0][0]
+
+    # Calculate no of rows for first class
+    first_rows = first_seats//6
+    
+    
+
+    # Calculate no of rows for business class
+    business_rows = business_seats//6
+
+    # Calculate no of rows for economy class
+    economy_rows = economy_seats//6
+
+    # Store all the details in a dictionary name book_details
+
+    book_details = {
+        'airline_name': airline_name,
+        'flight_id': flight_id,
+        'source': source,
+        'destination': destination,
+        'class_type': class_type,
+        'departure_time': departure_time,
+        'arrival_time': arrival_time,
+        'price': price,
+        'economy_seats': economy_seats,
+        'business_seats': business_seats,
+        'first_seats': first_seats,
+        'first_rows': range(first_rows),
+        'business_rows': range(business_rows),
+        'economy_rows': range(economy_rows)
+    }
+    print(book_details)
+    return render(request, "glideEz/book_flight.html", {'book_details': book_details})
+
 
 def airline_home_view(request):
     return render(request,'glideEz/Airline_Home.html')
@@ -477,7 +549,7 @@ def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -508,7 +580,7 @@ def addflight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -525,7 +597,7 @@ def forgot_password_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -543,6 +615,9 @@ def forgot_password_view(request):
 
 
 def payment_view(request):
+    seat_list = request.POST.getlist('seats_selected')
+    print("hellooooo")
+    print(seat_list)
     return render(request, 'glideEz/payment.html')
 
 def addtrip_view(request):
@@ -559,7 +634,7 @@ def addtrip_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="Rvya@1842",
             database="glide_ez"
         )
         mycursor = mydb.cursor()

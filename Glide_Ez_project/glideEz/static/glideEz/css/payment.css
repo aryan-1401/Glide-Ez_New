@@ -419,7 +419,36 @@ form .form-content {
   padding: 70px 20px 20px 20px;
   background: #e4e4e4;
   min-height: 400px;
+  position:relative;
 }
+
+.upi-img{
+  max-width: 500px;
+  max-height: 200px;
+  position: absolute;
+  align-items: center;
+  transform: translate(22%,-20%);
+  bottom: -20%;
+}
+
+.textstyle{
+  font: large;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight:200;
+  font-size: 25px;
+  padding-bottom: 15px;
+
+}
+
+.img-size{
+  max-width: 200px;
+  max-height: 200px;
+  position: absolute;
+  align-items: center;
+  transform: translate(40%);
+  bottom: 20%;
+}
+
 form label {
   display: block;
   margin-bottom: 5px;

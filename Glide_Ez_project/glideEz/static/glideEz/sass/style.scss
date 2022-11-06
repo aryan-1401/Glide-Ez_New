@@ -1,4 +1,6 @@
-$font-primary: "Lato", Arial, sans-serif;
+$font-primary: "Lato",
+Arial,
+sans-serif;
 
 // Overrides
 $grid-gutter-width: 40px;
@@ -15,11 +17,13 @@ $padding-base-vertical: 14px;
   padding: 20px 0;
   z-index: 1001;
 }
+
 @media screen and (max-width: 768px) {
   .gtco-nav {
     padding: 20px 0;
   }
 }
+
 .gtco-nav #gtco-logo {
   font-size: 20px;
   margin: 0;
@@ -27,29 +31,36 @@ $padding-base-vertical: 14px;
   text-transform: uppercase;
   font-weight: bold;
 }
+
 .gtco-nav #gtco-logo em {
   color: #101735;
 }
+
 .gtco-nav a {
   padding: 5px 10px;
   color: #fff;
 }
+
 @media screen and (max-width: 768px) {
+
   .gtco-nav .menu-1,
   .gtco-nav .menu-2 {
     display: none;
   }
 }
+
 .gtco-nav ul {
   padding: 0;
   margin: 2px 0 0 0;
 }
+
 .gtco-nav ul li {
   padding: 0;
   margin: 0;
   list-style: none;
   display: inline;
 }
+
 .gtco-nav ul li a {
   font-size: 16px;
   padding: 30px 10px;
@@ -58,14 +69,17 @@ $padding-base-vertical: 14px;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
 .gtco-nav ul li a:hover,
 .gtco-nav ul li a:focus,
 .gtco-nav ul li a:active {
   color: rgb(255, 255, 255);
 }
+
 .gtco-nav ul li.has-dropdown {
   position: relative;
 }
+
 .gtco-nav ul li.has-dropdown .dropdown {
   width: 130px;
   -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.15);
@@ -88,6 +102,7 @@ $padding-base-vertical: 14px;
   -o-transition: 0s;
   transition: 0s;
 }
+
 .gtco-nav ul li.has-dropdown .dropdown:before {
   bottom: 100%;
   left: 40px;
@@ -101,13 +116,16 @@ $padding-base-vertical: 14px;
   border-width: 8px;
   margin-left: -8px;
 }
+
 .gtco-nav ul li.has-dropdown .dropdown li {
   display: block;
   margin-bottom: 7px;
 }
+
 .gtco-nav ul li.has-dropdown .dropdown li:last-child {
   margin-bottom: 0;
 }
+
 .gtco-nav ul li.has-dropdown .dropdown li a {
   padding: 2px 0;
   display: block;
@@ -116,19 +134,24 @@ $padding-base-vertical: 14px;
   text-transform: none;
   font-size: 15px;
 }
+
 .gtco-nav ul li.has-dropdown .dropdown li a:hover {
   color: #101735;
 }
-.gtco-nav ul li.has-dropdown .dropdown li.active > a {
+
+.gtco-nav ul li.has-dropdown .dropdown li.active>a {
   color: #000 !important;
 }
+
 .gtco-nav ul li.has-dropdown:hover a,
 .gtco-nav ul li.has-dropdown:focus a {
   color: #fff;
 }
+
 .gtco-nav ul li.btn-cta a {
   color: #101735;
 }
+
 .gtco-nav ul li.btn-cta a span {
   border: 2px solid rgba(255, 255, 255, 0.5);
   padding: 4px 20px;
@@ -145,11 +168,13 @@ $padding-base-vertical: 14px;
   -ms-border-radius: 7px;
   border-radius: 7px;
 }
+
 .gtco-nav ul li.btn-cta a:hover span {
   background: #fff;
   color: #101735;
 }
-.gtco-nav ul li.active > a {
+
+.gtco-nav ul li.active>a {
   color: #fff !important;
 }
 
@@ -177,6 +202,7 @@ $form-group-margin-bottom: 30px;
   -o-transform: translateX($translatex);
   transform: translateX($translatex);
 }
+
 @mixin transition($transition) {
   -moz-transition: all $transition ease;
   -o-transition: all $transition ease;
@@ -184,6 +210,7 @@ $form-group-margin-bottom: 30px;
   -ms-transition: all $transition ease;
   transition: all $transition ease;
 }
+
 @mixin inline-block() {
   display: -moz-inline-stack;
   display: inline-block;
@@ -197,6 +224,7 @@ $form-group-margin-bottom: 30px;
   -ms-border-radius: $radius;
   border-radius: $radius;
 }
+
 @mixin flex() {
   display: -webkit-box;
   display: -moz-box;
@@ -204,6 +232,7 @@ $form-group-margin-bottom: 30px;
   display: -webkit-flex;
   display: flex;
 }
+
 @mixin flexwrap() {
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
@@ -212,15 +241,11 @@ $form-group-margin-bottom: 30px;
 
 @font-face {
   font-family: "icomoon";
-  src: url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx");
-  src: url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx#iefix")
-      format("embedded-opentype"),
-    url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.ttf?srf3rx")
-      format("truetype"),
-    url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.woff?srf3rx")
-      format("woff"),
-    url("../fonts/../../../static/glideEz/fonts/icomoon/icomoon.svg?srf3rx#icomoon")
-      format("svg");
+  src: url("../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx");
+  src: url("../../static/glideEz/fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"),
+    url("../../static/glideEz/fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"),
+    url("../../static/glideEz/fonts/icomoon/icomoon.woff?srf3rx") format("woff"),
+    url("../../static/glideEz/fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -257,12 +282,14 @@ body {
   color: #777;
   background: $brand-white;
 }
+
 #page {
   position: relative;
   overflow-x: hidden;
   width: 100%;
   height: 100%;
   @include transition(0.5s);
+
   .offcanvas & {
     overflow: hidden;
     position: absolute;
@@ -280,9 +307,11 @@ body {
     }
   }
 }
+
 a {
   color: $brand-primary;
   @include transition(0.5s);
+
   &:hover,
   &:active,
   &:focus {
@@ -291,6 +320,7 @@ a {
     text-decoration: none;
   }
 }
+
 p {
   margin-bottom: 20px;
 }
@@ -307,6 +337,7 @@ figure {
   font-weight: 400;
   margin: 0 0 20px 0;
 }
+
 ::-webkit-selection {
   color: $brand-white;
   background: $brand-primary;
@@ -316,6 +347,7 @@ figure {
   color: $brand-white;
   background: $brand-primary;
 }
+
 ::selection {
   color: $brand-white;
   background: $brand-primary;
@@ -339,51 +371,62 @@ figure {
   width: 100%;
   padding: 20px 0;
   z-index: 1001;
+
   @media screen and (max-width: $screen-sm) {
     padding: 20px 0;
   }
+
   #gtco-logo {
     font-size: 20px;
     margin: 0;
     padding: 0;
     text-transform: uppercase;
     font-weight: bold;
+
     em {
       color: $brand-primary;
     }
   }
+
   a {
     padding: 5px 10px;
     color: $brand-white;
     // color: #fdd035;
   }
+
   .menu-1,
   .menu-2 {
     @media screen and (max-width: $screen-sm) {
       display: none;
     }
   }
+
   ul {
     padding: 0;
     margin: 2px 0 0 0;
+
     li {
       padding: 0;
       margin: 0;
       list-style: none;
       display: inline;
+
       a {
         font-size: 16px;
         padding: 30px 10px;
         color: rgba(255, 255, 255, 0.7);
         @include transition(0.3s);
+
         &:hover,
         &:focus,
         &:active {
           color: rgba(255, 255, 255, 1);
         }
       }
+
       &.has-dropdown {
         position: relative;
+
         .dropdown {
           width: 130px;
           -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.15);
@@ -400,6 +443,7 @@ figure {
           padding: 20px;
           @include border-radius(4px);
           @include transition(0s);
+
           &:before {
             bottom: 100%;
             // left: 30%;
@@ -418,9 +462,11 @@ figure {
           li {
             display: block;
             margin-bottom: 7px;
+
             &:last-child {
               margin-bottom: 0;
             }
+
             a {
               padding: 2px 0;
               display: block;
@@ -428,17 +474,20 @@ figure {
               line-height: 1.2;
               text-transform: none;
               font-size: 15px;
+
               &:hover {
                 color: $brand-primary;
               }
             }
+
             &.active {
-              > a {
+              >a {
                 color: $brand-black !important;
               }
             }
           }
         }
+
         &:hover,
         &:focus {
           a {
@@ -446,9 +495,11 @@ figure {
           }
         }
       }
+
       &.btn-cta {
         a {
           color: $brand-primary;
+
           span {
             // background: $brand-white;
             border: 2px solid rgba(255, 255, 255, 0.5);
@@ -458,6 +509,7 @@ figure {
             @include transition(0.3s);
             @include border-radius(7px);
           }
+
           &:hover {
             span {
               background: $brand-white;
@@ -466,16 +518,19 @@ figure {
           }
         }
       }
+
       &.active {
-        > a {
+        >a {
           color: $brand-white !important;
         }
       }
     }
   }
 }
+
 #gtco-header {
   background: lighten($brand-black, 30%);
+
   &.gtco-cover {
     @media screen and (max-width: $screen-md) {
       height: inherit !important;
@@ -488,19 +543,23 @@ figure {
       text-align: center !important;
     }
   }
+
   @media screen and (max-width: $screen-xs) {
     .btn {
       display: block;
       width: 100%;
     }
   }
+
   .mt-text {
     margin-top: 7em;
     margin-bottom: 3em;
+
     @media screen and (max-width: $screen-sm) {
       margin-top: 0;
     }
   }
+
   .intro-text-small {
     font-size: 14px;
     text-transform: uppercase;
@@ -509,23 +568,27 @@ figure {
     display: block;
     margin-bottom: 10px;
   }
+
   h1,
   h2 {
     margin: 0;
     padding: 0;
     color: rgba(255, 255, 255, 1);
   }
+
   h1 {
     margin-bottom: 0px;
     font-size: 59px;
     line-height: 1.5;
     font-weight: 300;
+
     @media screen and (max-width: $screen-sm) {
       font-size: 34px;
       line-height: 1.2;
       margin-bottom: 10px;
     }
   }
+
   h2 {
     font-weight: 300;
     font-size: 22px;
@@ -540,6 +603,7 @@ figure {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+
     .tab-menu {
       padding: 0 !important;
       margin: 0 0 -10px 0 !important;
@@ -547,6 +611,7 @@ figure {
       float: left;
       z-index: 12;
       position: relative;
+
       li {
         padding: 0;
         margin: 0;
@@ -555,6 +620,7 @@ figure {
         float: left;
         width: 50%;
         text-align: center;
+
         a {
           padding: 10px 20px 20px 20px;
           float: left;
@@ -562,10 +628,12 @@ figure {
           display: block;
           background: rgba(255, 255, 255, 0.5);
           color: lighten($brand-black, 10%);
+
           &:hover {
             color: lighten($brand-black, 10%);
           }
         }
+
         &.active {
           a {
             display: block;
@@ -574,11 +642,13 @@ figure {
             color: $brand-primary;
           }
         }
+
         &.gtco-first {
           a {
             border-top-left-radius: 7px;
           }
         }
+
         &.gtco-second {
           a {
             border-top-right-radius: 7px;
@@ -586,6 +656,7 @@ figure {
         }
       }
     }
+
     .tab-content {
       z-index: 10;
       position: relative;
@@ -598,6 +669,7 @@ figure {
 
       .tab-content-inner {
         display: none;
+
         &.active {
           display: block;
         }
@@ -614,6 +686,7 @@ figure {
   background-repeat: no-repeat;
   position: relative;
 }
+
 .gtco-bg {
   background-position: center center;
   width: 100%;
@@ -626,9 +699,11 @@ figure {
   overflow: hidden;
   margin-bottom: 30px;
   @include border-radius(7px);
+
   &.gtco-video-sm {
     height: 250px;
   }
+
   a {
     z-index: 1001;
     position: absolute;
@@ -654,6 +729,7 @@ figure {
       font-size: 40px;
     }
   }
+
   .overlay {
     position: absolute;
     top: 0;
@@ -663,10 +739,12 @@ figure {
     background: rgba(0, 0, 0, 0.5);
     @include transition(0.5s);
   }
+
   &:hover {
     .overlay {
       background: rgba(0, 0, 0, 0.7);
     }
+
     a {
       position: relative;
       -webkit-transform: scale(1.2);
@@ -677,6 +755,7 @@ figure {
     }
   }
 }
+
 .gtco-cover {
   height: 900px;
 
@@ -689,10 +768,12 @@ figure {
 
   a {
     color: $brand-primary;
+
     &:hover {
       color: rgba(255, 255, 255, 1);
     }
   }
+
   .overlay {
     z-index: 1;
     position: absolute;
@@ -702,18 +783,22 @@ figure {
     right: 0;
     background: rgba(0, 0, 0, 0.5);
   }
-  > .gtco-container {
+
+  >.gtco-container {
     position: relative;
     z-index: 10;
   }
+
   @media screen and (max-width: $screen-sm) {
     height: 600px;
   }
+
   .display-t,
   .display-tc {
     height: 900px;
     display: table;
     width: 100%;
+
     @media screen and (max-width: $screen-sm) {
       height: 600px;
     }
@@ -721,30 +806,37 @@ figure {
 
   &.gtco-cover-sm {
     height: 600px;
+
     @media screen and (max-width: $screen-sm) {
       height: 400px;
     }
+
     .display-t,
     .display-tc {
       height: 600px;
       display: table;
       width: 100%;
+
       @media screen and (max-width: $screen-sm) {
         height: 400px;
       }
     }
   }
+
   &.gtco-cover-xs {
     height: 500px;
+
     @media screen and (max-width: $screen-sm) {
       height: inherit !important;
       padding: 3em 0;
     }
+
     .display-t,
     .display-tc {
       height: 500px;
       display: table;
       width: 100%;
+
       @media screen and (max-width: $screen-sm) {
         padding: 3em 0;
         height: inherit !important;
@@ -752,28 +844,34 @@ figure {
     }
   }
 }
-#gtco-counter {
-}
+
+#gtco-counter {}
+
 .gtco-staff {
   text-align: center;
   margin-bottom: 7em;
   float: left;
   width: 100%;
+
   @media screen and (max-width: $screen-sm) {
     margin-bottom: 3em;
   }
+
   img {
     width: 100px;
     margin-bottom: 20px;
     @include border-radius(50%);
   }
+
   h3 {
     font-size: 24px;
     margin-bottom: 5px;
   }
+
   p {
     margin-bottom: 30px;
   }
+
   .role {
     color: lighten($brand-black, 75%);
     margin-bottom: 30px;
@@ -785,16 +883,19 @@ figure {
 .gtco-social-icons {
   margin: 0;
   padding: 0;
+
   li {
     margin: 0;
     padding: 0;
     list-style: none;
     @include inline-block;
+
     a {
       @include inline-block;
       color: $brand-primary;
       padding-left: 10px;
       padding-right: 10px;
+
       i {
         font-size: 20px;
       }
@@ -807,14 +908,17 @@ figure {
   float: left;
   width: 100%;
   position: relative;
+
   ul {
     padding: 0;
     margin: 0;
+
     li {
       padding: 0 0 0 50px;
       margin: 0 0 30px 0;
       list-style: none;
       position: relative;
+
       &:before {
         color: lighten($brand-black, 80%);
         position: absolute;
@@ -822,24 +926,28 @@ figure {
         top: 0.05em;
         @include icomoon;
       }
+
       &.address {
         &:before {
           font-size: 30px;
           content: "\e9d1";
         }
       }
+
       &.phone {
         &:before {
           font-size: 23px;
           content: "\e9f4";
         }
       }
+
       &.email {
         &:before {
           font-size: 23px;
           content: "\e9da";
         }
       }
+
       &.url {
         &:before {
           font-size: 23px;
@@ -862,6 +970,7 @@ form {
   .display-tc {
     display: table-cell !important;
     vertical-align: middle;
+
     .intro-text-small {
       font-size: 14px;
       text-transform: uppercase;
@@ -870,23 +979,27 @@ form {
       display: block;
       margin-bottom: 10px;
     }
+
     h1,
     h2 {
       margin: 0;
       padding: 0;
       color: rgba(255, 255, 255, 1);
     }
+
     h1 {
       margin-bottom: 0px;
       font-size: 59px;
       line-height: 1.5;
       font-weight: 300;
+
       @media screen and (max-width: $screen-sm) {
         font-size: 34px;
         line-height: 1.2;
         margin-bottom: 10px;
       }
     }
+
     h2 {
       font-weight: 300;
       font-size: 22px;
@@ -895,8 +1008,10 @@ form {
     }
   }
 }
+
 #gtco-counter {
   text-align: center;
+
   .counter {
     font-size: 50px;
     margin-bottom: 10px;
@@ -904,6 +1019,7 @@ form {
     font-weight: 100;
     display: block;
   }
+
   .counter-label {
     margin-bottom: 0;
     text-transform: uppercase;
@@ -916,6 +1032,7 @@ form {
       margin-bottom: 50px;
     }
   }
+
   .icon {
     width: 70px;
     height: 70px;
@@ -923,8 +1040,10 @@ form {
     margin-bottom: 20px;
     background: none !important;
     border: none !important;
+
     i {
       height: 70px;
+
       &:before {
         color: lighten($brand-black, 80%);
         display: block;
@@ -945,23 +1064,29 @@ form {
   padding: 7em 0;
   clear: both;
   position: relative;
+
   @media screen and (max-width: $screen-sm) {
     padding: 2em 0;
   }
+
   &.border-bottom {
     border-bottom: 1px solid lighten($brand-black, 90%);
   }
 }
+
 #gtco-features {
   background: $brand-primary;
+
   .gtco-heading {
     h2 {
       color: $brand-white;
     }
+
     p {
       color: rgba(255, 255, 255, 0.7);
     }
   }
+
   .feature-center {
     color: $brand-white;
 
@@ -970,16 +1095,19 @@ form {
       height: 90px;
       border: 1px solid rgba(255, 255, 255, 0.8);
       background: $brand-primary;
+
       i {
         color: $brand-white;
         font-size: 40px;
         font-style: normal;
       }
     }
+
     h3 {
       font-weight: 400;
       color: $brand-white;
     }
+
     p {
       color: rgba(255, 255, 255, 0.7);
     }
@@ -992,6 +1120,7 @@ form {
   float: left;
   width: 100%;
 }
+
 .feature-center {
   text-align: center;
   padding-left: 10px;
@@ -999,6 +1128,7 @@ form {
   float: left;
   width: 100%;
   margin-bottom: 40px;
+
   @media screen and (max-width: $screen-sm) {
     margin-bottom: 50px;
   }
@@ -1012,6 +1142,7 @@ form {
     text-align: center;
     margin: 0 auto 40px auto;
     @include border-radius(50%);
+
     i {
       display: table-cell;
       vertical-align: middle;
@@ -1021,10 +1152,12 @@ form {
       color: lighten($brand-black, 80%);
     }
   }
+
   p,
   h3 {
     margin-bottom: 30px;
   }
+
   h3 {
     font-size: 22px;
     margin-bottom: 20px;
@@ -1043,6 +1176,7 @@ form {
     float: left;
     text-align: center;
     width: 15%;
+
     i {
       display: table-cell;
       vertical-align: middle;
@@ -1050,11 +1184,12 @@ form {
       color: $brand-primary;
     }
   }
+
   .feature-copy {
     float: right;
     width: 80%;
-    @media screen and (max-width: $screen-sm) {
-    }
+
+    @media screen and (max-width: $screen-sm) {}
 
     h3 {
       font-size: 18px;
@@ -1066,9 +1201,11 @@ form {
 
 .gtco-heading {
   margin-bottom: 5em;
+
   &.gtco-heading-sm {
     margin-bottom: 2em;
   }
+
   h2 {
     font-size: 50px;
     margin-bottom: 10px;
@@ -1076,10 +1213,12 @@ form {
     font-weight: 300;
     color: $brand-black;
     position: relative;
+
     @media screen and (max-width: $screen-sm) {
       font-size: 26px;
     }
   }
+
   p {
     font-size: 20px;
     line-height: 1.5;
@@ -1089,15 +1228,18 @@ form {
 
 #gtco-products {
   background: darken(#0098ef, 3%);
+
   .item {
     img {
       @include border-radius(7px);
     }
   }
+
   .gtco-heading {
     h2 {
       color: $brand-white;
     }
+
     p {
       color: rgba(255, 255, 255, 0.8);
     }
@@ -1114,6 +1256,7 @@ form {
     width: 100%;
     border: 2px solid rgba(255, 255, 255, 0.2) !important;
     @include transition(0.5s);
+
     &:focus {
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.8) !important;
@@ -1137,6 +1280,7 @@ form {
       color: $brand-white;
     }
   }
+
   .btn {
     height: 46px;
     border: none !important;
@@ -1148,20 +1292,25 @@ form {
     padding-left: 50px;
     padding-right: 50px;
   }
+
   .form-inline {
     .form-group {
       width: 100% !important;
       margin-bottom: 10px;
+
       .form-control {
         width: 100%;
       }
     }
   }
+
   .gtco-heading {
     margin-bottom: 30px;
+
     h2 {
       color: $brand-white;
     }
+
     p {
       color: rgba(255, 255, 255, 0.5);
     }
@@ -1174,21 +1323,26 @@ form {
     margin: 0 0 20px 0;
     float: left;
     width: 100%;
+
     li {
       padding: 0;
       margin: 0 0 15px 0;
       list-style: none;
       line-height: 1;
+
       a {
         text-decoration: none;
+
         &:hover {
           text-decoration: underline;
         }
       }
     }
   }
+
   .gtco-widget {
     margin-bottom: 30px;
+
     h3 {
       margin-bottom: 15px;
       font-weight: bold;
@@ -1196,13 +1350,16 @@ form {
       letter-spacing: 2px;
       text-transform: uppercase;
     }
+
     .gtco-quick-contact {
       padding: 0;
       margin: 0;
+
       li {
         padding: 0;
         margin: 0 0 10px 0;
         list-style: none;
+
         i {
           width: 30px;
           float: left;
@@ -1226,6 +1383,7 @@ form {
     padding-top: 3em;
     margin-top: 3em;
     border-top: 1px solid lighten($brand-black, 95%);
+
     .pull-left,
     .pull-right {
       @media screen and (max-width: $screen-sm) {
@@ -1234,6 +1392,7 @@ form {
         text-align: center;
       }
     }
+
     .block {
       display: block;
     }
@@ -1255,33 +1414,42 @@ form {
   display: none;
   @include translateX(270px);
   @include transition(0.5s);
+
   @media screen and (max-width: $screen-sm) {
     display: block;
   }
+
   .offcanvas & {
     @include translateX(0px);
   }
+
   a {
     color: rgba(255, 255, 255, 0.5);
+
     &:hover {
       color: rgba(255, 255, 255, 0.8);
     }
   }
+
   ul {
     padding: 0;
     margin: 0;
+
     li {
       padding: 0;
       margin: 0;
       list-style: none;
-      > ul {
+
+      >ul {
         padding-left: 20px;
         display: none;
       }
+
       &.offcanvas-has-dropdown {
-        > a {
+        >a {
           display: block;
           position: relative;
+
           &:after {
             position: absolute;
             right: 0px;
@@ -1292,6 +1460,7 @@ form {
             @include transition(0.5s);
           }
         }
+
         &.active {
           a {
             &:after {
@@ -1315,6 +1484,7 @@ form {
   font-weight: 700;
   text-transform: uppercase;
 }
+
 .gototop {
   position: fixed;
   bottom: 20px;
@@ -1323,10 +1493,12 @@ form {
   opacity: 0;
   visibility: hidden;
   @include transition(0.5s);
+
   &.active {
     opacity: 1;
     visibility: visible;
   }
+
   a {
     width: 50px;
     height: 50px;
@@ -1335,11 +1507,13 @@ form {
     color: $brand-white;
     text-align: center;
     @include border-radius(4px);
+
     i {
       height: 50px;
       display: table-cell;
       vertical-align: middle;
     }
+
     &:hover,
     &:active,
     &:focus {
@@ -1355,18 +1529,22 @@ form {
   height: 25px;
   cursor: pointer;
   text-decoration: none;
+
   &.active i {
+
     &::before,
     &::after {
       background: $brand-darker;
     }
   }
+
   &:hover,
   &:focus,
   &:active {
     outline: none;
     border-bottom: none !important;
   }
+
   i {
     position: relative;
     display: inline-block;
@@ -1378,6 +1556,7 @@ form {
     text-indent: -55px;
     background: #252525;
     transition: all 0.2s ease-out;
+
     &::before,
     &::after {
       content: "";
@@ -1389,10 +1568,12 @@ form {
       transition: all 0.2s ease-out;
     }
   }
+
   &.gtco-nav-white {
-    > i {
+    >i {
       color: $brand-white;
       background: $brand-white;
+
       &::before,
       &::after {
         background: $brand-white;
@@ -1404,18 +1585,23 @@ form {
 .gtco-nav-toggle i::before {
   top: -7px;
 }
+
 .gtco-nav-toggle i::after {
   bottom: -7px;
 }
+
 .gtco-nav-toggle:hover i::before {
   top: -10px;
 }
+
 .gtco-nav-toggle:hover i::after {
   bottom: -10px;
 }
+
 .gtco-nav-toggle.active i {
   background: transparent;
 }
+
 .gtco-nav-toggle.active i::before {
   top: 0;
   -webkit-transform: rotateZ(45deg);
@@ -1424,6 +1610,7 @@ form {
   -o-transform: rotateZ(45deg);
   transform: rotateZ(45deg);
 }
+
 .gtco-nav-toggle.active i::after {
   bottom: 0;
   -webkit-transform: rotateZ(-45deg);
@@ -1432,6 +1619,7 @@ form {
   -o-transform: rotateZ(-45deg);
   transform: rotateZ(-45deg);
 }
+
 .gtco-nav-toggle {
   position: absolute;
   right: 0px;
@@ -1448,6 +1636,7 @@ form {
   width: 44px;
   z-index: 2001;
   border-bottom: none !important;
+
   @media screen and (max-width: $screen-sm) {
     display: block;
   }
@@ -1463,12 +1652,15 @@ form {
   @include border-radius(4px);
   @include transition(0.5s);
   padding: 8px 30px;
+
   &.btn-md {
     padding: 8px 20px !important;
   }
+
   &.btn-lg {
     padding: 18px 36px !important;
   }
+
   &:hover,
   &:active,
   &:focus {
@@ -1476,20 +1668,24 @@ form {
     outline: none !important;
   }
 }
+
 .btn-primary {
   background: $brand-primary;
   color: $brand-white;
   border: 2px solid $brand-primary !important;
+
   &:hover,
   &:focus,
   &:active {
     background: lighten($brand-primary, 5%) !important;
     border-color: lighten($brand-primary, 5%) !important;
   }
+
   &.btn-outline {
     background: transparent;
     color: $brand-primary;
     border: 2px solid $brand-primary;
+
     &:hover,
     &:focus,
     &:active {
@@ -1498,20 +1694,24 @@ form {
     }
   }
 }
+
 .btn-success {
   background: $brand-success;
   color: $brand-white;
   border: 2px solid $brand-success;
+
   &:hover,
   &:focus,
   &:active {
     background: darken($brand-success, 5%) !important;
     border-color: darken($brand-success, 5%) !important;
   }
+
   &.btn-outline {
     background: transparent;
     color: $brand-success;
     border: 2px solid $brand-success;
+
     &:hover,
     &:focus,
     &:active {
@@ -1520,20 +1720,24 @@ form {
     }
   }
 }
+
 .btn-info {
   background: $brand-info;
   color: $brand-white;
   border: 2px solid $brand-info;
+
   &:hover,
   &:focus,
   &:active {
     background: darken($brand-info, 5%) !important;
     border-color: darken($brand-info, 5%) !important;
   }
+
   &.btn-outline {
     background: transparent;
     color: $brand-info;
     border: 2px solid $brand-info;
+
     &:hover,
     &:focus,
     &:active {
@@ -1542,20 +1746,24 @@ form {
     }
   }
 }
+
 .btn-warning {
   background: $brand-warning;
   color: $brand-white;
   border: 2px solid $brand-warning;
+
   &:hover,
   &:focus,
   &:active {
     background: darken($brand-warning, 5%) !important;
     border-color: darken($brand-warning, 5%) !important;
   }
+
   &.btn-outline {
     background: transparent;
     color: $brand-warning;
     border: 2px solid $brand-warning;
+
     &:hover,
     &:focus,
     &:active {
@@ -1564,20 +1772,24 @@ form {
     }
   }
 }
+
 .btn-danger {
   background: $brand-danger;
   color: $brand-white;
   border: 2px solid $brand-danger;
+
   &:hover,
   &:focus,
   &:active {
     background: darken($brand-danger, 5%) !important;
     border-color: darken($brand-danger, 5%) !important;
   }
+
   &.btn-outline {
     background: transparent;
     color: $brand-danger;
     border: 2px solid $brand-danger;
+
     &:hover,
     &:focus,
     &:active {
@@ -1586,10 +1798,12 @@ form {
     }
   }
 }
+
 .btn-white {
   background: $brand-white;
   color: $brand-black;
   border: 2px solid $brand-white;
+
   &:hover,
   &:focus,
   &:active {
@@ -1597,9 +1811,11 @@ form {
     background: darken($brand-white, 5%) !important;
     border-color: darken($brand-white, 5%) !important;
   }
+
   &.btn-outline {
     color: $brand-white;
     border: 2px solid $brand-white;
+
     &:hover,
     &:focus,
     &:active {
@@ -1615,6 +1831,7 @@ form {
   border: 2px solid lighten($brand-black, 50%);
   font-size: 16px;
   @include transition(0.3s);
+
   &:hover,
   &:focus,
   &:active {
@@ -1625,6 +1842,7 @@ form {
 .btn.with-arrow {
   position: relative;
   @include transition(0.3s);
+
   i {
     visibility: hidden;
     opacity: 0;
@@ -1634,8 +1852,10 @@ form {
     margin-top: -8px;
     @include transition(0.2s);
   }
+
   &:hover {
     padding-right: 50px;
+
     i {
       color: $brand-white;
       right: 18px;
@@ -1644,6 +1864,7 @@ form {
     }
   }
 }
+
 // Form Input Field
 .form-control {
   box-shadow: none;
@@ -1654,6 +1875,7 @@ form {
   font-weight: 300;
   padding-left: 15px;
   padding-right: 15px;
+
   &:active,
   &:focus {
     outline: none;
@@ -1661,21 +1883,27 @@ form {
     border-color: $brand-primary;
   }
 }
+
 .row-mt-15em {
   margin-top: 15em;
+
   @media screen and (max-width: $screen-sm) {
     margin-top: 7em;
   }
 }
+
 .mt-sm {
   margin-top: 6em;
+
   @media screen and (max-width: $screen-sm) {
     margin-top: 3em;
   }
 }
+
 .row-pb-md {
   padding-bottom: 4em !important;
 }
+
 .row-pb-sm {
   padding-bottom: 2em !important;
 }
@@ -1687,8 +1915,7 @@ form {
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background: url(../../../static/glideEz/images/loader.gif) center no-repeat
-    #fff;
+  background: url(../../static/glideEz/images/loader.gif) center no-repeat #fff;
 }
 
 .animate-box {
@@ -1702,19 +1929,24 @@ form {
     @media screen and (max-width: $screen-sm) {
       text-align: left !important;
     }
+
     ul {
       padding: 0;
       margin: 0 0 20px 0;
+
       li {
         padding: 0;
         margin: 0;
+
         a {
           font-size: 14px;
           font-weight: bold !important;
           margin-left: 0px;
+
           i {
             color: $brand-primary;
           }
+
           &:hover {
             i {
               color: $brand-white;
@@ -1738,6 +1970,7 @@ form {
 .owl-carousel-posts .owl-controls {
   margin-top: 0;
 }
+
 .owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel .owl-controls .owl-nav .owl-prev,
 .owl-carousel-posts .owl-controls .owl-nav .owl-next,
@@ -1748,20 +1981,25 @@ form {
   position: absolute;
   @include transition(0.2s);
 }
+
 .owl-carousel-posts .owl-controls .owl-nav .owl-next,
 .owl-carousel-posts .owl-controls .owl-nav .owl-prev {
   top: 24%;
 }
+
 .owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel-posts .owl-controls .owl-nav .owl-next {
   right: 20px;
+
   &:hover {
     margin-right: -10px;
   }
 }
+
 .owl-carousel .owl-controls .owl-nav .owl-prev,
 .owl-carousel-posts .owl-controls .owl-nav .owl-prev {
   left: 20px;
+
   &:hover {
     margin-left: -10px;
   }
@@ -1774,6 +2012,7 @@ form {
   i {
     color: $brand-darker;
   }
+
   &:hover {
     i {
       color: $brand-black;
@@ -1786,6 +2025,7 @@ form {
   i {
     color: $brand-white;
   }
+
   &:hover {
     i {
       color: $brand-white;
@@ -1801,12 +2041,14 @@ form {
 
 .owl-theme .owl-controls .owl-nav [class*="owl-"] {
   background: none !important;
+
   i {
     font-size: 24px;
     background: rgba(245, 76, 83, 1) !important;
     padding: 12px;
     @include transition(0.5s);
   }
+
   &:hover,
   &:focus {
     i {
@@ -1814,27 +2056,32 @@ form {
     }
   }
 }
+
 .owl-theme .owl-dots {
   position: absolute;
   bottom: 0;
   width: 100%;
   text-align: center;
 }
+
 .owl-carousel-fullwidth.owl-theme .owl-dots {
   bottom: 0;
   margin-bottom: -2.5em;
 }
+
 .owl-theme .owl-dots .owl-dot span {
   width: 10px;
   height: 10px;
   background: $brand-primary;
   @include transition(0.2s);
   border: 2px solid transparent;
+
   &:hover {
     background: none;
     border: 2px solid $brand-primary;
   }
 }
+
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
   background: none;
@@ -1865,6 +2112,7 @@ form {
     overflow: hidden;
     z-index: 12;
     position: relative;
+
     .overlay {
       opacity: 0;
       visibility: hidden;
@@ -1876,6 +2124,7 @@ form {
       position: absolute;
       background: rgba(0, 0, 0, 0.4);
       @include transition(0.7s);
+
       i {
         z-index: 12;
         color: $brand-white;
@@ -1889,33 +2138,40 @@ form {
       }
     }
   }
+
   img {
     z-index: 8;
     opacity: 1;
     @include transition(0.3s);
   }
+
   .fh5co-text {
     padding: 0px 10px 10px 20px;
     text-align: center;
+
     h2,
     span {
       text-decoration: none !important;
     }
+
     h2 {
       font-size: 20px;
       font-weight: 400;
       margin: 0 0 10px 0;
       color: $brand-primary;
     }
+
     span {
       color: lighten($brand-black, 70%);
       font-size: 16px;
       font-weight: 400;
     }
+
     p {
       color: $brand-black;
       @include transition(0.5s);
     }
+
     span.btn {
       color: $brand-white !important;
       opacity: 1;
@@ -1928,6 +2184,7 @@ form {
       @include transition(0.5s);
     }
   }
+
   &:hover,
   &:focus {
     bottom: 7px;
@@ -1937,6 +2194,7 @@ form {
     -ms-box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.19);
     -o-box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.19);
     box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.19);
+
     img {
       -webkot-transform: scale(1.2);
       -moz-transform: scale(1.2);
@@ -1944,6 +2202,7 @@ form {
       -o-transform: scale(1.2);
       transform: scale(1.2);
     }
+
     span.btn {
       opacity: 1;
       visibility: visible;
@@ -1951,19 +2210,23 @@ form {
       border: 2px solid lighten($brand-primary, 5%) !important;
       background: lighten($brand-primary, 5%) !important;
     }
+
     figure {
       .overlay {
         opacity: 1;
         visibility: visible;
+
         i {
           margin-top: -15px;
         }
       }
     }
+
     h2,
     span {
       text-decoration: none !important;
     }
+
     // p {
     // 	color: $brand-secondary;
     // }
@@ -1986,8 +2249,10 @@ form {
   margin-bottom: 40px;
   position: relative;
   @include border-radius(5px);
+
   &.popular {
     border: 2px solid $brand-primary;
+
     .popular-text {
       top: 0;
       left: 50%;
@@ -1998,6 +2263,7 @@ form {
       background: $brand-primary;
       color: $brand-white;
       @include border-radius(4px);
+
       &:after {
         content: "";
         position: absolute;
@@ -2012,6 +2278,7 @@ form {
     }
   }
 }
+
 .pricing-plan {
   margin: 0 0 30px 0;
   padding: 0;
@@ -2019,20 +2286,25 @@ form {
   text-transform: uppercase;
   font-weight: 700;
 }
+
 .price {
   font-size: 50px;
   color: $brand-black;
+
   .currency {
     font-size: 20px;
     top: -1.2em;
   }
+
   small {
     font-size: 16px;
   }
 }
+
 .pricing-info {
   padding: 0;
   margin: 0 0 30px 0;
+
   li {
     padding: 0;
     margin: 0;
@@ -2044,18 +2316,22 @@ form {
 .fh5co-faq-list {
   margin: 0;
   padding: 0;
+
   li {
     margin: 0 0 40px 0;
     padding: 0;
     line-height: 1.5;
     list-style: none;
+
     @media screen and (max-width: $screen-sm) {
       margin: 0 0 20px 0;
     }
+
     h2 {
       font-size: 26px;
       font-weight: 300;
       margin-bottom: 15px;
+
       @media screen and (max-width: $screen-sm) {
         font-size: 26px;
       }
