@@ -38,13 +38,13 @@ function searchvalidate() {
 // For register
 
 function registerUserValidate() {
-  let name = document.forms["register"]["username"].value;
-  let email = document.forms["register"]["email"].value;
-  let password = document.forms["register"]["pass"].value;
-  let dob = document.forms["register"]["dob"].value;
-  let address = document.forms["register"]["address"].value;
-  let aadhar = document.forms["register"]["aadhar"].value;
-  let phone = document.forms["register"]["phone"].value;
+  let name = document.forms["register_user_form"]["username"].value;
+  let email = document.forms["register_user_form"]["email"].value;
+  let password = document.forms["register_user_form"]["pass"].value;
+  let dob = document.forms["register_user_form"]["dob"].value;
+  let address = document.forms["register_user_form"]["address"].value;
+  let aadhar = document.forms["register_user_form"]["aadhar"].value;
+  let phone = document.forms["register_user_form"]["phone"].value;
 
 
   if (name == "") {
@@ -115,9 +115,8 @@ function registerUserValidate() {
 // For login
 
 function loginUserValidate() {
-  console.log("loginvalidate");
-  let email = document.forms["login"]["login_email"].value;
-  let password = document.forms["login"]["login_password"].value;
+  let email = document.forms["login_user_form"]["login_email"].value;
+  let password = document.forms["login_user_form"]["login_password"].value;
 
   if (email == "") {
     alert("Email must be filled out");
@@ -133,4 +132,66 @@ function loginUserValidate() {
   }
   return true;
 
+}
+
+function registerAirlineValidate() {
+  let name = document.forms["register_airline_form"]["name"].value;
+  let email = document.forms["register_airline_form"]["email"].value;
+  let password = document.forms["register_airline_form"]["pass"].value;
+  let phone = document.forms["register_airline_form"]["phone"].value;
+  let address = document.forms["register_airline_form"]["loc"].value;
+
+  if (name == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+    alert("Invalid Email");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+  if (password.length < 8) {
+    alert("Password must be of length 8");
+    return false;
+  }
+  if (phone == "") {
+    alert("Phone must be filled out");
+    return false;
+  }
+  if (phone.length != 10) {
+    alert("Phone number must be 10 digits");
+    return false;
+  }
+  if (address == "") {
+    alert("Address must be filled out");
+    return false;
+  }
+
+  return true;
+}
+
+function loginAirlineValidate() {
+  let email = document.forms["login_airline_form"]["login_email"].value;
+  let password = document.forms["login_airline_form"]["login_password"].value;
+
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+  if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+    alert("Invalid Email");
+    return false;
+  }
+  return true;
 }

@@ -11,7 +11,7 @@
 <h2>Sign In/Up Form</h2>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form name="register" onsubmit="return registeUserValidate()" action="/register_user" method="post">
+    <form name="register_user_form" onsubmit="return registeUserValidate()" action="/register_user" method="post">
       {% csrf_token %}
       <h1 class="font-black">Create Account</h1>
       <div class="social-container">
@@ -36,7 +36,7 @@
     <input type="hidden" id="status-login" />
   </div>
   <div class="form-container sign-in-container">
-    <form name="login" onsubmit="return loginvalidate()" action="{% url 'login_user' %}" method="post">
+    <form name="login_user_form" onsubmit="return loginUservalidate()" action="{% url 'login_user' %}" method="post">
       {% csrf_token %}
       <h1 class="font-black">Sign in</h1>
       <div class="social-container">
