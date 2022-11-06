@@ -14,7 +14,7 @@ def home(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -76,7 +76,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -107,7 +107,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -172,7 +172,7 @@ def forgot_password_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -196,7 +196,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -254,7 +254,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -276,7 +276,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -334,7 +334,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -395,7 +395,7 @@ def book_flight_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -458,7 +458,7 @@ def payment_view(request):
     #     mydb = mysql.connector.connect(
     #         host="localhost",
     #         user="root",
-    #         password="2002",
+    #         password="12348765",
     #         database="glide_ez"
     #     )
     #     mycursor = mydb.cursor()
@@ -535,7 +535,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -574,7 +574,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -645,7 +645,7 @@ def airline_addflight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -665,19 +665,22 @@ def airline_addflight_view(request):
 
 
 def airline_addtrip_view(request):
-# mydb = mysql.connector.connect(
-#             host="localhost",
-#             user="root",
-#             password="2002",
-#             database="glide_ez"
-#         )
-#     mycursor = mydb.cursor()
-#     mycursor.execute('select distinct loc from Airport order by loc;')
-#     details=mycursor.fetchall()
-#     mycursor = mydb.cursor()
-#     mycursor.execute('select Airport_Id,Airport_Name,loc from Airport order by loc;')
-#     allairports=mycursor.fetchall()
-#     return render(request,'glideEz/airline_addtrip.html',{'details' : details , 'airports' : allairports})
+    mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+    mycursor = mydb.cursor()
+    mycursor.execute('select distinct loc from Airport order by loc;')
+    details=mycursor.fetchall()
+    mycursor = mydb.cursor()
+    mycursor.execute('select Airport_Id,Airport_Name,loc from Airport order by loc;')
+    allairports=mycursor.fetchall()
+    return render(request,'glideEz/airline_addtrip.html',{'details' : details , 'airports' : allairports})
+    
+    
+def addtrip_form_view(request):
     Flight_ID = request.POST.get('Flight_ID')
     First_Class_Price = request.POST.get('First_Price')
     Business_Class_Price = request.POST.get('Business_Price')
@@ -703,26 +706,19 @@ def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
-    mycursor = mydb.cursor()
-    # Get source airport id from airport table
-    mycursor.execute("SELECT Airport_ID FROM airport WHERE Airport_Name = %s", (Source_airport,))
-    source_airport_id = mycursor.fetchone()
-    # Get destination airport id from airport table
-    mycursor.execute("SELECT Airport_ID FROM airport WHERE Airport_Name = %s", (Destination_airport,))
-    destination_airport_id = mycursor.fetchone()
-
-    print(source_airport_id)
-    print(destination_airport_id)
+    mycursor=mydb.cursor()
+    print(Source_airport)
+    print(Destination_airport)
     # Enter trip details in trip table
     str = """insert into trip(Flight_ID,src_ID,dest_ID,Depart_time,Arrival_time,first_price,business_price,economy_price) values({},'{}','{}','{}','{}',{},{},{})""".format(
-        Flight_ID, source_airport_id, destination_airport_id, Departure, Arrival, First_Class_Price, Business_Class_Price,
+        Flight_ID, Source_airport, Destination_airport, Departure, Arrival, First_Class_Price, Business_Class_Price,
         Economy_Class_Price)
     mycursor.execute(str)
 
-    return render(request,'glideEz/Airline_AddTrip.html')
+    return render(request,'glideEz/Airline_Home.html')
 
 
 def airline_pricing_view(request):
