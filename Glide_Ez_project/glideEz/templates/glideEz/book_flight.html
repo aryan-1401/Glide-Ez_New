@@ -27,12 +27,11 @@
                 <ol class="seats" type="A">
                     {% for seat in '123456'|make_list %}
                     <li class="seat">
-                        <input type="checkbox" id="{{row}}{{seat}}" />
-                        <label for="{{row}}{{seat}}">{{seat}}A</label>
+                        <input type="checkbox" id="{{row}}{{seat}}A" />
+                        <label for="{{row}}{{seat}}A">{{row}}A{{seat}}</label>
                     </li>
                     {% endfor %}
                 </ol>
-
             </li>
             {% endfor %}
         </ol>
@@ -44,11 +43,11 @@
             <!-- Dynamically generate row based on business_class -->
             {% for row in book_details.business_rows %}
             <li class="row row--{{row}}">
-                <ol class="seats" type="A">
+                <ol class="seats" type="B">
                     {% for seat in '123456'|make_list %}
                     <li class="seat">
-                        <input type="checkbox" id="{{row}}{{seat}}" />
-                        <label for="{{row}}{{seat}}">{{seat}}A</label>
+                        <input type="checkbox" id="{{row}}{{seat}}B" />
+                        <label for="{{row}}{{seat}}B">{{row}}B{{seat}}</label>
                     </li>
                     {% endfor %}
                 </ol>
@@ -65,11 +64,11 @@
             <!-- Dynamically generate row based on economy_class -->
             {% for row in book_details.economy_rows %}
             <li class="row row--{{row}}">
-                <ol class="seats" type="A">
+                <ol class="seats" type="C">
                     {% for seat in '123456'|make_list %}
                     <li class="seat">
-                        <input type="checkbox" id="{{row}}{{seat}}" />
-                        <label for="{{row}}{{seat}}">{{seat}}A</label>
+                        <input type="checkbox" id="{{row}}{{seat}}C" />
+                        <label for="{{row}}{{seat}}C">{{row}}C{{seat}}</label>
                     </li>
                     {% endfor %}
                 </ol>
