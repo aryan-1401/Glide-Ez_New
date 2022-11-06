@@ -487,6 +487,7 @@ def payment_view(request):
         for seat in seat_list:
             total_price += price.get(seat)
 
+        print(total_price)
 
         return render(request, 'glideEz/payment.html',{'price': total_price,'seat_list':seat_list,'trip_id':trip_id})
     
@@ -742,6 +743,8 @@ def addtrip_form_view(request):
     mydb.commit()
     sweetify.success(request, 'Trip Added Successful', text='Trip Added Successfully', persistent='Ok')
     return redirect('/airline_home')
+
+    return render(request,'glideEz/Airline_Home.html')
 
 
 def airline_pricing_view(request):
