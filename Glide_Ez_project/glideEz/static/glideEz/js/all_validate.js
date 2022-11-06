@@ -37,15 +37,15 @@ function searchvalidate() {
 
 // For register
 
-function registervalidate() {
+function registerUserValidate() {
   let name = document.forms["register"]["username"].value;
   let email = document.forms["register"]["email"].value;
-  let phone = document.forms["register"]["phone"].value;
   let password = document.forms["register"]["pass"].value;
-
-  let aadhar = document.forms["register"]["aadhar"].value;
   let dob = document.forms["register"]["dob"].value;
   let address = document.forms["register"]["address"].value;
+  let aadhar = document.forms["register"]["aadhar"].value;
+  let phone = document.forms["register"]["phone"].value;
+
 
   if (name == "") {
     alert("Name must be filled out");
@@ -55,32 +55,13 @@ function registervalidate() {
     alert("Email must be filled out");
     return false;
   }
-  if (phone == "") {
-    alert("Phone must be filled out");
+  // Check for valid email
+  if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+    alert("Invalid Email");
     return false;
   }
   if (password == "") {
     alert("Password must be filled out");
-    return false;
-  }
-  if (aadhar == "") {
-    alert("Aadhar must be filled out");
-    return false;
-  }
-  if (dob == "") {
-    alert("Date of Birth must be filled out");
-    return false;
-  }
-  if (address == "") {
-    alert("Address must be filled out");
-    return false;
-  }
-  if (phone.length != 10) {
-    alert("Phone number must be 10 digits");
-    return false;
-  }
-  if (aadhar.length != 12) {
-    alert("Aadhar number must be 12 digits");
     return false;
   }
   // Check if password is of length 8
@@ -88,9 +69,68 @@ function registervalidate() {
     alert("Password must be of length 8");
     return false;
   }
-  // Check for valid email
+  if (dob == "") {
+    alert("Date of Birth must be filled out");
+    return false;
+  }
+  // Check if age is greater than 12
+  var today = new Date();
+  var birthDate = new Date(dob);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  if (age < 12) {
+    alert("Age must be greater than 12");
+    return false;
+  }
+
+  if (address == "") {
+    alert("Address must be filled out");
+    return false;
+  }
+  if (aadhar == "") {
+    alert("Aadhar must be filled out");
+    return false;
+  }
+  if (aadhar.length != 12) {
+    alert("Aadhar number must be 12 digits");
+    return false;
+  }
+
+  if (phone == "") {
+    alert("Phone must be filled out");
+    return false;
+  }
+  if (phone.length != 10) {
+    alert("Phone number must be 10 digits");
+    return false;
+  }
+
+
+  return true;
+}
+
+// For login
+
+function loginUserValidate() {
+  console.log("loginvalidate");
+  let email = document.forms["login"]["login_email"].value;
+  let password = document.forms["login"]["login_password"].value;
+
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
   if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
     alert("Invalid Email");
     return false;
   }
+  return true;
+
 }
