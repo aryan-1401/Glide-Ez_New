@@ -122,9 +122,16 @@ def login_user_view(request):
 
             }
             return redirect('/', {'user': user})
-        else:
-            sweetify.error(request, 'User Not Found', text='User doesn\'t exist', persistent='Try Again')
-            return redirect('/login_user')
+        #else if email is in database but password is wrong
+        elif user is None:
+            mycursor.execute("SELECT * FROM user WHERE Email = %s", (email,))
+            user = mycursor.fetchone()
+            if user:
+                sweetify.error(request, 'Login Failed', text='Wrong Password', persistent='Try Again')
+                return redirect('/login_user')
+            else:
+                sweetify.error(request, 'Login Failed', text='Email not Found', persistent='Try Again')
+                return redirect('/login_user')
     return render(request, "glideEz/login_user.html")
 
 def register_airline_view(request):
