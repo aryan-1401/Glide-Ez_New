@@ -548,12 +548,13 @@ def payment_view(request):
 def addtrip_view(request):
     if request.method == "POST":
         Flight_ID = request.POST.get('Flight_ID')
-        Source = request.POST.get('Flight_Name')
-        Destination = request.POST.get('Flight_Name')
-        Arrival=request.POST.get('Flight_Name')
-        Departure=request.POST.get('Flight_Name')
-        src_ap=request.POST.get('Flight_Name')
-        dest_ap=request.POST.get('Flight_Name')
+        fp = request.POST.get('First_Price')
+        ep = request.POST.get('Economy_Price')
+        bp = request.POST.get('Business_Price')
+        Arrival=request.POST.get('arrival')
+        Departure=request.POST.get('departure')
+        src_ap=request.POST.get('source_ap')
+        dest_ap=request.POST.get('destination_ap')
 
         mydb = mysql.connector.connect(
             host="localhost",
@@ -562,8 +563,8 @@ def addtrip_view(request):
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        str="""insert into Trip(Depart_Time,Arrival_Time,Trip_ID,src_ID,dest_ID,Flight_ID) values({},{},'{}',{},{},{})""".format(Arrival,Departure,Flight_Name,First,Business,Economy)
-        #mycursor.execute(str)
+        str="""insert into Trip(Depart_Time,Arrival_Time,Trip_ID,src_ID,dest_ID,Flight_ID,First_price,business_price,economy_price) values('{}','{}',null,'{}','{}',{},{},{},{})""".format(Arrival,Departure,src_ap,dest_ap,Flight_ID,fp,bp,ep)
+        mycursor.execute(str)
         return redirect('/airline_addTrip')
 
 
