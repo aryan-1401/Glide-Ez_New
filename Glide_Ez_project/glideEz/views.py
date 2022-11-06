@@ -264,6 +264,7 @@ def edit_account_details_view(request):
         # Update user details in database
         mycursor.execute("UPDATE user SET First_name = %s, Last_name = %s, phone_No = %s, Address = %s WHERE Email = %s", (first_name, last_name, phone_number, address, email))
         mydb.commit()
+        
         # Save first name in session
         request.session['user_name'] = first_name
         # redirect to view account page
