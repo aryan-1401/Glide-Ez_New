@@ -6,6 +6,8 @@
 
 {% endblock %}
 
+{% block header %} <div class="gtco-loader"></div> {% endblock %}
+
 {% block content %}
 
 <!-- Page content -->
@@ -52,7 +54,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group focused">
                                     <label class="form-control-label" for="input-adhaar_no">Adhaar Number</label>
-                                    <input type="number" id="input-adhaar_no"
+                                    <input readonly type="number" id="input-adhaar_no"
                                         class="form-control form-control-alternative" placeholder="{{ user.aadhar }}"
                                         value="{{ user.adhaar_no }}" />
                                 </div>
@@ -60,8 +62,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group focused">
                                     <label class="form-control-label" for="input-email">Email address</label>
-                                    <input type="email" id="input-email" class="form-control form-control-alternative"
-                                        placeholder="{{ user.email }}" />
+                                    <input readonly type="email" id="input-email"
+                                        class="form-control form-control-alternative" placeholder="{{ user.email }}" />
                                 </div>
                             </div>
                         </div>
@@ -131,8 +133,13 @@
 
 
             </div>
-            <div class="col-4 text-right">
-                <button>Save Changes</button>
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <button class="btn btn-sm btn-primary">Save Changes</button>
+                </div>
             </div>
         </div>
 
@@ -143,4 +150,47 @@
 </div>
 </div>
 </div>
+{% endblock %}
+
+{% block footer %}
+<!-- jQuery -->
+<!-- <script src="js/jquery.min.js"></script> -->
+<script src="../../static/glideEz/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<!-- <script src="js/jquery.easing.1.3.js"></script> -->
+<script src="../../static/glideEz/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<!-- <script src="js/bootstrap.min.js"></script> -->
+<script src="../../static/glideEz/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<!-- <script src="js/jquery.waypoints.min.js"></script> -->
+<script src="../../static/glideEz/js/jquery.waypoints.min.js"></script>
+<!-- Carousel -->
+<!-- <script src="js/owl.carousel.min.js"></script> -->
+<script src="../../static/glideEz/js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<!-- <script src="js/jquery.countTo.js"></script> -->
+<script src="../../static/glideEz/js/jquery.countTo.js"></script>
+
+<!-- Stellar Parallax -->
+<!-- <script src="js/jquery.stellar.min.js"></script> -->
+<script src="../../static/glideEz/js/jquery.stellar.min.js"></script>
+
+<!-- Magnific Popup -->
+<!-- <script src="js/jquery.magnific-popup.min.js"></script> -->
+<script src="../../static/glideEz/js/jquery.magnific-popup.min.js"></script>
+<!-- <script src="js/magnific-popup-options.js"></script> -->
+<script src="../../static/glideEz/js/magnific-popup-options.js"></script>
+
+<!-- Datepicker -->
+<!-- <script src="js/bootstrap-datepicker.min.js"></script> -->
+<script src="../../static/glideEz/js/bootstrap-datepicker.min.js"></script>
+
+
+<!-- Main -->
+<!-- <script src="js/main.js"></script> -->
+<script src="../../static/glideEz/js/main.js"></script>
+
+<script src="../../static/glideEz/js/all_validate.js"></script>
+
 {% endblock %}
