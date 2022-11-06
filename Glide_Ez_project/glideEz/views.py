@@ -23,6 +23,35 @@ def home(request):
     # print('Hi')
     return render(request, "glideEz/index.html",{'details' : details})
 
+
+def pricing_view(request):
+    return render(request, "glideEz/pricing.html")
+
+def bookings_view(request):
+    return render(request, "glideEz/bookings.html")
+
+def contact_view(request):
+    # TODO: fix no message in email
+    if request.method == 'POST':
+        name = request.POST.get('visitor_name')
+        email = request.POST.get('visitor_email')
+        new_message = request.POST.get('visitor_message')
+        subject = request.POST.get('email_title')
+        form_data = {
+            'name':name,
+            'email':email,
+            'subject':subject,
+            'new_message':new_message
+        }
+        message = '''
+        From:\n\t\t{}\n
+        Message:\n\t\t{}\n
+        Email:\n\t\t{}\n
+        Subject:\n\t\t{}\n
+        '''.format(form_data['name'], form_data['new_message'], form_data['email'],form_data['subject'])
+        send_mail('You got a mail!', message, '', ['glideezinfo@gmail.com']) # TODO: enter your email address
+    return render(request, "glideEz/contact.html")
+
 def destination_view(request):
     return render(request, "glideEz/destination.html")
 
@@ -385,35 +414,6 @@ def edit_account_details_view(request):
 
 
 
-def pricing_view(request):
-    return render(request, "glideEz/pricing.html")
-
-def bookings_view(request):
-    # Get email from session
-    # print(request.session['email'])
-    return render(request, "glideEz/bookings.html")
-
-def contact_view(request):
-    # TODO: fix no message in email
-    if request.method == 'POST':
-        name = request.POST.get('visitor_name')
-        email = request.POST.get('visitor_email')
-        new_message = request.POST.get('visitor_message')
-        subject = request.POST.get('email_title')
-        form_data = {
-            'name':name,
-            'email':email,
-            'subject':subject,
-            'new_message':new_message
-        }
-        message = '''
-        From:\n\t\t{}\n
-        Message:\n\t\t{}\n
-        Email:\n\t\t{}\n
-        Subject:\n\t\t{}\n
-        '''.format(form_data['name'], form_data['new_message'], form_data['email'],form_data['subject'])
-        send_mail('You got a mail!', message, '', ['glideezinfo@gmail.com']) # TODO: enter your email address
-    return render(request, "glideEz/contact.html")
     
 def search_flight_view(request):
     if request.method == "POST":
@@ -583,7 +583,7 @@ def airline_contact_view(request):
 def airline_flight_view(request):
     return render(request,'glideEz/addflight.html')
 
-def addflight_view(request):
+def airline_addflight_view(request):
     if request.method == "POST":
         Flight_ID = request.POST.get('Flight_ID')
         Flight_Name = request.POST.get('Flight_Name')
@@ -601,6 +601,7 @@ def addflight_view(request):
         str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},{},'{}',{},{},{})""".format(Flight_ID,3,Flight_Name,First,Business,Economy)
         #mycursor.execute(str)
         return redirect('/airline_addTrip')
+    return render(request,'glideEz/addflight.html')
 
 
 def forgot_password_view(request):
