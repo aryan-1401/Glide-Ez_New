@@ -41,6 +41,8 @@ body {
 .cockpit h1 {
     width: 60%;
     margin: 100px auto 35px auto;
+    top: 200px;
+    font-size: 1rem;
 }
 
 .exit {
@@ -71,13 +73,12 @@ body {
     right: 0;
 }
 
-.label{
+.label {
     text-align: center;
     position: relative;
     color: white;
-
     align-items: center;
-    
+
 }
 
 .fuselage {
@@ -268,10 +269,26 @@ form {
     border-bottom: 5px solid #d8d8d8;
 }
 
-.container {
+#book_button {
     background-color: transparent;
 }
 
 form {
     border: none;
+}
+
+#book_button {
+    max-width: 200px;
+    width: 100%;
+    background-color: white;
+    padding: 5px 3px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgb(6, 7, 6);
+}
+
+#book_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
