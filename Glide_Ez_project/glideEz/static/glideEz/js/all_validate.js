@@ -269,24 +269,29 @@ function paymentValidate() {
     return false;
   }
 
-  // Check if card is expired
   year = today_date.getFullYear();
-  // Get last two digits of year
   year = year.toString().substr(-2);
+  year = year.parseInt();
+  // Check if card is expired
+  console.log(year);
   if (card_expiry_year < year) {
-    alert("Card is expired");
-    return false;
-  }
-
-  //Check expiry month
-  if (card_expiry_year == year) {
-    if (card_expiry_month < today_date.getMonth() + 1) {
+    year = today_date.getFullYear();
+    // Get last two digits of year
+    year = year.toString().substr(-2);
+    if (card_expiry_year < year) {
       alert("Card is expired");
       return false;
     }
 
+    //Check expiry month
+    if (card_expiry_year == year) {
+      if (card_expiry_month < today_date.getMonth() + 1) {
+        alert("Card is expired");
+        return false;
+      }
 
-    return true;
 
+      return true;
+
+    }
   }
-}

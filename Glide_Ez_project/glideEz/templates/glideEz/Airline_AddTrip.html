@@ -34,7 +34,8 @@
 		<div class="container">
 			<div class="title">Add Trips</div>
 			<div class="content">
-				<form action="{% url 'airline_addTrip' %}">
+				<form action="{% url 'addtrip_form' %}" method="post">
+					{%csrf_token%}
 					<div class="user-details">
 						<div class="input-box1">
 							<span class="deatils">Flight ID</span>
