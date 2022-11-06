@@ -615,6 +615,9 @@ def forgot_password_view(request):
 
 
 def payment_view(request):
+    seat_list = request.POST.getlist('seats_selected')
+    print("hellooooo")
+    print(seat_list)
     return render(request, 'glideEz/payment.html')
 
 def addtrip_view(request):

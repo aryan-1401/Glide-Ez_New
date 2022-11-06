@@ -10,82 +10,86 @@
 
 
 {% block content %}
-<div class="plane">
-    <div class="cockpit">
-        <h1 class="label">Please select a seat</h1>
+<form action="/payment" method="post">
+    {% csrf_token %}
+    <div class="plane">
+        <div class="cockpit">
+            <h1 class="label">Please select a seat</h1>
+        </div>
+        <div class="exit exit--front fuselage">
+
+        </div>
+        <div class="border-upper">
+            <ol class="cabin fuselage">
+                <h2 class="label">First Class</h2>
+
+                <!-- Dynamically generate row based on first_class -->
+                {% for row in book_details.first_rows %}
+                <li class="row row--{{row}}">
+                    <ol class="seats" type="A">
+                        {% for seat in '123456'|make_list %}
+                        <li class="seat">
+                            <input type="checkbox" name="seats_selected" value="{{row}}A{{seat}}"
+                                id="{{row}}{{seat}}A" />
+                            <label for="{{row}}{{seat}}A">{{row}}A{{seat}}</label>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="border-upper">
+            <h2 class="label">Business Class</h2>
+            <ol class="cabin fuselage">
+
+                <!-- Dynamically generate row based on business_class -->
+                {% for row in book_details.business_rows %}
+                <li class="row row--{{row}}">
+                    <ol class="seats" type="B">
+                        {% for seat in '123456'|make_list %}
+                        <li class="seat">
+                            <input type="checkbox" name="seats_selected" value="{{row}}B{{seat}}"
+                                id="{{row}}{{seat}}B" />
+                            <label for="{{row}}{{seat}}B">{{row}}B{{seat}}</label>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </li>
+                {% endfor %}
+
+
+
+            </ol>
+
+            <ol class="cabin fuselage">
+                <h2 class="label">Economy Class</h2>
+
+                <!-- Dynamically generate row based on economy_class -->
+                {% for row in book_details.economy_rows %}
+                <li class="row row--{{row}}">
+                    <ol class="seats" type="C">
+                        {% for seat in '123456'|make_list %}
+                        <li class="seat">
+                            <input type="checkbox" name="seats_selected" value="{{row}}C{{seat}}"
+                                id="{{row}}{{seat}}C" />
+                            <label for="{{row}}{{seat}}C">{{row}}C{{seat}}</label>
+                        </li>
+                        {% endfor %}
+                    </ol>
+
+
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="exit exit--back fuselage exit-border">
+
+        </div>
     </div>
-    <div class="exit exit--front fuselage">
-
-    </div>
-    <div class="border-upper">
-        <ol class="cabin fuselage">
-            <h2 class="label">First Class</h2>
-
-            <!-- Dynamically generate row based on first_class -->
-            {% for row in book_details.first_rows %}
-            <li class="row row--{{row}}">
-                <ol class="seats" type="A">
-                    {% for seat in '123456'|make_list %}
-                    <li class="seat">
-                        <input type="checkbox" id="{{row}}{{seat}}A" />
-                        <label for="{{row}}{{seat}}A">{{row}}A{{seat}}</label>
-                    </li>
-                    {% endfor %}
-                </ol>
-            </li>
-            {% endfor %}
-        </ol>
-    </div>
-    <div class="border-upper">
-        <h2 class="label">Business Class</h2>
-        <ol class="cabin fuselage">
-
-            <!-- Dynamically generate row based on business_class -->
-            {% for row in book_details.business_rows %}
-            <li class="row row--{{row}}">
-                <ol class="seats" type="B">
-                    {% for seat in '123456'|make_list %}
-                    <li class="seat">
-                        <input type="checkbox" id="{{row}}{{seat}}B" />
-                        <label for="{{row}}{{seat}}B">{{row}}B{{seat}}</label>
-                    </li>
-                    {% endfor %}
-                </ol>
-            </li>
-            {% endfor %}
-
-
-
-        </ol>
-
-        <ol class="cabin fuselage">
-            <h2 class="label">Economy Class</h2>
-
-            <!-- Dynamically generate row based on economy_class -->
-            {% for row in book_details.economy_rows %}
-            <li class="row row--{{row}}">
-                <ol class="seats" type="C">
-                    {% for seat in '123456'|make_list %}
-                    <li class="seat">
-                        <input type="checkbox" id="{{row}}{{seat}}C" />
-                        <label for="{{row}}{{seat}}C">{{row}}C{{seat}}</label>
-                    </li>
-                    {% endfor %}
-                </ol>
-
-
-            </li>
-            {% endfor %}
-        </ol>
-    </div>
-    <div class="exit exit--back fuselage exit-border">
-
-    </div>
-</div>
-<div id="book_button">
-    <form action="/payment">
+    <div id="book_button">
         <input class="btn btn-primary btn-danger border border-white rounded-pill"
             style="background-color: #101735; border-color: #101735;" type="submit" value="Book Seats">
-    </form>
-</div>
+    </div>
+</form>
 {% endblock %}
