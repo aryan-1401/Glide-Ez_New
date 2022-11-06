@@ -660,10 +660,18 @@ def airline_addflight_view(request):
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},'{}','{}',{},{},{})""".format(Flight_ID,airline_id,Flight_Name,First,Business,Economy)
-        mycursor.execute(str)
-        mydb.commit()
-        return redirect('/airline_addTrip')
+        # Check if flight id already exists
+        mycursor.execute("SELECT * FROM flight WHERE Flight_ID = %s", (Flight_ID,))
+        flight = mycursor.fetchone()
+        if flight:
+            sweetify.error(request, 'Flight ID already exists', text='Try another flight id', persistent='Try Again')
+            return redirect('/airline_addFlight')
+        else:
+            str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},'{}','{}',{},{},{})""".format(Flight_ID,airline_id,Flight_Name,First,Business,Economy)
+            mycursor.execute(str)
+            mydb.commit()
+            sweetify.success(request, 'Flight Added', text='Flight Added Successfully', persistent='Add Trip')
+            return redirect('/airline_addTrip')
     return render(request,'glideEz/addflight.html')
 
 
