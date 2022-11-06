@@ -27,11 +27,11 @@
                 {% for row in book_details.first_rows %}
                 <li class="row row--{{row}}">
                     <ol class="seats" type="A">
-                        {% for seat in '123456'|make_list %}
+                        {% for seat in 'ABCDEF'|make_list %}
                         <li class="seat">
-                            <input type="checkbox" name="seats_selected" value="{{row}}A{{seat}}"
-                                id="{{row}}{{seat}}A" />
-                            <label for="{{row}}{{seat}}A">{{row}}A{{seat}}</label>
+                            <input type="checkbox" name="seats_selected" value="A{{seat}}{{ row|stringformat:'03d' }}"
+                                id="A{{seat}}{{ row|stringformat:'03d' }}" />
+                            <label for="A{{seat}}{{ row|stringformat:'03d' }}">A{{seat}}{{ row|stringformat:"03d" }}</label>
                         </li>
                         {% endfor %}
                     </ol>
@@ -47,11 +47,11 @@
                 {% for row in book_details.business_rows %}
                 <li class="row row--{{row}}">
                     <ol class="seats" type="B">
-                        {% for seat in '123456'|make_list %}
+                        {% for seat in 'ABCDEF'|make_list %}
                         <li class="seat">
-                            <input type="checkbox" name="seats_selected" value="{{row}}B{{seat}}"
-                                id="{{row}}{{seat}}B" />
-                            <label for="{{row}}{{seat}}B">{{row}}B{{seat}}</label>
+                            <input type="checkbox" name="seats_selected" value="B{{seat}}{{ row|stringformat:'03d' }}"
+                                id="B{{seat}}{{ row|stringformat:'03d' }}" />
+                            <label for="B{{seat}}{{ row|stringformat:'03d' }}">B{{seat}}{{ row|stringformat:'03d' }}</label>
                         </li>
                         {% endfor %}
                     </ol>
@@ -69,11 +69,11 @@
                 {% for row in book_details.economy_rows %}
                 <li class="row row--{{row}}">
                     <ol class="seats" type="C">
-                        {% for seat in '123456'|make_list %}
+                        {% for seat in 'ABCDEF'|make_list %}
                         <li class="seat">
-                            <input type="checkbox" name="seats_selected" value="{{row}}C{{seat}}"
-                                id="{{row}}{{seat}}C" />
-                            <label for="{{row}}{{seat}}C">{{row}}C{{seat}}</label>
+                            <input type="checkbox" name="seats_selected" value="C{{seat}}{{ row|stringformat:'03d' }}"
+                                id="C{{seat}}{{ row|stringformat:'03d' }}" />
+                            <label for="C{{seat}}{{ row|stringformat:'03d' }}">C{{seat}}{{ row|stringformat:'03d' }}</label>
                         </li>
                         {% endfor %}
                     </ol>
