@@ -195,3 +195,38 @@ function loginAirlineValidate() {
   }
   return true;
 }
+
+function addFlightValidate() {
+  Flight_ID = document.forms["add_flight_form"]["Flight_ID"].value;
+  Flight_Name = document.forms["add_flight_form"]["Flight_Name"].value;
+  First_Class_Price = document.forms["add_flight_form"]["First"].value;
+  Business_Class_Price = document.forms["add_flight_form"]["Business"].value;
+  Economy_Class_Price = document.forms["add_flight_form"]["Economy"].value;
+
+  if (Flight_ID == "") {
+    alert("Flight ID must be filled out");
+    return false;
+  }
+  // Check flight id is an integer
+  if (isNaN(Flight_ID)) {
+    alert("Flight ID must be an integer");
+    return false;
+  }
+  if (Flight_Name == "") {
+    alert("Flight Name must be filled out");
+    return false;
+  }
+  if (First_Class_Price == "") {
+    alert("First Class Price must be filled out");
+    return false;
+  }
+  if (Business_Class_Price == "") {
+    alert("Business Class Price must be filled out");
+    return false;
+  }
+  if (Economy_Class_Price == "") {
+    alert("Economy Class Price must be filled out");
+    return false;
+  }
+  return true;
+}

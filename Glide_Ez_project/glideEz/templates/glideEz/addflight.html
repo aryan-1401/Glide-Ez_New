@@ -34,7 +34,8 @@
 		<div class="container">
 			<div class="title">Add Flights</div>
 			<div class="content">
-				<form action="{% url 'airline_addFlight' %}" method="post">
+				<form name="add_flight_form" onsubmit="return addFlightValidate()"
+					action="{% url 'airline_addFlight' %}" method="post">
 					{% csrf_token %}
 					<div class="user-details">
 						<div class="input-box1">
@@ -111,7 +112,7 @@
 <div class="gototop js-top">
 	<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 </div>
-
+<script src="../../static/glideEz/js/all_validate.js"></script>
 <!-- jQuery -->
 <script src="../../static/glideEz/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
