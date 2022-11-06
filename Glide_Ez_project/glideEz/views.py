@@ -611,6 +611,9 @@ def login_airline_view(request):
             # Get airline id of airline
             mycursor.execute("SELECT Airline_ID FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
             airline_id = mycursor.fetchone()
+            # Store airline id in session
+            request.session['airline_id'] = airline_id[0]
+
             # create dict to store airline details
             airline = {
                 'first_name': first_name,
@@ -647,7 +650,9 @@ def airline_addflight_view(request):
         First = request.POST.get('First')
         Business = request.POST.get('Business')
         Economy = request.POST.get('Economy')
-
+        # Get airline id from session
+        airline_id = request.session['airline_id']
+        print(airline_id)
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -655,8 +660,9 @@ def airline_addflight_view(request):
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},{},'{}',{},{},{})""".format(Flight_ID,3,Flight_Name,First,Business,Economy)
-        #mycursor.execute(str)
+        str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},'{}','{}',{},{},{})""".format(Flight_ID,airline_id,Flight_Name,First,Business,Economy)
+        mycursor.execute(str)
+        mydb.commit()
         return redirect('/airline_addTrip')
     return render(request,'glideEz/addflight.html')
 
