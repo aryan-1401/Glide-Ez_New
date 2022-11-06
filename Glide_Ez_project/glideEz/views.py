@@ -219,8 +219,8 @@ def login_airline_view(request):
 
             }
             # print(airline)
-            return redirect('airline_pricing', {'airline': airline})
-            # return render(request, "glideEz/Airline_Home.html", {'airline': airline})
+            # return redirect('airline_pricing', {'airline': airline})
+            return render(request, "glideEz/Airline_Home.html", {'airline': airline})
         else:
             sweetify.error(request, 'Airline Not Found', text='Airline doesn\'t exist', persistent='Try Again')
             return redirect('/login_airline')
