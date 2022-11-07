@@ -63,15 +63,26 @@
                             </div>
                         </th>
                         <th scope="col">
+                          <div class="flight-source-time2">
+                            <div class="flight-time">
+                              <h5>{{flight.2|date:"d-m-Y H:i"}}</h5>
+                            </div>
+                            <div class="flight-place">
+                              {{source}}
+                            </div>
+                          </div>
+                        </th>
+                        <th scope="col">
                           <div class="flight-destination-time2">
                             <div class="flight-time">
-                              <h5>{{flight.3|time:"H:i"}}</h5>
+                              <h5>{{flight.3|date:"d-m-Y H:i"}}</h5>
                             </div>
                             <div class="flight-place">
                               {{destination}}
                             </div>
                           </div>
                         </th>
+
                         <th scope="col"> {{Class_Type}}</th>
                         <th scope="col">{{flight.4}}</th>
                         <th scope="col">

@@ -505,6 +505,11 @@ def payment_view(request):
 
     return render(request, 'glideEz/payment.html')
 
+def payment_redirect_view(request):
+    if request.method=="POST":
+        pass
+
+
 
 def bookings_view(request):
     return render(request, "glideEz/bookings.html")

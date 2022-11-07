@@ -230,3 +230,60 @@ function addFlightValidate() {
   }
   return true;
 }
+
+function paymentValidate() {
+
+  let card_number = document.forms["payment_validate_form"]["card-number"].value;
+  let card_name = document.forms["payment_validate_form"]["card-name"].value;
+  let card_cvv = document.forms["payment_validate_form"]["card-cvv"].value;
+  let card_expiry_month = document.forms["payment_validate_form"]["expiry-month"].value;
+  let card_expiry_year = document.forms["payment_validate_form"]["expiry-year"].value;
+  let today_date = new Date();
+
+  if (card_number == "") {
+    alert("Card Number must be filled out");
+    return false;
+  }
+  if (card_number.length != 16) {
+    alert("Card number must be 16 digits");
+    return false;
+  }
+  if (card_name == "") {
+    alert("Card Name must be filled out");
+    return false;
+  }
+  if (card_cvv == "") {
+    alert("Card CVV must be filled out");
+    return false;
+  }
+  if (card_cvv.length != 3) {
+    alert("Card CVV must be 3 digits");
+    return false;
+  }
+  if (card_expiry_month == "") {
+    alert("Card Expiry Month must be filled out");
+    return false;
+  }
+  if (card_expiry_year == "") {
+    alert("Card Expiry Year must be filled out");
+    return false;
+  }
+
+  // Check if card is expired
+  if (card_expiry_year < today_date.getFullYear()) {
+    alert("Card is expired");
+    return false;
+  }
+
+  //Check expiry month
+  if (card_expiry_year == today_date.getFullYear()) {
+    if (card_expiry_month < today_date.getMonth() + 1) {
+      alert("Card is expired");
+      return false;
+    }
+
+
+    return true;
+
+  }
+}
