@@ -14,6 +14,7 @@ urlpatterns = [
     path("search_flight", views.search_flight_view, name="search_flight"),
     path("book_flight", views.book_flight_view, name="book_flight"),
     path("payment", views.payment_view, name="payment"),
+    path("payment_redirect", views.payment_redirect_view, name="payment_redirect"),
     path("bookings", views.bookings_view, name="bookings"),
     path("logout", views.logout_view, name="logout"),
     path("register_airline", views.register_airline_view, name="register_airline"),

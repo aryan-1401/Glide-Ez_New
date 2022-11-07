@@ -32,9 +32,9 @@
                         {% for seat in 'ABCDEF'|make_list %}
                         <li class="seat">
                             {% with curseat="A"|add:seat|add:rowno %}
-                            <input type="checkbox" name="seats_selected" value="{{curseat}}"
-                                id="{{curseat}}" {%if book_details.Seat_No|get_item:curseat %} onclick="return false" readonly
-                                {%endif%}/>
+                            <input type="checkbox" name="seats_selected" value="{{curseat}}" id="{{curseat}}"
+                                {%if book_details.Seat_No|get_item:curseat %} onclick="return false" readonly
+                                {%endif%} />
                             <label for="{{curseat}}">{{curseat}}</label>
                             {%endwith%}
                         </li>
@@ -57,7 +57,8 @@
                         <li class="seat">
                             <input type="checkbox" name="seats_selected" value="B{{seat}}{{ row|stringformat:'03d' }}"
                                 id="B{{seat}}{{ row|stringformat:'03d' }}" />
-                            <label for="B{{seat}}{{ row|stringformat:'03d' }}">B{{seat}}{{ row|stringformat:'03d' }}</label>
+                            <label
+                                for="B{{seat}}{{ row|stringformat:'03d' }}">B{{seat}}{{ row|stringformat:'03d' }}</label>
                         </li>
                         {% endfor %}
                     </ol>
@@ -79,7 +80,8 @@
                         <li class="seat">
                             <input type="checkbox" name="seats_selected" value="C{{seat}}{{ row|stringformat:'03d' }}"
                                 id="C{{seat}}{{ row|stringformat:'03d' }}" />
-                            <label for="C{{seat}}{{ row|stringformat:'03d' }}">C{{seat}}{{ row|stringformat:'03d' }}</label>
+                            <label
+                                for="C{{seat}}{{ row|stringformat:'03d' }}">C{{seat}}{{ row|stringformat:'03d' }}</label>
                         </li>
                         {% endfor %}
                     </ol>
@@ -95,7 +97,8 @@
     </div>
     <div id="book_button">
         <input type="hidden" name="flight_id" value="{{book_details.flight_id}}">
-        <input type="hidden" name="trip_id" value="{{book_details.flight_id}}">
+        <input type="hidden" name="trip_id" value="{{book_details.tr_ID}}">
+        <input type="hidden" name="price" value="{{book_details.price}}">
         <input class="btn btn-primary btn-danger border border-white rounded-pill"
             style="background-color: #101735; border-color: #101735;" type="submit" value="Book Seats">
     </div>
