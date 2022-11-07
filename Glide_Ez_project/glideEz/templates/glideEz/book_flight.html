@@ -1,10 +1,10 @@
 {% extends 'glideEz/layout.html' %} {% block head %}
 <title>Book Flight</title>
 <title>Seat booking</title>
-<script src="Glide_Ez_project/glideEz/static/glideEz/js/modernizr.min.js" type="text/javascript"></script>
+<script src="../../static/glideEz/js/modernizr.min.js" type="text/javascript"></script>
 
 <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="Glide_Ez_project/glideEz/static/glideEz/css/normalize.min.css">
+<link rel="stylesheet" href="../../static/glideEz/css/normalize.min.css">
 <link rel="stylesheet" href="../../static/glideEz/css/book_flight.css">
 {% endblock %}
 
@@ -28,13 +28,18 @@
                 {% for row in book_details.first_rows %}
                 <li class="row row--{{row}}">
                     <ol class="seats" type="A">
+                        {%with rowno=row|stringformat:"03d" %}
                         {% for seat in 'ABCDEF'|make_list %}
                         <li class="seat">
-                            <input type="checkbox" name="seats_selected" value="A{{seat}}{{ row|stringformat:'03d' }}"
-                                id="A{{seat}}{{ row|stringformat:'03d' }}" />
-                            <label for="A{{seat}}{{ row|stringformat:'03d' }}">A{{seat}}{{ row|stringformat:"03d" }}</label>
+                            {% with curseat="A"|add:seat|add:rowno %}
+                            <input type="checkbox" name="seats_selected" value="{{curseat}}"
+                                id="{{curseat}}" {%if book_details.Seat_No|get_item:curseat %} onclick="return false" readonly
+                                {%endif%}/>
+                            <label for="{{curseat}}">{{curseat}}</label>
+                            {%endwith%}
                         </li>
                         {% endfor %}
+                        {% endwith %}
                     </ol>
                 </li>
                 {% endfor %}

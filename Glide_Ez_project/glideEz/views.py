@@ -7,6 +7,7 @@ import mysql.connector
 from datetime import datetime
 from django.contrib import messages #import messages
 import sweetify
+from django.template.defaulttags import register
 
 
 # Create your views here.
@@ -406,7 +407,7 @@ def book_flight_view(request):
     
     str="""select Seat_No,busy from Seat where Trip_ID={}""".format(tr_ID)
     mycursor.execute(str)
-    seatno = mycursor.fetchall()
+    seatno1 = mycursor.fetchall()
 
     economy_seats = int(seats[0][2])
     business_seats = int(seats[0][1])
@@ -422,9 +423,12 @@ def book_flight_view(request):
 
     # Calculate no of rows for economy class
     economy_rows = economy_seats//6
-
+    seatno={}
     # Store all the details in a dictionary name book_details
+    for i in seatno1:
+        seatno[i[0]]=i[1]
 
+    print(seatno)
     book_details = {
         'airline_name': airline_name,
         'flight_id': flight_id,
@@ -731,6 +735,8 @@ def airline_contact_view(request):
 
 
 
-
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 
