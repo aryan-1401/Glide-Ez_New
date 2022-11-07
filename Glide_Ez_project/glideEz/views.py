@@ -202,6 +202,9 @@ def view_account_view(request):
     mycursor = mydb.cursor()
     # Fetch user first name from session
     user_name = request.session['user_name']
+    # Fetch last name from database
+    mycursor.execute("SELECT Last_name FROM user WHERE Email = '{}'".format(email))
+    last_name = mycursor.fetchone()
     # fetch user address from database
     mycursor.execute("SELECT address FROM user WHERE Email = %s", (email,))
     address = mycursor.fetchone()
@@ -224,6 +227,7 @@ def view_account_view(request):
     user = {
 
         'first_name': user_name,
+        'last_name': last_name[0],
         'email': email,
         'address': address[0],
         'phone_number': phone_number,
@@ -282,6 +286,9 @@ def edit_account_details_view(request):
         mycursor = mydb.cursor()
         # Fetch user first name from session
         user_name = request.session['user_name']
+        # Fetch last name from database
+        mycursor.execute("SELECT Last_name FROM user WHERE Email = '{}'".format(email))
+        last_name = mycursor.fetchone()
         # fetch user address from database
         mycursor.execute("SELECT address FROM user WHERE Email = %s", (email,))
         address = mycursor.fetchone()
@@ -304,6 +311,7 @@ def edit_account_details_view(request):
         user = {
 
             'first_name': user_name,
+            'last_name': last_name[0],
             'email': email,
             'address': address[0],
             'phone_number': phone_number,
