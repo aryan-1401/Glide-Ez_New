@@ -34,7 +34,7 @@
 		<div class="container">
 			<div class="title">Add Trips</div>
 			<div class="content">
-				<form action="{% url 'addtrip_form' %}">
+				<form action="{% url 'airline_addTrip' %}">
 					<div class="user-details">
 						<div class="input-box1">
 							<span class="deatils">Flight ID</span>
@@ -67,7 +67,7 @@
 							<select name="source_ap" id="source_ap" class="deatils" required>
 								<option value="" data-tag="">Choose Source Airport</option>
 								{%for airp in airports %}
-								<option value="{{airp.0}}" data-tag="{{airp.2}}" >{{airp.1}}</option>
+								<option value="{{airp.0}}" data-tag="{{airp.2}}" ,>{{airp.1}}</option>
 								{%endfor%}
 							</select>
 						</div>
@@ -85,7 +85,7 @@
 							<select name="destination_ap" id="destination_ap" class="deatils" required>
 								<option value="" data-tag="">Choose Destination Airport</option>
 								{%for airp in airports %}
-								<option value="{{airp.0}}" data-tag="{{airp.2}}" >{{airp.1}}</option>
+								<option value="{{airp.0}}" data-tag="{{airp.2}}" ,>{{airp.1}}</option>
 								{%endfor%}
 							</select>
 						</div>

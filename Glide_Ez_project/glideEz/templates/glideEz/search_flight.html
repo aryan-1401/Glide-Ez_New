@@ -10,101 +10,115 @@
   <h1>{{details_dict.source}}</h1>
   <h1>{{details_dict.destination}}</h1> -->
 
-<div class="bg-image h-100" style="
+<div class="bg-image h-100 " style="
         background-image: url('../../static/glideEz/images/img_bg_1.jpg');
+        background-repeat: repeat-y;
       ">
   <div class="mask d-flex align-items-start h-100"
     style="box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);">
     {% if details %}
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">Airline</th>
-                      <th scope="col">Departure</th>
-                      <th scope="col">Arrival</th>
-                      <th scope="col">Class</th>
-                      <th scope="col">Price</th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for flight in details %}
-                    <tr>
-                      <th scope="col">
-                        <div class="flight-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            aria-hidden="true" focusable="false" width="1.5em" height="1.3em"
-                            style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                            preserveAspectRatio="xMidYMid meet" viewBox="0 0 440 384">
-                            <path
-                              d="M14 335h405v43H14v-43zm417.5-199.5q3.5 12.5-3 24T409 175l-114 30l-92 25l-114 30l-34 10l-16-29l-39-67l31-9l42 33l106-28L91 17l41-11l147 137l113-30q13-4 24.5 3t15 19.5z"
-                              fill="#434445" />
-                            <rect x="0" y="0" width="440" height="384" fill="rgba(0, 0, 0, 0)" /></svg>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="flight-destination-time2">
-                          <div class="flight-time">
-                            <!-- Airline Name -->
-                            <h5>{{flight.1}}</h5>
+
+    <div class="wrapper" style=" width: 70%; padding-top: 5%;">
+      <div class="container" style=" width: 100%; min-height: fit-content; display:contents;">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card" class="shift">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Airline</th>
+                        <th scope="col">Departure</th>
+                        <th scope="col">Arrival</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for flight in details %}
+                      <tr>
+                        <th scope="col">
+                          <div class="flight-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              aria-hidden="true" focusable="false" width="1.5em" height="1.3em"
+                              style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
+                              preserveAspectRatio="xMidYMid meet" viewBox="0 0 440 384">
+                              <path
+                                d="M14 335h405v43H14v-43zm417.5-199.5q3.5 12.5-3 24T409 175l-114 30l-92 25l-114 30l-34 10l-16-29l-39-67l31-9l42 33l106-28L91 17l41-11l147 137l113-30q13-4 24.5 3t15 19.5z"
+                                fill="#434445" />
+                              <rect x="0" y="0" width="440" height="384" fill="rgba(0, 0, 0, 0)" />
+                            </svg>
                           </div>
-                          <div class="flight-place">
-                            <!-- Flight id -->
-                            {{flight.0}}
+                        </th>
+                        <th scope="col">
+                          <div class="flight-destination-time2">
+                            <div class="flight-time">
+                              <h5>{{flight.1}}</h5>
+                            </div>
+                            <div class="flight-place">
+                              {{flight.0}}
+                            </div>
+                        </th>
+                        <th scope="col">
+                          <div class="flight-destination-time2">
+                            <div class="flight-time">
+                              <h5>{{flight.3|time:"H:i"}}</h5>
+                            </div>
+                            <div class="flight-place">
+                              {{destination}}
+                            </div>
                           </div>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="flight-destination-time2">
-                          <div class="flight-time">
-                            <h5>{{flight.2|time:"H:i"}}</h5>
-                          </div>
-                          <div class="flight-place">
-                            {{source}}
-                          </div>
-                        </div>
-                      </th>
-                      <th scope="col">
-                        <div class="flight-destination-time2">
-                          <div class="flight-time">
-                            <h5>{{flight.3|time:"H:i"}}</h5>
-                          </div>
-                          <div class="flight-place">
-                            {{destination}}
-                          </div>
-                        </div>
-                      </th>
-                      <th scope="col"> {{Class_Type}}</th>
-                      <th scope="col">{{flight.4}}</th>
-                      <th scope="col">
-                        <form action="/book_flight">
-                          {% csrf_token %}
-                          <input type="hidden" name="airline" value="{{flight.1}}">
-                          <input type="hidden" name="flight_id" value="{{flight.0}}">
-                          <input type="hidden" name="source" value="{{source}}">
-                          <input type="hidden" name="destination" value="{{destination}}">
-                          <input type="hidden" name="Class_Type" value="{{Class_Type}}">
-                          <input type="hidden" name="departure_time" value="{{flight.2}}">
-                          <input type="hidden" name="arrival_time" value="{{flight.3}}">
-                          <input type="hidden" name="price" value="{{flight.4}}">
-                          <input type="hidden" name="tr_ID" value="{{flight.5}}">
-                          <input class="btn btn-primary btn-danger" type="submit" value="Book Flight &#8594;"
-                            style="background-color: #101735; border-color: #101735;">
-                          </input>
-                      </th>
-                      </form>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
+                        </th>
+                        <th scope="col"> {{Class_Type}}</th>
+                        <th scope="col">{{flight.4}}</th>
+                        <th scope="col">
+                          <form action="/book_flight">
+                            {% csrf_token %}
+                            <input type="hidden" name="airline" value="{{flight.1}}">
+                            <input type="hidden" name="flight_id" value="{{flight.0}}">
+                            <input type="hidden" name="source" value="{{source}}">
+                            <input type="hidden" name="destination" value="{{destination}}">
+                            <input type="hidden" name="Class_Type" value="{{Class_Type}}">
+                            <input type="hidden" name="departure_time" value="{{flight.2}}">
+                            <input type="hidden" name="arrival_time" value="{{flight.3}}">
+                            <input type="hidden" name="price" value="{{flight.4}}">
+                            <input class="btn btn-primary btn-danger" type="submit" value="Book Flight &#8594;"
+                              style="background-color: #101735; border-color: #101735;">
+                            </input>
+                        </th>
+                        </form>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper" style=" width: 30%; padding-top: 5%; padding-left: 2%;padding-right: 4%;">
+      <div class="back">
+        <div class="app-main">
+          <div class="searchInputBox">
+            <input type="text" id="input-box" class="input-box" placeholder="Enter city name..." autocomplete="off">
+          </div>
+
+          <div class="weather-body">
+            <div class="location-details">
+              <div class="city" id="city">Amravati, IN</div>
+              <div class="date" id="date">10 June (Wednesday), 2020</div>
+            </div>
+
+            <div class="weather-status">
+              <div class="temp" id="temp">34&deg;C</div>
+              <div class="min-max" id="min-max">32&deg;C (min) / 34&deg;C (max)</div>
+              <div class="weather" id="weather">Clear</div>
+              <div id="img"></div>
             </div>
           </div>
         </div>
@@ -127,4 +141,5 @@
     {% endif %}
   </div>
 </div>
+<script src="../../static/glideEz/js/weather.js"></script>
 {% endblock %}
