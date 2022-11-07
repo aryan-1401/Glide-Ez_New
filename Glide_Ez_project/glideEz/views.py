@@ -395,7 +395,6 @@ def book_flight_view(request):
     class_type = request.GET.get('Class_Type')
     departure_time = request.GET.get('departure_time')
     arrival_time = request.GET.get('arrival_time')
-    price = request.GET.get('price')
     tr_ID = request.GET.get('tr_ID')
 
     if not request.session.has_key('email'):
@@ -413,7 +412,7 @@ def book_flight_view(request):
     mycursor.execute(str)
     seats = mycursor.fetchall()
     
-    str="""select Seat_No,busy from Seat where Trip_ID={}""".format(tr_ID)
+    str="""select Seat_No,busy,price from Seat where Trip_ID={}""".format(tr_ID)
     mycursor.execute(str)
     seatno1 = mycursor.fetchall()
 
@@ -435,6 +434,12 @@ def book_flight_view(request):
     # Store all the details in a dictionary name book_details
     for i in seatno1:
         seatno[i[0]]=i[1]
+
+    price={}
+    for i in seatno1:
+        price[i[0]]=i[2]
+    print(price)
+    print("bye")
 
     print(seatno)
     book_details = {
@@ -458,7 +463,20 @@ def book_flight_view(request):
 
 
 def payment_view(request):
+
     seat_list = request.POST.getlist('seats_selected')
+    print(type(seat_list))
+    price = request.POST.get('price')
+    flight_id = request.POST.get('flight_id')
+    trip_id = request.POST.get('trip_id')
+    print(price)
+    # total_price = 0
+    # for seat in seat_list:
+    #     total_price += price[seat]
+
+    # print(total_price)
+
+
     print("hellooooo")
     print(seat_list)
     # Get all the details from the form
@@ -507,7 +525,42 @@ def payment_view(request):
 
 def payment_redirect_view(request):
     if request.method=="POST":
-        pass
+        # connect to database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="2002",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        # parse the seat list
+        seat_list = request.POST.getlist('seats_selected')
+        # check if seats are available or not in seat table
+        for seat in seat_list:
+            seat = seat.split('_')
+            # check if seat is available or not
+            str = """select * from Seat where fk_Flight_ID = {} and Seat_Row = {} and Seat_Number = {} and Seat_Status = 'Available';""".format(
+                seat[0], seat[1], seat[2])
+            mycursor.execute(str)
+            details = mycursor.fetchall()
+            if not details:
+                sweetify.error(request, 'Seat Not Available', text='Seat is not available', persistent='Try Again')
+                return redirect('/book_flight')
+        # if seats are available then book the seats
+        for seat in seat_list:
+            seat = seat.split('_')
+            # update seat status to booked
+            str = """update Seat set Seat_Status = 'Booked' where fk_Flight_ID = {} and Seat_Row = {} and Seat_Number = {} and Seat_Status = 'Available';""".format(
+                seat[0], seat[1], seat[2])
+            mycursor.execute(str)
+            mydb.commit()
+            # insert into booking table
+            str = """insert into Booking(fk_User_ID,fk_Flight_ID,Seat_Row,Seat_Number) values({}, {}, {}, {});""".format(
+                request.session['user_id'], seat[0], seat[1], seat[2])
+            mycursor.execute(str)
+            mydb.commit()
+        sweetify.success(request, 'Booking Successful', text='Booking Successful', persistent='Ok')
+        return redirect('/book_flight')
 
 
 
