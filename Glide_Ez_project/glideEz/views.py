@@ -351,7 +351,7 @@ def search_flight_view(request):
         where Trip.Depart_Time LIKE '{}%' and Trip.src_ID=temp1.src and Trip.dest_ID=temp1.dest) 
         Select Flight.Flight_ID,Airline.Airline_Name,temp2.dept,temp2.arr,Seat.Price,tr_ID from Airline,Flight,temp2,Seat 
         where Airline.Airline_Id=Flight.fk_Airline_ID and Flight.Flight_ID=temp2.FL_ID and 
-        Seat.Trip_ID=temp2.tr_ID and Seat.Class_type='{}' group by(tr_ID)
+        Seat.Trip_ID=temp2.tr_ID and Seat.Class_type='{}' 
          ;""".format(source,destination,date,class_type)
         mycursor.execute(str)
         details = mycursor.fetchall()
