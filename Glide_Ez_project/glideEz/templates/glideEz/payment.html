@@ -6,7 +6,7 @@
 {% block header %} <div class="gtco-loader"></div> {% endblock %}
 
 {% block content %}
-<h1>{{}}</h1>
+<h1>{{price}}</h1>
 <h1>Choose Payment</h1>
 <p id="choosen-paymenttype">Credit Card</p>
 <ul class="payment-types">
@@ -160,6 +160,8 @@
               </div>
             </div>
           </div>
+          <input type="hidden" name="seat_list" value="{{seat_list}}">
+          <input type="hidden" name="trip_ID" value="{{trip_id}}">
           <input class="btn btn-primary btn-danger" type="submit" value="Submit &#8594;"
             style="background-color: #101735; border-color: #101735;">
           </input>
