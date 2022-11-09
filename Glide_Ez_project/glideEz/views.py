@@ -8,6 +8,7 @@ from datetime import datetime
 from django.contrib import messages #import messages
 import sweetify
 from django.template.defaulttags import register
+import json
 
 
 # Create your views here.
@@ -15,7 +16,7 @@ def home(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -77,7 +78,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -108,7 +109,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -173,7 +174,7 @@ def forgot_password_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -197,7 +198,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -259,7 +260,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -281,7 +282,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -343,7 +344,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -403,7 +404,7 @@ def book_flight_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -457,71 +458,40 @@ def book_flight_view(request):
         'first_rows': range(1,first_rows+1),
         'business_rows': range(1,business_rows+1),
         'economy_rows': range(1,economy_rows+1),
-        'Seat_No' : seatno
+        'Seat_No' : seatno,
+        'tr_ID' : tr_ID
     }
     return render(request, "glideEz/book_flight.html", {'book_details': book_details})
 
 
 def payment_view(request):
+    if request.method == "POST":
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        seat_list = request.POST.getlist('seats_selected')
+        print(type(seat_list))
+        trip_id = request.POST.get('trip_id')
+        print(trip_id)
 
-    seat_list = request.POST.getlist('seats_selected')
-    print(type(seat_list))
-    price = request.POST.get('price')
-    flight_id = request.POST.get('flight_id')
-    trip_id = request.POST.get('trip_id')
-    print(price)
-    # total_price = 0
-    # for seat in seat_list:
-    #     total_price += price[seat]
+        str="""select Seat_No,price from Seat where Trip_ID={} and busy="false";""".format(trip_id)
+        mycursor.execute(str)
+        seatno1 = mycursor.fetchall()
+        price={}
+        for i in seatno1:
+            price[i[0]]=i[1]
+        total_price = 0
+        for seat in seat_list:
+            total_price += price.get(seat)
 
-    # print(total_price)
+        print(total_price)
 
-
-    print("hellooooo")
-    print(seat_list)
-    # Get all the details from the form
-    flight_id = request.POST.get('flight_id')
-    print(flight_id)
-
-    # if request.method == 'POST':
-    #     # connect to database
-    #     mydb = mysql.connector.connect(
-    #         host="localhost",
-    #         user="root",
-    #         password="2002",
-    #         database="glide_ez"
-    #     )
-    #     mycursor = mydb.cursor()
-    #     # parse the seat list
-    #     seat_list = request.POST.getlist('seats_selected')
-    #     # check if seats are available or not in seat table
-    #     for seat in seat_list:
-    #         seat = seat.split('_')
-    #         # check if seat is available or not
-    #         str = """select * from Seat where fk_Flight_ID = {} and Seat_Row = {} and Seat_Number = {} and Seat_Status = 'Available';""".format(
-    #             seat[0], seat[1], seat[2])
-    #         mycursor.execute(str)
-    #         details = mycursor.fetchall()
-    #         if not details:
-    #             sweetify.error(request, 'Seat Not Available', text='Seat is not available', persistent='Try Again')
-    #             return redirect('/book_flight')
-    #     # if seats are available then book the seats
-    #     for seat in seat_list:
-    #         seat = seat.split('_')
-    #         # update seat status to booked
-    #         str = """update Seat set Seat_Status = 'Booked' where fk_Flight_ID = {} and Seat_Row = {} and Seat_Number = {} and Seat_Status = 'Available';""".format(
-    #             seat[0], seat[1], seat[2])
-    #         mycursor.execute(str)
-    #         mydb.commit()
-    #         # insert into booking table
-    #         str = """insert into Booking(fk_User_ID,fk_Flight_ID,Seat_Row,Seat_Number) values({}, {}, {}, {});""".format(
-    #             request.session['user_id'], seat[0], seat[1], seat[2])
-    #         mycursor.execute(str)
-    #         mydb.commit()
-    #     sweetify.success(request, 'Booking Successful', text='Booking Successful', persistent='Ok')
-    #     return redirect('/book_flight')
-
-    return render(request, 'glideEz/payment.html')
+        return render(request, 'glideEz/payment.html',{'price': total_price,'seat_list':seat_list,'trip_id':trip_id})
+    
 
 def payment_redirect_view(request):
     if request.method=="POST":
@@ -529,38 +499,22 @@ def payment_redirect_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
         # parse the seat list
-        seat_list = request.POST.getlist('seats_selected')
+        seat_list = request.POST.getlist('seat_list')
+        trip_id=request.POST.get('trip_ID')
+        seat_list=seat_list[0].strip('][').split(', ')
+        print(type(seat_list))
         # check if seats are available or not in seat table
         for seat in seat_list:
-            seat = seat.split('_')
-            # check if seat is available or not
-            str = """select * from Seat where fk_Flight_ID = {} and Seat_Row = {} and Seat_Number = {} and Seat_Status = 'Available';""".format(
-                seat[0], seat[1], seat[2])
-            mycursor.execute(str)
-            details = mycursor.fetchall()
-            if not details:
-                sweetify.error(request, 'Seat Not Available', text='Seat is not available', persistent='Try Again')
-                return redirect('/book_flight')
-        # if seats are available then book the seats
-        for seat in seat_list:
-            seat = seat.split('_')
-            # update seat status to booked
-            str = """update Seat set Seat_Status = 'Booked' where fk_Flight_ID = {} and Seat_Row = {} and Seat_Number = {} and Seat_Status = 'Available';""".format(
-                seat[0], seat[1], seat[2])
-            mycursor.execute(str)
-            mydb.commit()
-            # insert into booking table
-            str = """insert into Booking(fk_User_ID,fk_Flight_ID,Seat_Row,Seat_Number) values({}, {}, {}, {});""".format(
-                request.session['user_id'], seat[0], seat[1], seat[2])
+            str="""update Seat set busy=true where Seat_No={} and trip_id={} """.format(seat,trip_id)
             mycursor.execute(str)
             mydb.commit()
         sweetify.success(request, 'Booking Successful', text='Booking Successful', persistent='Ok')
-        return redirect('/book_flight')
+        return redirect('/')
 
 
 
@@ -605,7 +559,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -644,7 +598,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -715,7 +669,7 @@ def airline_addflight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -738,7 +692,7 @@ def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="2002",
+            password="12348765",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -776,7 +730,7 @@ def addtrip_form_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="2002",
+        password="12348765",
         database="glide_ez"
     )
     mycursor=mydb.cursor()
@@ -787,8 +741,9 @@ def addtrip_form_view(request):
         Flight_ID, Source_airport, Destination_airport, Departure, Arrival, First_Class_Price, Business_Class_Price,
         Economy_Class_Price)
     mycursor.execute(str)
-
-    return render(request,'glideEz/Airline_Home.html')
+    mydb.commit()
+    sweetify.success(request, 'Trip Added Successful', text='Trip Added Successfully', persistent='Ok')
+    return redirect('/airline_home')
 
 
 def airline_pricing_view(request):
