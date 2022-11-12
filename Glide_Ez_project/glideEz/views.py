@@ -15,7 +15,7 @@ def home(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -77,7 +77,7 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -108,7 +108,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -173,7 +173,7 @@ def forgot_password_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -197,7 +197,7 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="12348765",
+        password="2002",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -232,8 +232,10 @@ def view_account_view(request):
         'email': email,
         'address': address[0],
         'phone_number': phone_number,
-        'aadhar': aadhar,
-        'dob': dob
+        'dob': dob,
+        'aadhar': aadhar
+        
+
     }
     print(user)
     return render(request, "glideEz/view_account.html", {'user': user})
@@ -259,7 +261,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -273,6 +275,7 @@ def edit_account_details_view(request):
         # Save first name in session
         request.session['user_name'] = first_name
         # redirect to view account page
+        sweetify.success(request, 'Account Updated Successfully', button='Ok', timer=3000)
         return redirect('/view_account')
     else:
     # Get email from session
@@ -281,7 +284,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -343,7 +346,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -403,7 +406,7 @@ def book_flight_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="12348765",
+        password="2002",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
@@ -468,7 +471,7 @@ def payment_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -498,7 +501,7 @@ def payment_redirect_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -558,7 +561,7 @@ def register_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -597,7 +600,7 @@ def login_airline_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -668,7 +671,7 @@ def airline_addflight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -691,7 +694,7 @@ def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="12348765",
+            password="2002",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -729,7 +732,7 @@ def addtrip_form_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="12348765",
+        password="2002",
         database="glide_ez"
     )
     mycursor=mydb.cursor()

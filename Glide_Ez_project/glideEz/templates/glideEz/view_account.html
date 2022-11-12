@@ -65,19 +65,19 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group focused">
-                  <label class="form-control-label" for="input-DOB">Date of Birth</label>
-                  <input readonly type="text" id="input-first-name" class="form-control form-control-alternative" <input
-                    type="date" id="input-date" class="form-control form-control-alternative" placeholder="DD/MM/YYYY"
-                    value="{{ user.dob }}" value="{{ user.first_name }}" />
+                  <label class="form-control-label" for="input-dob">Date of Birth</label>
+                  <input readonly type="text" id="input-dob" class="form-control form-control-alternative"
+                    placeholder="{{ user.dob}}" />
+
 
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group focused">
-                  <label class="form-control-label" for="input-user.phone_No">Phone Number</label>
-                  <input readonly type="text" id="input-last-name" class="form-control form-control-alternative" <input
-                    type="number" id="input-user.phone_No" class="form-control form-control-alternative"
-                    placeholder="{{ user.phone_number}}" value="{{ user.phone_No }}" />
+                  <label class="form-control-label" for="input-user-phone_No">Phone Number</label>
+                  <input readonly type="number" name="phone_number" id="input-user-phone_No"
+                    class="form-control form-control-alternative" placeholder="{{ user.phone_number}}"
+                    value="{{ user.phone_number }}" />
                 </div>
               </div>
             </div>
