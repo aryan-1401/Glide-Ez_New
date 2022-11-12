@@ -744,7 +744,6 @@ def addtrip_form_view(request):
     sweetify.success(request, 'Trip Added Successful', text='Trip Added Successfully', persistent='Ok')
     return redirect('/airline_home')
 
-    return render(request,'glideEz/Airline_Home.html')
 
 
 def airline_pricing_view(request):
