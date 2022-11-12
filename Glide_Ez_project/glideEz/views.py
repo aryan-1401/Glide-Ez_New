@@ -8,7 +8,7 @@ from datetime import datetime
 from django.contrib import messages #import messages
 import sweetify
 from django.template.defaulttags import register
-
+import ast
 
 # Create your views here.
 def home(request): 
@@ -470,6 +470,9 @@ def payment_view(request):
     flight_id = request.POST.get('flight_id')
     trip_id = request.POST.get('trip_id')
     print(price)
+
+
+
     # total_price = 0
     # for seat in seat_list:
     #     total_price += price[seat]

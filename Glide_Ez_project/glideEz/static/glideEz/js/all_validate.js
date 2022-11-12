@@ -270,13 +270,16 @@ function paymentValidate() {
   }
 
   // Check if card is expired
-  if (card_expiry_year < today_date.getFullYear()) {
+  year = today_date.getFullYear();
+  // Get last two digits of year
+  year = year.toString().substr(-2);
+  if (card_expiry_year < year) {
     alert("Card is expired");
     return false;
   }
 
   //Check expiry month
-  if (card_expiry_year == today_date.getFullYear()) {
+  if (card_expiry_year == year) {
     if (card_expiry_month < today_date.getMonth() + 1) {
       alert("Card is expired");
       return false;
