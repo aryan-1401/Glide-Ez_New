@@ -5,70 +5,50 @@
 
 {% block content %}<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner"
 	style="background-image: url(images/img_6.jpg)">
-	<div class="overlay"></div>
-	<div class="gtco-container">
-		<div class="row">
-			<div class="col-md-12 col-md-offset-0 text-center">
-				<div class="row row-mt-15em">
-
-					<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-						<h1>Add Flights</h1>
-					</div>
-
-				</div>
-
-			</div>
-		</div>
-	</div>
 </header>
 
 <div class="gtco-section">
 	<div class="gtco-container">
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-				<h2>Add New Flights</h2>
-				<p>Add Information Regarding Trips and prices to Start Booking Process For customers.</p>
-			</div>
-		</div>
 
-		<div class="container" style="display: flex; flex-direction: column;">
-			<div class="title">Add Flights</div>
+		<div class="container" style="display: flex; flex-direction: column; min-height: fit-content">
+			<div class="title">Add Passenger Details</div>
 			<div class="content">
-				<form name="add_flight_form" onsubmit="return addFlightValidate()"
-					action="{% url 'airline_addFlight' %}" method="post">
-					{% csrf_token %}
+				<form action="/payment" method="post">
+                    {% csrf_token%}
+                    {% for seat in seat_list %}
+                    <h3>Seat: {{seat}}</h3>
 					<div class="user-details">
 						<div class="input-box1">
-							<span class="deatils">Flight ID</span>
-							<input name="Flight_ID" type="text" placeholder="Enter Flight ID " required>
+							<span class="deatils">Name</span>
+							<input name="{{seat}}name" type="text" placeholder="Enter Name " required>
 						</div>
 						<div class="input-box1">
-							<span class="deatils">Flight Name</span>
-							<input name="Flight_Name" type="text" placeholder="Enter Flight Name " required>
+							<span class="deatils">Email</span>
+							<input name="{{seat}}email" type="email" placeholder="Enter Email " required>
 						</div>
 						<div class="input-box">
-							<span class="deatils">1<sup>st</sup>Class Seat No.</span>
-							<input name="First" type="number" min="6" max="300" placeholder="Enter Number of Seats"
-								required>
-						</div>
-						<br>
-						<div class="input-box">
-							<span class="deatils">Economy Class</span>
-							<input name="Economy" min="6" max="300" type="number" placeholder="Enter Number of Seats"
-								required>
+							<span class="deatils">Date of Birth</span>
+							<input name="{{seat}}DOB" type="date" placeholder="Enter DOB " required>
 						</div>
 						<div class="input-box">
-							<span class="deatils">Business Class</span>
-							<input name="Business" min="6" max="300" type="number" placeholder="Enter Number of Seats"
-								required>
+							<span class="deatils">Aadhar Number</span>
+							<input name="{{seat}}aadhar" type="number" placeholder="Enter Aadhar Number " required>
 						</div>
+						<div class="input-box">
+							<span class="deatils">Phone Number</span>
+							<input name="{{seat}}phone" type="number" placeholder="Enter Phone Number " required>
+						</div>
+						
+						
 					</div>
-
-
-
-					<div class="button">
-						<input type="submit" value="Add Trip For Booking">
-					</div>
+                    <hr style="border-top: 2px solid; color: black;">	
+                    {% endfor %}
+                    <input type="hidden" name="trip_id" value="{{trip_id}}">
+                    <input type="hidden" name="price" value="{{price}}">
+                    <input type="hidden" name="seat_list" value="{{seat_list}}">
+                    <input class="btn btn-primary btn-danger" type="submit" value="Proceed To Payment &#8594;"
+                              style="background-color: #101735; border-color: #101735;">
+                    </input>
 				</form>
 
 			</div>
