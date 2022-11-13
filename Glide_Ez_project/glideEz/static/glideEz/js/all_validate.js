@@ -295,3 +295,4 @@ function paymentValidate() {
 
     }
   }
+}

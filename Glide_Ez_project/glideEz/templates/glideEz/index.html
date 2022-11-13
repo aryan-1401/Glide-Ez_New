@@ -29,7 +29,8 @@
 								<div class="tab-content">
 									<div class="tab-content-inner active" data-content="signup">
 										<h3>Book Your Trip</h3>
-										<form name="searchtrip" action="/search_flight" method="post" onsubmit="return searchvalidate()">
+										<form name="searchtrip" action="/search_flight" method="post"
+											onsubmit="return searchvalidate()">
 											{% csrf_token %}
 											<div class="row form-group">
 												<!-- <div class="col-md-12">
@@ -75,8 +76,8 @@
 											<div class="row form-group">
 												<div class="col-md-12">
 													<label for="date-start">Date Travel</label>
-													<input name="date_travel" type="text" id="date-start" class="form-control" 
-													>
+													<input name="date_travel" autocomplete="off" type="text"
+														id="date-start" class="form-control">
 												</div>
 											</div>
 
