@@ -11,7 +11,7 @@
 {% block header %} <div class="gtco-loader"></div> {% endblock %}
 
 {% block content %}
-<form action="/payment" method="post">
+<form action="/Passengers" method="post">
     {% csrf_token %}
     <div class="plane">
         <div class="cockpit">
@@ -53,14 +53,18 @@
                 {% for row in book_details.business_rows %}
                 <li class="row row--{{row}}">
                     <ol class="seats" type="B">
+                        {%with rowno=row|stringformat:"03d" %}
                         {% for seat in 'ABCDEF'|make_list %}
                         <li class="seat">
-                            <input type="checkbox" name="seats_selected" value="B{{seat}}{{ row|stringformat:'03d' }}"
-                                id="B{{seat}}{{ row|stringformat:'03d' }}" />
-                            <label
-                                for="B{{seat}}{{ row|stringformat:'03d' }}">B{{seat}}{{ row|stringformat:'03d' }}</label>
+                            {% with curseat="B"|add:seat|add:rowno %}
+                            <input type="checkbox" name="seats_selected" value="{{curseat}}" id="{{curseat}}"
+                                {%if book_details.Seat_No|get_item:curseat %} onclick="return false" readonly
+                                {%endif%} />
+                            <label for="{{curseat}}">{{curseat}}</label>
+                            {%endwith%}
                         </li>
                         {% endfor %}
+                        {% endwith %}
                     </ol>
                 </li>
                 {% endfor %}
@@ -76,17 +80,19 @@
                 {% for row in book_details.economy_rows %}
                 <li class="row row--{{row}}">
                     <ol class="seats" type="C">
+                        {%with rowno=row|stringformat:"03d" %}
                         {% for seat in 'ABCDEF'|make_list %}
                         <li class="seat">
-                            <input type="checkbox" name="seats_selected" value="C{{seat}}{{ row|stringformat:'03d' }}"
-                                id="C{{seat}}{{ row|stringformat:'03d' }}" />
-                            <label
-                                for="C{{seat}}{{ row|stringformat:'03d' }}">C{{seat}}{{ row|stringformat:'03d' }}</label>
+                            {% with curseat="C"|add:seat|add:rowno %}
+                            <input type="checkbox" name="seats_selected" value="{{curseat}}" id="{{curseat}}"
+                                {%if book_details.Seat_No|get_item:curseat %} onclick="return false" readonly
+                                {%endif%} />
+                            <label for="{{curseat}}">{{curseat}}</label>
+                            {%endwith%}
                         </li>
                         {% endfor %}
+                        {% endwith %}
                     </ol>
-
-
                 </li>
                 {% endfor %}
             </ol>
