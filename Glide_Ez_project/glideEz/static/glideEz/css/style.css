@@ -1496,6 +1496,7 @@ form label {
 .gototop a {
   width: 50px;
   height: 50px;
+
   display: table;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
@@ -2139,10 +2140,10 @@ btn-primary:hover,
 	 scroll-behavior: smooth;
 }
  *, *::before, *::after {
-	 padding: 0;
+	 padding: 3px;
 	 margin: 0;
-	 box-sizing: inherit;
-	 list-style: none;
+	 box-sizing:content-box;
+	 list-style:disc;
 	 list-style-type: none;
 	 text-decoration: none;
 	 -webkit-font-smoothing: antialiased;
@@ -2161,6 +2162,7 @@ btn-primary:hover,
     text-align: center;
     top: 50%;
     left: 50%;
+    border-radius: 8px;
 }
 
 
@@ -2173,13 +2175,13 @@ btn-primary:hover,
 	 background: var(--color-light);
 }
  a, button {
-	 font-family: inherit;
-	 font-size: inherit;
+	 font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	 font-size: 20px;
 	 line-height: inherit;
 	 cursor: pointer;
 	 border: none;
 	 outline: none;
-	 background: none;
+	 background: white;
 	 text-decoration: none;
 }
  .container {
@@ -2194,20 +2196,20 @@ btn-primary:hover,
 }
  
  .text {
-	 font-family: inherit;
-	 line-height: inherit;
+	 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	 line-height:3px;
 	 text-transform: unset;
 	 text-rendering: optimizeLegibility;
 }
  .text-large {
 	 font-size: 2rem;
 	 font-weight: 600;
-	 color: var(--color-black);
+	 color: white;
 }
  .text-normal {
 	 font-size: 1rem;
 	 font-weight: 400;
-	 color: var(--color-black);
+	 color: white;
 }
  .text-links {
 	 font-size: 1rem;
@@ -2229,17 +2231,24 @@ btn-primary:hover,
 	 background: var(--color-white);
 	 box-shadow: var(--shadow-large);
 }
- .main .wrapper .form {
+ .main .wrapper .popup .form {
 	 width: 100%;
 	 height: auto;
+   border-radius: 8px;
 	 margin-top: 2rem;
 }
  .main .wrapper .form .popup .input-control {
 	 display:contents;
 	 align-items: center;
+   transform: translate(30%);
+   bottom: 30%;
 	 justify-content: space-between;
 	 margin-bottom: 3px;
+   border-radius: 8px;
+   color: white;
 }
+
+
  .main .wrapper .form .popup .input-field {
 	 font-family: inherit;
 	 font-size: 10px;
@@ -2457,6 +2466,7 @@ btn-primary:hover,
   }
 }
 
+
 .price-box {
   background: #fff;
   border: 2px solid #eceef0;
@@ -2565,6 +2575,9 @@ btn-primary:hover,
   }
 }
 
+.popup{
+  
+}
 .container {
   padding: 16px;
 }
@@ -2748,5 +2761,7 @@ form .button input:hover {
 
   background: linear-gradient(135deg, #101735, #101735);
 }
-
+.input-control p.decor{
+  text-decoration: #fff !important;
+}
 /*# sourceMappingURL=style.css.map */
