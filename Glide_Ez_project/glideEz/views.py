@@ -531,6 +531,8 @@ def payment_redirect_view(request):
         x=mycursor.fetchall()
         x=x[0][0]
         str="""insert into booking values(null,{},{},{});""".format(user_id,trip_id,payment_id)
+        mycursor.execute(str)
+        mydb.commit()
         for seat in seat_list:
             pas = passengers[seat]
             str="""insert into Passenger values(null,{},'{}', '{}', {}, '{}', {}, '{}');""".format(x,pas[0], pas[2], pas[3], pas[1], trip_id, seat)
