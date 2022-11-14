@@ -1,0 +1,127 @@
+{% extends 'glideEz/airline_layout.html' %} {% block head %}
+<title>Add Trips</title>
+{% endblock %}
+{% block header %} <div class="gtco-loader"></div> {% endblock %}
+
+{% block content %}<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner"
+	style="background-image: url(images/img_6.jpg); max-height: 80px;">
+</header>
+<div class="bg-image h-100 " style="
+        background-image: url('../../static/glideEz/images/img_bg_1.jpg');
+        background-repeat:repeat-y unset;
+      ">
+	<div class="gtco-section">
+		<div class="gtco-container">
+
+			<div class="container" style="display: flex; flex-direction: column; min-height: fit-content">
+				<div class="title">Add Passenger Details</div>
+				<div class="content">
+					<form action="/payment" method="post">
+						{% csrf_token%}
+						{% for seat in seat_list %}
+						<h3>Seat: {{seat}}</h3>
+						<div class="user-details">
+							<div class="input-box1">
+								<span class="deatils">Name</span>
+								<input name="{{seat}}name" type="text" placeholder="Enter Name " required>
+							</div>
+							<div class="input-box1">
+								<span class="deatils">Email</span>
+								<input name="{{seat}}email" type="email" placeholder="Enter Email " required>
+							</div>
+							<div class="input-box">
+								<span class="deatils">Date of Birth</span>
+								<input name="{{seat}}DOB" type="date" placeholder="Enter DOB " required>
+							</div>
+							<div class="input-box">
+								<span class="deatils">Aadhar Number</span>
+								<input name="{{seat}}aadhar" type="number" placeholder="Enter Aadhar Number " required>
+							</div>
+							<div class="input-box">
+								<span class="deatils">Phone Number</span>
+								<input name="{{seat}}phone" type="number" placeholder="Enter Phone Number " required>
+							</div>
+
+
+						</div>
+						<hr style="border-top: 2px solid; color: black;">
+						{% endfor %}
+						<input type="hidden" name="trip_id" value="{{trip_id}}">
+						<input type="hidden" name="price" value="{{price}}">
+						<input type="hidden" name="seat_list" value="{{seat_list}}">
+						<input class="btn btn-primary btn-danger" type="submit" value="Proceed To Payment &#8594;"
+							style="background-color: #101735; border-color: #101735;">
+						</input>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<footer id="gtco-footer" role="contentinfo">
+		<div class="gtco-container">
+			<div class="row row-p	b-md">
+
+				<div class="col-md-4">
+					<div class="gtco-widget">
+						<h3>About Us</h3>
+						<p>At Glide EZ, you can find the best of deals and cheap air tickets to any place you want
+							by booking your tickets on our website or app. Glide EZ helps you book flight tickets
+							that are affordable and customized to your convenience. With customer satisfaction being
+							our ultimate goal, we also have a 24/7 dedicated helpline to cater to our customer’s
+							queries and concerns. You can get a hold of the cheapest flight of your choice today
+							while also enjoying the other available options for your travel needs with us.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-md-push-1">
+					<div class="gtco-widget">
+						<h3>Get In Touch</h3>
+						<ul class="gtco-quick-contact">
+							<li><a href="tel://918989779620"><i class="icon-phone"></i> +91 8989779620</a></li>
+							<li><a href="mailto:info@glideez.com"><i class="icon-mail2"></i> info@glideez.com</a>
+							</li>
+							<li><a href="#"><i class="icon-chat"></i> Live Chat</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</footer>
+
+{% endblock %}
+
+{% block footer %}
+<div class="gototop js-top">
+	<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
+<script src="../../static/glideEz/js/all_validate.js"></script>
+<!-- jQuery -->
+<script src="../../static/glideEz/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="../../static/glideEz/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="../../static/glideEz/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="../../static/glideEz/js/jquery.waypoints.min.js"></script>
+<!-- Carousel -->
+<script src="../../static/glideEz/js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<script src="../../static/glideEz/js/jquery.countTo.js"></script>
+
+<!-- Stellar Parallax -->
+<script src="../../static/glideEz/js/jquery.stellar.min.js"></script>
+
+<!-- Magnific Popup -->
+<script src="../../static/glideEz/js/jquery.magnific-popup.min.js"></script>
+<script src="../../static/glideEz/js/magnific-popup-options.js"></script>
+
+<!-- Datepicker -->
+<script src="../../static/glideEz/js/bootstrap-datepicker.min.js"></script>
+
+
+<!-- Main -->
+<script src="../../static/glideEz/js/main.js"></script>
+{% endblock %}
