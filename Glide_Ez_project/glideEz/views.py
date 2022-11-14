@@ -499,9 +499,15 @@ def payment_redirect_view(request):
         mycursor = mydb.cursor()
         # parse the seat list
         seat_list = request.POST.getlist('seat_list')
+        passengers = request.POST.get('passengers')
         trip_id=request.POST.get('trip_ID')
         seat_list=seat_list[0].strip('][').split(', ')
-        print(type(seat_list))
+        passengers=passengers.replace("'",'"')
+        passengers=json.loads(passengers)
+        print(passengers)
+        mycursor.execute("Select user_id from user where email='{}';".format(user_email))
+        user_email=mycursor.fetchall()
+        user_email=user_email[0][0]
         # check if seats are available or not in seat table
         for i in range(len(seat_list)):
             seat_list[i]=seat_list[i].strip("'")
@@ -509,6 +515,13 @@ def payment_redirect_view(request):
             str="""update Seat set busy=true where Seat_No='{}' and trip_id={} """.format(seat,trip_id)
             mycursor.execute(str)
             mydb.commit()
+        for seat in seat_list:
+            str="""SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "glide_ez" AND TABLE_NAME = "Booking";"""
+            mycursor.execute(str)
+            x=mycursor.fetchall()
+            x=x[0][0]
+            str="""insert into booking values({},{},{},{});""".format()
+            str="""insert into Passengers values(null,{},)""".format()
         sweetify.success(request, 'Booking Successful', text='Booking Successful')
         return redirect('/')
 
@@ -771,7 +784,6 @@ def passenger_view(request):
         print(type(seat_list))
         trip_id = request.POST.get('trip_id')
         print(trip_id)
-
         str="""select Seat_No,price from Seat where Trip_ID={} and busy="false";""".format(trip_id)
         mycursor.execute(str)
         seatno1 = mycursor.fetchall()
