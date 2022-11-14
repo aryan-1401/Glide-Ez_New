@@ -33,6 +33,7 @@ SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 INSTALLED_APPS = [
     'glideEz',
     'sweetify',
+    "django_extensions",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'glide_ez',
         'USER': 'root',
-        'PASSWORD': '12348765',
+        'PASSWORD': '2002',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {  
