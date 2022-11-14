@@ -12,9 +12,15 @@ body {
     background-color: #101735;
 }
 
+/* form {
+    margin: 0 auto;
+} */
+
 .plane {
     margin: 20px auto;
-    max-width: 300px;
+    /* max-width: 100%; */
+    width: 30%;
+
 }
 
 .cockpit {
@@ -291,4 +297,16 @@ form {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+}
+
+.seat input[type=checkbox][readonly]+label:after {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.seat input[type=checkbox][readonly]+label:hover {
+    box-shadow: none;
+    cursor: not-allowed;
 }

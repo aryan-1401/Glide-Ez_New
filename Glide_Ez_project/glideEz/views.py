@@ -7,24 +7,53 @@ import mysql.connector
 from datetime import datetime
 from django.contrib import messages #import messages
 import sweetify
+from django.template.defaulttags import register
+import json
 
 # Create your views here.
 def home(request): 
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
     mycursor.execute('select distinct loc from Airport order by loc;')
     details=mycursor.fetchall()
-    # print(details)
-    # print('Hi')
     return render(request, "glideEz/index.html",{'details' : details})
+
 
 def destination_view(request):
     return render(request, "glideEz/destination.html")
+
+
+def pricing_view(request):
+    return render(request, "glideEz/pricing.html")
+
+
+def contact_view(request):
+    # TODO: fix no message in email
+    if request.method == 'POST':
+        name = request.POST.get('visitor_name')
+        email = request.POST.get('visitor_email')
+        new_message = request.POST.get('visitor_message')
+        subject = request.POST.get('email_title')
+        form_data = {
+            'name':name,
+            'email':email,
+            'subject':subject,
+            'new_message':new_message
+        }
+        message = '''
+        From:\n\t\t{}\n
+        Message:\n\t\t{}\n
+        Email:\n\t\t{}\n
+        Subject:\n\t\t{}\n
+        '''.format(form_data['name'], form_data['new_message'], form_data['email'],form_data['subject'])
+        send_mail('You got a mail!', message, '', ['glideezinfo@gmail.com']) # TODO: enter your email address
+    return render(request, "glideEz/contact.html")
+
 
 def register_user_view(request):
     if request.method == "POST":
@@ -48,11 +77,11 @@ def register_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        mycursor.execute("SELECT * FROM user WHERE Email = %s", (email,))
+        mycursor.execute("SELECT * FROM user WHERE Email = '{}'".format(email))
         user = mycursor.fetchone()
         if user:
             sweetify.error(request, 'Registration Failed', text='User Already exists', persistent='Try Again')
@@ -60,12 +89,13 @@ def register_user_view(request):
             # return redirect('register_user')
         else:
             # TODO: fix format of query
-            mycursor.execute("""INSERT INTO user (User_ID, first_name,Email, passwrd, adhaar_no, address, DOB, phone_no) VALUES (null,{},{},{},{},{},{},{})
-            """.format(name,email, password, aadhar, address, dob, phone_number))
+            mycursor.execute("""INSERT INTO user (User_ID, first_name ,Middle_Name,Last_name, Email , passwrd, adhaar_no, address, DOB, phone_no) VALUES (null,'{}',null,null,'{}','{}',{},'{}','{}',{});
+            """.format(name, email , password, aadhar, address, dob, phone_number))
             mydb.commit()
             sweetify.success(request, 'Registration Successfull', text='Your account was created successfully!', persistent='Login')
             return redirect('/login_user')
     return render(request, "glideEz/login_user.html")
+
 
 def login_user_view(request):
     if request.method == "POST":
@@ -78,7 +108,7 @@ def login_user_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -122,129 +152,43 @@ def login_user_view(request):
 
             }
             return redirect('/', {'user': user})
-        else:
-            sweetify.error(request, 'User Not Found', text='User doesn\'t exist', persistent='Try Again')
-            return redirect('/login_user')
+        #else if email is in database but password is wrong
+        elif user is None:
+            mycursor.execute("SELECT * FROM user WHERE Email = %s", (email,))
+            user = mycursor.fetchone()
+            if user:
+                sweetify.error(request, 'Login Failed', text='Wrong Password', persistent='Try Again')
+                return redirect('/login_user')
+            else:
+                sweetify.error(request, 'Login Failed', text='Email not Found', persistent='Try Again')
+                return redirect('/login_user')
     return render(request, "glideEz/login_user.html")
 
-def register_airline_view(request):
-    if request.method == "POST":
-        # Getting airline name
-        name = request.POST.get('name')
-        # Getting airline email
+
+def forgot_password_view(request):
+    # send email to user with link to reset password with smtp
+    if request.method == 'POST':
         email = request.POST.get('email')
-        # Getting airline password
-        password = request.POST.get('pass')
-        # Getting airline address
-        address = request.POST.get('loc')
-        # Getting airline phone number
-        phone_number = request.POST.get('phone')
-
-        #check if airline exists in mysql database
+        # send user his old password via email
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        mycursor.execute("SELECT * FROM airline WHERE Email = %s", (email,))
-        airline = mycursor.fetchone()
-        if airline:
-            sweetify.error(request, 'Registration Failed', text='Airline Already exists', persistent='Try Again')
-            return redirect('/register_airline')
+        mycursor.execute("select passwrd from User where Email = '{}'".format(email))
+        details = mycursor.fetchall()
+        # print(details)
+        if details:
+            send_mail('Your password', details[0][0], '', [email])
+            sweetify.info(request, 'Password Sent Successfully.', button='Ok', timer=3000)
+            return render(request, 'glideEz/forgot_password.html')
         else:
+            sweetify.error(request, 'Email Not Found', text='Email doesn\'t exist', persistent='Try Again')
+            return render(request, 'glideEz/forgot_password.html', {'message': 'Email not found'})
+    return render(request, 'glideEz/forgot_password.html')
 
-            # Generate unique airline id which is not present in database which starts with first two letters of airline name
-            airline_id = name[0:2]
-            mycursor.execute("SELECT airline_id FROM airline")
-            airline_ids = mycursor.fetchall()
-            for i in range(1, 100):
-                if (airline_id + str(i),) not in airline_ids:
-                    airline_id = airline_id + str(i)
-                    break
-
-            
-            mycursor.execute("INSERT INTO airline (Airline_ID, Airline_name, passwrd, Email, phone_no, location) VALUES (%s, %s, %s, %s, %s, %s)", (airline_id, name, password, email, phone_number, address))
-            mydb.commit()
-            sweetify.success(request, 'Registration Successfull', text='Your account was created successfully!', persistent='Login')
-            return redirect('/login_airline')
-    return render(request, "glideEz/login_airline.html")
-    
-
-def login_airline_view(request):
-    if request.method == "POST":
-        # Getting airline email
-        email = request.POST.get('login_email')
-        # Getting airline password
-        password = request.POST.get('login_password')
-
-        #check if airline exists in mysql database
-        mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Rvya@1842",
-            database="glide_ez"
-        )
-        mycursor = mydb.cursor()
-        mycursor.execute("SELECT * FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
-        airline = mycursor.fetchone()
-        if airline:
-            # Fetch airline name from database
-            mycursor.execute("SELECT Airline_name FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
-            airline_name = mycursor.fetchone()
-
-            # Save airline name in session
-            request.session['airline_username'] = airline_name[0].capitalize()
-            # Save email in session
-            request.session['email'] = email
-            # Capitalize first letter of airline name
-            first_name = airline_name[0].capitalize()
-            # Get address of airline
-            mycursor.execute("SELECT location FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
-            address = mycursor.fetchone()
-            # Get phone number of airline
-            mycursor.execute("SELECT phone_no FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
-            phone_number = mycursor.fetchone()
-            # Get airline id of airline
-            mycursor.execute("SELECT Airline_ID FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
-            airline_id = mycursor.fetchone()
-            # create dict to store airline details
-            airline = {
-                'first_name': first_name,
-                'email': email,
-                'address': address[0],
-                'phone_number': phone_number[0],
-                'airline_id': airline_id[0]
-
-            }
-            # print(airline)
-            # return redirect('airline_pricing', {'airline': airline})
-            return render(request, "glideEz/Airline_Home.html", {'airline': airline})
-        else:
-            sweetify.error(request, 'Airline Not Found', text='Airline doesn\'t exist', persistent='Try Again')
-            return redirect('/login_airline')
-    return render(request, "glideEz/login_airline.html")
-
-
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
-def logout_view(request):
-    # if user is logged in
-    if request.session.has_key('user_name'):
-        # delete user_name and email from session
-        del request.session['user_name']
-        del request.session['email']
-        # redirect to home page
-        return redirect('/')
-    # if airline is logged in
-    elif request.session.has_key('airline_name'):
-        # delete airline_name and email from session
-        del request.session['airline_name']
-        del request.session['email']
-        # redirect to home page
-        return redirect('/')
-
-    return redirect('/')
 
 def view_account_view(request):
     # Get email from session
@@ -253,12 +197,15 @@ def view_account_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="Rvya@1842",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
     # Fetch user first name from session
     user_name = request.session['user_name']
+    # Fetch last name from database
+    mycursor.execute("SELECT Last_name FROM user WHERE Email = '{}'".format(email))
+    last_name = mycursor.fetchone()
     # fetch user address from database
     mycursor.execute("SELECT address FROM user WHERE Email = %s", (email,))
     address = mycursor.fetchone()
@@ -281,14 +228,18 @@ def view_account_view(request):
     user = {
 
         'first_name': user_name,
+        'last_name': last_name[0],
         'email': email,
         'address': address[0],
         'phone_number': phone_number,
-        'aadhar': aadhar,
-        'dob': dob
+        'dob': dob,
+        'aadhar': aadhar
+        
+
     }
     print(user)
     return render(request, "glideEz/view_account.html", {'user': user})
+
 
 # FIXME: BROKEN  
 def edit_account_details_view(request):
@@ -310,7 +261,7 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -320,9 +271,11 @@ def edit_account_details_view(request):
         # Update user details in database
         mycursor.execute("UPDATE user SET First_name = %s, Last_name = %s, phone_No = %s, Address = %s WHERE Email = %s", (first_name, last_name, phone_number, address, email))
         mydb.commit()
+        
         # Save first name in session
         request.session['user_name'] = first_name
         # redirect to view account page
+        sweetify.success(request, 'Account Updated Successfully', button='Ok', timer=3000)
         return redirect('/view_account')
     else:
     # Get email from session
@@ -331,12 +284,15 @@ def edit_account_details_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
         # Fetch user first name from session
         user_name = request.session['user_name']
+        # Fetch last name from database
+        mycursor.execute("SELECT Last_name FROM user WHERE Email = '{}'".format(email))
+        last_name = mycursor.fetchone()
         # fetch user address from database
         mycursor.execute("SELECT address FROM user WHERE Email = %s", (email,))
         address = mycursor.fetchone()
@@ -359,6 +315,7 @@ def edit_account_details_view(request):
         user = {
 
             'first_name': user_name,
+            'last_name': last_name[0],
             'email': email,
             'address': address[0],
             'phone_number': phone_number,
@@ -370,37 +327,6 @@ def edit_account_details_view(request):
         return render(request, "glideEz/edit_account_details.html", {'user': user})
 
 
-
-def pricing_view(request):
-    return render(request, "glideEz/pricing.html")
-
-def bookings_view(request):
-    # Get email from session
-    # print(request.session['email'])
-    return render(request, "glideEz/bookings.html")
-
-def contact_view(request):
-    # TODO: fix no message in email
-    if request.method == 'POST':
-        name = request.POST.get('visitor_name')
-        email = request.POST.get('visitor_email')
-        new_message = request.POST.get('visitor_message')
-        subject = request.POST.get('email_title')
-        form_data = {
-            'name':name,
-            'email':email,
-            'subject':subject,
-            'new_message':new_message
-        }
-        message = '''
-        From:\n\t\t{}\n
-        Message:\n\t\t{}\n
-        Email:\n\t\t{}\n
-        Subject:\n\t\t{}\n
-        '''.format(form_data['name'], form_data['new_message'], form_data['email'],form_data['subject'])
-        send_mail('You got a mail!', message, '', ['glideezinfo@gmail.com']) # TODO: enter your email address
-    return render(request, "glideEz/contact.html")
-    
 def search_flight_view(request):
     if request.method == "POST":
         # Get user input
@@ -420,7 +346,7 @@ def search_flight_view(request):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
@@ -435,9 +361,9 @@ def search_flight_view(request):
         where s.loc='{}' and t.loc='{}') , temp2(tr_ID,arr,dept,FL_ID) as 
         (select Trip.Trip_ID,Trip.Arrival_Time,Trip.Depart_Time,Flight_ID from Trip,temp1 
         where Trip.Depart_Time LIKE '{}%' and Trip.src_ID=temp1.src and Trip.dest_ID=temp1.dest) 
-        Select Flight.Flight_ID,Airline.Airline_Name,temp2.dept,temp2.arr,Seat.Price from Airline,Flight,temp2,Seat 
+        Select Flight.Flight_ID,Airline.Airline_Name,temp2.dept,temp2.arr,Seat.Price,tr_ID from Airline,Flight,temp2,Seat 
         where Airline.Airline_Id=Flight.fk_Airline_ID and Flight.Flight_ID=temp2.FL_ID and 
-        Seat.Trip_ID=temp2.tr_ID and Seat.Class_type='{}'
+        Seat.Trip_ID=temp2.tr_ID and Seat.Class_type='{}' group by(tr_ID)
          ;""".format(source,destination,date,class_type)
         mycursor.execute(str)
         details = mycursor.fetchall()
@@ -463,8 +389,8 @@ def search_flight_view(request):
         print(details)
         return render(request, "glideEz/search_flight.html", {'details': details , 'source' : source , 'destination' : destination , 'Class_Type' : class_type})
 
+
 def book_flight_view(request):
-    print("hi")
     airline_name = request.GET.get('airline')
     flight_id = request.GET.get('flight_id')
     source = request.GET.get('source')
@@ -472,14 +398,7 @@ def book_flight_view(request):
     class_type = request.GET.get('Class_Type')
     departure_time = request.GET.get('departure_time')
     arrival_time = request.GET.get('arrival_time')
-    price = request.GET.get('price')
-    print(source)
-    print(flight_id)
-    print(airline_name)
-    print(class_type)
-    print(departure_time)
-    print(arrival_time)
-    print(price)
+    tr_ID = request.GET.get('tr_ID')
 
     if not request.session.has_key('email'):
         return redirect('/login_user')
@@ -487,27 +406,22 @@ def book_flight_view(request):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="Rvya@1842",
+        password="12348765",
         database="glide_ez"
     )
     mycursor = mydb.cursor()
-    # Get no of economy seats from flight table
-    str = """select Economy_Class from Flight where Flight_ID = {};""".format(flight_id)
-    # Get no of business seats from flight table
-    str1 = """select Business_Class from Flight where Flight_ID = {};""".format(flight_id)
-    # Get no of first class seats from flight table
-    str2 = """select First_Class from Flight where Flight_ID = {};""".format(flight_id)
-
+    # Get all no of seats from flight table
+    str = """select First_Class ,Business,Economy from Flight where Flight_ID = {};""".format(flight_id)
     mycursor.execute(str)
-    economy_seats = mycursor.fetchall()
-    mycursor.execute(str1)
-    business_seats = mycursor.fetchall()
-    mycursor.execute(str2)
-    first_seats = mycursor.fetchall()
+    seats = mycursor.fetchall()
     
-    economy_seats = economy_seats[0][0]
-    business_seats = business_seats[0][0]
-    first_seats = first_seats[0][0]
+    str="""select Seat_No,busy,price from Seat where Trip_ID={}""".format(tr_ID)
+    mycursor.execute(str)
+    seatno1 = mycursor.fetchall()
+
+    economy_seats = int(seats[0][2])
+    business_seats = int(seats[0][1])
+    first_seats = int(seats[0][0])
 
     # Calculate no of rows for first class
     first_rows = first_seats//6
@@ -519,9 +433,18 @@ def book_flight_view(request):
 
     # Calculate no of rows for economy class
     economy_rows = economy_seats//6
-
+    seatno={}
     # Store all the details in a dictionary name book_details
+    for i in seatno1:
+        seatno[i[0]]=i[1]
 
+    price={}
+    for i in seatno1:
+        price[i[0]]=i[2]
+    print(price)
+    print("bye")
+
+    print(seatno)
     book_details = {
         'airline_name': airline_name,
         'flight_id': flight_id,
@@ -534,22 +457,251 @@ def book_flight_view(request):
         'economy_seats': economy_seats,
         'business_seats': business_seats,
         'first_seats': first_seats,
-        'first_rows': range(first_rows),
-        'business_rows': range(business_rows),
-        'economy_rows': range(economy_rows)
+        'first_rows': range(1,first_rows+1),
+        'business_rows': range(1,business_rows+1),
+        'economy_rows': range(1,economy_rows+1),
+        'Seat_No' : seatno,
+        'tr_ID' : tr_ID
     }
-    print(book_details)
     return render(request, "glideEz/book_flight.html", {'book_details': book_details})
+
+
+def payment_view(request):
+    if request.method == "POST":
+        seat_list = request.POST.getlist('seat_list')
+        trip_id=request.POST.get('trip_id')
+        seat_list=seat_list[0].strip('][').split(', ')
+        total_price=request.POST.get("price")
+        print(total_price)
+        passengers={}
+        for i in range(len(seat_list)):
+            seat_list[i]=seat_list[i].strip("'")
+        for st in seat_list:
+            name=request.POST.get(st+'name')
+            email=request.POST.get(st+'email')
+            dob=request.POST.get(st+'DOB')
+            phone=request.POST.get(st+'phone')
+            passengers[st]=[name,email,dob,phone]
+        print(passengers)
+
+        return render(request, 'glideEz/payment.html',{'price': total_price,'seat_list':seat_list,'trip_id':trip_id,'passengers':passengers})
+    
+
+def payment_redirect_view(request):
+    if request.method=="POST":
+        # connect to database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        # parse the seat list
+        seat_list = request.POST.getlist('seat_list')
+        passengers = request.POST.get('passengers')
+        trip_id=request.POST.get('trip_ID')
+        seat_list=seat_list[0].strip('][').split(', ')
+        passengers=passengers.replace("'",'"')
+        passengers=json.loads(passengers)
+        print(passengers)
+        mycursor.execute("Select user_id from user where email='{}';".format(user_email))
+        user_email=mycursor.fetchall()
+        user_email=user_email[0][0]
+        # check if seats are available or not in seat table
+        for i in range(len(seat_list)):
+            seat_list[i]=seat_list[i].strip("'")
+        for seat in seat_list:
+            str="""update Seat set busy=true where Seat_No='{}' and trip_id={} """.format(seat,trip_id)
+            mycursor.execute(str)
+            mydb.commit()
+        for seat in seat_list:
+            str="""SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "glide_ez" AND TABLE_NAME = "Booking";"""
+            mycursor.execute(str)
+            x=mycursor.fetchall()
+            x=x[0][0]
+            str="""insert into booking values({},{},{},{});""".format()
+            str="""insert into Passengers values(null,{},)""".format()
+        sweetify.success(request, 'Booking Successful', text='Booking Successful')
+        return redirect('/')
+
+
+
+def bookings_view(request):
+    return render(request, "glideEz/bookings.html")
+
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def logout_view(request):
+    # if user is logged in
+    if request.session.has_key('user_name'):
+        # delete user_name and email from session
+        del request.session['user_name']
+        del request.session['email']
+        # redirect to home page
+        return redirect('/')
+    # if airline is logged in
+    elif request.session.has_key('airline_name'):
+        # delete airline_name and email from session
+        del request.session['airline_name']
+        del request.session['email']
+        # redirect to home page
+        return redirect('/')
+
+    return redirect('/')
+
+
+def register_airline_view(request):
+    if request.method == "POST":
+        # Getting airline name
+        name = request.POST.get('name')
+        # Getting airline email
+        email = request.POST.get('email')
+        # Getting airline password
+        password = request.POST.get('pass')
+        # Getting airline address
+        address = request.POST.get('loc')
+        # Getting airline phone number
+        phone_number = request.POST.get('phone')
+
+        #check if airline exists in mysql database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM airline WHERE Email = %s", (email,))
+        airline = mycursor.fetchone()
+        if airline:
+            sweetify.error(request, 'Registration Failed', text='Airline Already exists', persistent='Try Again')
+            return redirect('/register_airline')
+        else:
+
+            # Generate unique airline id which is not present in database which starts with first two letters of airline name
+            airline_id = name[0:2]
+            mycursor.execute("SELECT airline_id FROM airline")
+            airline_ids = mycursor.fetchall()
+            for i in range(1, 100):
+                if (airline_id + str(i),) not in airline_ids:
+                    airline_id = airline_id + str(i)
+                    break
+
+            
+            mycursor.execute("INSERT INTO airline (Airline_ID, Airline_name, passwrd, Email, phone_no, location) VALUES (%s, %s, %s, %s, %s, %s)", (airline_id, name, password, email, phone_number, address))
+            mydb.commit()
+            sweetify.success(request, 'Registration Successfull', text='Your account was created successfully!', persistent='Login')
+            return redirect('/login_airline')
+    return render(request, "glideEz/login_airline.html")    
+
+
+def login_airline_view(request):
+    if request.method == "POST":
+        # Getting airline email
+        email = request.POST.get('login_email')
+        # Getting airline password
+        password = request.POST.get('login_password')
+
+        #check if airline exists in mysql database
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+        airline = mycursor.fetchone()
+        if airline:
+            # Fetch airline name from database
+            mycursor.execute("SELECT Airline_name FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            airline_name = mycursor.fetchone()
+
+            # Save airline name in session
+            request.session['airline_username'] = airline_name[0].capitalize()
+            # Save email in session
+            request.session['email'] = email
+            # Capitalize first letter of airline name
+            first_name = airline_name[0].capitalize()
+            # Get address of airline
+            mycursor.execute("SELECT location FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            address = mycursor.fetchone()
+            # Get phone number of airline
+            mycursor.execute("SELECT phone_no FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            phone_number = mycursor.fetchone()
+            # Get airline id of airline
+            mycursor.execute("SELECT Airline_ID FROM airline WHERE Email = %s AND passwrd = %s", (email, password))
+            airline_id = mycursor.fetchone()
+            # Store airline id in session
+            request.session['airline_id'] = airline_id[0]
+
+            # create dict to store airline details
+            airline = {
+                'first_name': first_name,
+                'email': email,
+                'address': address[0],
+                'phone_number': phone_number[0],
+                'airline_id': airline_id[0]
+
+            }
+            # print(airline)
+            # return redirect('airline_pricing', {'airline': airline})
+            return render(request, "glideEz/Airline_Home.html", {'airline': airline})
+        #else if email is in database but password is wrong
+        elif airline is None:
+            mycursor.execute("SELECT * FROM airline WHERE Email = %s", (email,))
+            airline = mycursor.fetchone()
+            if airline:
+                sweetify.error(request, 'Login Failed', text='Wrong Password', persistent='Try Again')
+                return redirect('/login_airline')
+            else:
+                sweetify.error(request, 'Login Failed', text='Email not Found', persistent='Try Again')
+                return redirect('/login_airline')
+    return render(request, "glideEz/login_airline.html")
 
 
 def airline_home_view(request):
     return render(request,'glideEz/Airline_Home.html')
 
+
+def airline_addflight_view(request):
+    if request.method == "POST":
+        Flight_ID = request.POST.get('Flight_ID')
+        Flight_Name = request.POST.get('Flight_Name')
+        First = request.POST.get('First')
+        Business = request.POST.get('Business')
+        Economy = request.POST.get('Economy')
+        # Get airline id from session
+        airline_id = request.session['airline_id']
+        print(airline_id)
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="12348765",
+            database="glide_ez"
+        )
+        mycursor = mydb.cursor()
+        # Check if flight id already exists
+        mycursor.execute("SELECT * FROM flight WHERE Flight_ID = %s", (Flight_ID,))
+        flight = mycursor.fetchone()
+        if flight:
+            sweetify.error(request, 'Flight ID already exists', text='Try another flight id', persistent='Try Again')
+            return redirect('/airline_addFlight')
+        else:
+            str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},'{}','{}',{},{},{})""".format(Flight_ID,airline_id,Flight_Name,First,Business,Economy)
+            mycursor.execute(str)
+            mydb.commit()
+            sweetify.success(request, 'Flight Added', text='Flight Added Successfully', persistent='Add Trip')
+            return redirect('/airline_addTrip')
+    return render(request,'glideEz/addflight.html')
+
+
 def airline_addtrip_view(request):
     mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
     mycursor = mydb.cursor()
@@ -559,84 +711,88 @@ def airline_addtrip_view(request):
     mycursor.execute('select Airport_Id,Airport_Name,loc from Airport order by loc;')
     allairports=mycursor.fetchall()
     return render(request,'glideEz/airline_addtrip.html',{'details' : details , 'airports' : allairports})
+    
+    
+def addtrip_form_view(request):
+    Flight_ID = request.POST.get('Flight_ID')
+    First_Class_Price = request.POST.get('First_Price')
+    Business_Class_Price = request.POST.get('Business_Price')
+    Economy_Class_Price = request.POST.get('Economy_Price')
+    Source = request.POST.get('source')
+    Source_airport = request.POST.get('source_ap')
+    Destination = request.POST.get('destination')
+    Destination_airport = request.POST.get('destination_ap')
+    Departure = request.POST.get('departure')
+    Arrival = request.POST.get('arrival')
+
+    print(Flight_ID)
+    print(First_Class_Price)
+    print(Business_Class_Price)
+    print(Economy_Class_Price)
+    print(Source)
+    print(Source_airport)
+    print(Destination)
+    print(Destination_airport)
+    print(Departure)
+    print(Arrival)
+
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="12348765",
+        database="glide_ez"
+    )
+    mycursor=mydb.cursor()
+    print(Source_airport)
+    print(Destination_airport)
+    # Enter trip details in trip table
+    str = """insert into trip(Flight_ID,src_ID,dest_ID,Depart_time,Arrival_time,first_price,business_price,economy_price) values({},'{}','{}','{}','{}',{},{},{})""".format(
+        Flight_ID, Source_airport, Destination_airport, Departure, Arrival, First_Class_Price, Business_Class_Price,
+        Economy_Class_Price)
+    mycursor.execute(str)
+    mydb.commit()
+    sweetify.success(request, 'Trip Added Successful', text='Trip Added Successfully', persistent='Ok')
+    return redirect('/airline_home')
+
+
 
 def airline_pricing_view(request):
     return render(request,'glideEz/airline_pricing.html')
 
+
 def airline_contact_view(request):
     return render(request,'glideEz/airline_contact.html')
 
-def airline_flight_view(request):
-    return render(request,'glideEz/addflight.html')
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
-def addflight_view(request):
+
+def Ticket_view(request):
+    return render(request,'glideEz/ticket.html')
+
+def passenger_view(request):
     if request.method == "POST":
-        Flight_ID = request.POST.get('Flight_ID')
-        Flight_Name = request.POST.get('Flight_Name')
-        First = request.POST.get('First')
-        Business = request.POST.get('Business')
-        Economy = request.POST.get('Economy')
-
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Rvya@1842",
+            password="12348765",
             database="glide_ez"
         )
         mycursor = mydb.cursor()
-        str="""insert into Flight(Flight_ID,fk_Airline_ID,Flight_Name,First_Class,Business_Class,Economy_Class) values({},{},'{}',{},{},{})""".format(Flight_ID,3,Flight_Name,First,Business,Economy)
-        #mycursor.execute(str)
-        return redirect('/airline_addTrip')
+        seat_list = request.POST.getlist('seats_selected')
+        print(type(seat_list))
+        trip_id = request.POST.get('trip_id')
+        print(trip_id)
+        str="""select Seat_No,price from Seat where Trip_ID={} and busy="false";""".format(trip_id)
+        mycursor.execute(str)
+        seatno1 = mycursor.fetchall()
+        price={}
+        for i in seatno1:
+            price[i[0]]=i[1]
+        total_price = 0
+        for seat in seat_list:
+            total_price += price.get(seat)
+        print(total_price)
 
-
-def forgot_password_view(request):
-    # send email to user with link to reset password with smtp
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        # send user his old password via email
-        mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Rvya@1842",
-            database="glide_ez"
-        )
-        mycursor = mydb.cursor()
-        mycursor.execute("select passwrd from User where Email = '{}'".format(email))
-        details = mycursor.fetchall()
-        # print(details)
-        if details:
-            send_mail('Your password', details[0][0], '', [email])
-            sweetify.info(request, 'Password Sent Successfully.', button='Ok', timer=3000)
-            return render(request, 'glideEz/forgot_password.html')
-        else:
-            sweetify.error(request, 'Email Not Found', text='Email doesn\'t exist', persistent='Try Again')
-            return render(request, 'glideEz/forgot_password.html', {'message': 'Email not found'})
-    return render(request, 'glideEz/forgot_password.html')
-
-
-def payment_view(request):
-    return render(request, 'glideEz/payment.html')
-
-def addtrip_view(request):
-    if request.method == "POST":
-        Flight_ID = request.POST.get('Flight_ID')
-        Source = request.POST.get('Flight_Name')
-        Destination = request.POST.get('Flight_Name')
-        Arrival=request.POST.get('Flight_Name')
-        Departure=request.POST.get('Flight_Name')
-        src_ap=request.POST.get('Flight_Name')
-        dest_ap=request.POST.get('Flight_Name')
-
-        mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Rvya@1842",
-            database="glide_ez"
-        )
-        mycursor = mydb.cursor()
-        str="""insert into Trip(Depart_Time,Arrival_Time,Trip_ID,src_ID,dest_ID,Flight_ID) values({},{},'{}',{},{},{})""".format(Arrival,Departure,Flight_Name,First,Business,Economy)
-        #mycursor.execute(str)
-        return redirect('/airline_addTrip')
-
-
-
+        return render(request, 'glideEz/Passenger.html',{'price': total_price,'seat_list':seat_list,'trip_id':trip_id})

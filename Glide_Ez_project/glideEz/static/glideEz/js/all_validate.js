@@ -37,15 +37,15 @@ function searchvalidate() {
 
 // For register
 
-function registervalidate() {
-  let name = document.forms["register"]["username"].value;
-  let email = document.forms["register"]["email"].value;
-  let phone = document.forms["register"]["phone"].value;
-  let password = document.forms["register"]["pass"].value;
+function registerUserValidate() {
+  let name = document.forms["register_user_form"]["username"].value;
+  let email = document.forms["register_user_form"]["email"].value;
+  let password = document.forms["register_user_form"]["pass"].value;
+  let dob = document.forms["register_user_form"]["dob"].value;
+  let address = document.forms["register_user_form"]["address"].value;
+  let aadhar = document.forms["register_user_form"]["aadhar"].value;
+  let phone = document.forms["register_user_form"]["phone"].value;
 
-  let aadhar = document.forms["register"]["aadhar"].value;
-  let dob = document.forms["register"]["dob"].value;
-  let address = document.forms["register"]["address"].value;
 
   if (name == "") {
     alert("Name must be filled out");
@@ -55,32 +55,13 @@ function registervalidate() {
     alert("Email must be filled out");
     return false;
   }
-  if (phone == "") {
-    alert("Phone must be filled out");
+  // Check for valid email
+  if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+    alert("Invalid Email");
     return false;
   }
   if (password == "") {
     alert("Password must be filled out");
-    return false;
-  }
-  if (aadhar == "") {
-    alert("Aadhar must be filled out");
-    return false;
-  }
-  if (dob == "") {
-    alert("Date of Birth must be filled out");
-    return false;
-  }
-  if (address == "") {
-    alert("Address must be filled out");
-    return false;
-  }
-  if (phone.length != 10) {
-    alert("Phone number must be 10 digits");
-    return false;
-  }
-  if (aadhar.length != 12) {
-    alert("Aadhar number must be 12 digits");
     return false;
   }
   // Check if password is of length 8
@@ -88,9 +69,230 @@ function registervalidate() {
     alert("Password must be of length 8");
     return false;
   }
-  // Check for valid email
+  if (dob == "") {
+    alert("Date of Birth must be filled out");
+    return false;
+  }
+  // Check if age is greater than 12
+  var today = new Date();
+  var birthDate = new Date(dob);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  if (age < 12) {
+    alert("Age must be greater than 12");
+    return false;
+  }
+
+  if (address == "") {
+    alert("Address must be filled out");
+    return false;
+  }
+  if (aadhar == "") {
+    alert("Aadhar must be filled out");
+    return false;
+  }
+  if (aadhar.length != 12) {
+    alert("Aadhar number must be 12 digits");
+    return false;
+  }
+
+  if (phone == "") {
+    alert("Phone must be filled out");
+    return false;
+  }
+  if (phone.length != 10) {
+    alert("Phone number must be 10 digits");
+    return false;
+  }
+
+
+  return true;
+}
+
+// For login
+
+function loginUserValidate() {
+  let email = document.forms["login_user_form"]["login_email"].value;
+  let password = document.forms["login_user_form"]["login_password"].value;
+
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
   if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
     alert("Invalid Email");
     return false;
+  }
+  return true;
+
+}
+
+function registerAirlineValidate() {
+  let name = document.forms["register_airline_form"]["name"].value;
+  let email = document.forms["register_airline_form"]["email"].value;
+  let password = document.forms["register_airline_form"]["pass"].value;
+  let phone = document.forms["register_airline_form"]["phone"].value;
+  let address = document.forms["register_airline_form"]["loc"].value;
+
+  if (name == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+    alert("Invalid Email");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+  if (password.length < 8) {
+    alert("Password must be of length 8");
+    return false;
+  }
+  if (phone == "") {
+    alert("Phone must be filled out");
+    return false;
+  }
+  if (phone.length != 10) {
+    alert("Phone number must be 10 digits");
+    return false;
+  }
+  if (address == "") {
+    alert("Address must be filled out");
+    return false;
+  }
+
+  return true;
+}
+
+function loginAirlineValidate() {
+  let email = document.forms["login_airline_form"]["login_email"].value;
+  let password = document.forms["login_airline_form"]["login_password"].value;
+
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+  if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+    alert("Invalid Email");
+    return false;
+  }
+  return true;
+}
+
+function addFlightValidate() {
+  Flight_ID = document.forms["add_flight_form"]["Flight_ID"].value;
+  Flight_Name = document.forms["add_flight_form"]["Flight_Name"].value;
+  First_Class_Price = document.forms["add_flight_form"]["First"].value;
+  Business_Class_Price = document.forms["add_flight_form"]["Business"].value;
+  Economy_Class_Price = document.forms["add_flight_form"]["Economy"].value;
+
+  if (Flight_ID == "") {
+    alert("Flight ID must be filled out");
+    return false;
+  }
+  // Check flight id is an integer
+  if (isNaN(Flight_ID)) {
+    alert("Flight ID must be an integer");
+    return false;
+  }
+  if (Flight_Name == "") {
+    alert("Flight Name must be filled out");
+    return false;
+  }
+  if (First_Class_Price == "") {
+    alert("First Class Price must be filled out");
+    return false;
+  }
+  if (Business_Class_Price == "") {
+    alert("Business Class Price must be filled out");
+    return false;
+  }
+  if (Economy_Class_Price == "") {
+    alert("Economy Class Price must be filled out");
+    return false;
+  }
+  return true;
+}
+
+function paymentValidate() {
+
+  let card_number = document.forms["payment_validate_form"]["card-number"].value;
+  let card_name = document.forms["payment_validate_form"]["card-name"].value;
+  let card_cvv = document.forms["payment_validate_form"]["card-cvv"].value;
+  let card_expiry_month = document.forms["payment_validate_form"]["expiry-month"].value;
+  let card_expiry_year = document.forms["payment_validate_form"]["expiry-year"].value;
+  let today_date = new Date();
+
+  if (card_number == "") {
+    alert("Card Number must be filled out");
+    return false;
+  }
+  if (card_number.length != 16) {
+    alert("Card number must be 16 digits");
+    return false;
+  }
+  if (card_name == "") {
+    alert("Card Name must be filled out");
+    return false;
+  }
+  if (card_cvv == "") {
+    alert("Card CVV must be filled out");
+    return false;
+  }
+  if (card_cvv.length != 3) {
+    alert("Card CVV must be 3 digits");
+    return false;
+  }
+  if (card_expiry_month == "") {
+    alert("Card Expiry Month must be filled out");
+    return false;
+  }
+  if (card_expiry_year == "") {
+    alert("Card Expiry Year must be filled out");
+    return false;
+  }
+
+  year = today_date.getFullYear();
+  year = year.toString().substr(-2);
+  year = year.parseInt();
+  // Check if card is expired
+  console.log(year);
+  if (card_expiry_year < year) {
+    year = today_date.getFullYear();
+    // Get last two digits of year
+    year = year.toString().substr(-2);
+    if (card_expiry_year < year) {
+      alert("Card is expired");
+      return false;
+    }
+
+    //Check expiry month
+    if (card_expiry_year == year) {
+      if (card_expiry_month < today_date.getMonth() + 1) {
+        alert("Card is expired");
+        return false;
+      }
+
+
+      return true;
+
+    }
   }
 }
